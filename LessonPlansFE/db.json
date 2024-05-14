@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "teacher1",
+      "password": "hashed_password",
+      "role": "teacher"
+    },
+    {
+      "id": 2,
+      "username": "substitute1",
+      "password": "hashed_password",
+      "role": "substitute"
+    }
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Math Algebra Basics",
+      "createdBy": 1,
+      "courseAssociation": "Mathematics",
+      "dateAdded": "2024-04-30",
+      "sharedWithEditable": [2],
+      "sharedWithReadOnly": [],
+      "resources": [1, 2]
+    },
+    {
+      "id": 2,
+      "title": "Linear Algebra",
+      "createdBy": 1,
+      "courseAssociation": "Mathematics",
+      "dateAdded": "2024-03-30",
+      "sharedWithEditable": [2],
+      "sharedWithReadOnly": [],
+      "resources": [1, 2]
+    },
+    {
+      "id": 3,
+      "title": "Electromagnetism",
+      "createdBy": 2,
+      "courseAssociation": "Physics",
+      "dateAdded": "2024-02-30",
+      "sharedWithEditable": [],
+      "sharedWithReadOnly": [2],
+      "resources": [1, 2]
+    }
+  ],
+  "resources": [
+    {
+      "id": 1,
+      "type": "video",
+      "link": "https://www.youtube.com/watch?v=Sgv1zbWs6vA",
+      "name": "Introduction to Algebra",
+      "start_time": "00:00:30",
+      "end_time": "00:05:00"
+    },
+    {
+      "id": 2,
+      "type": "pdf",
+      "link": "https://www.math.mcgill.ca/darmon/courses/19-20/algebra2/knapp.pdf",
+      "name": "Algebra Worksheet",
+      "start_page": 1,
+      "end_page": 2
+    }
+  ],
+  "feedback": [
+    {
+      "id": 1,
+      "lessonId": 1,
+      "userId": 2,
+      "text": "Completed all tasks, students were engaged.",
+      "date": "2024-05-01"
+    }
+  ]
+}
