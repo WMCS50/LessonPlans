@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const AddVideo = () => {
-  
+const AddVideo = ({ onAddResource }) => { // eslint-disable-line react/prop-types
+  const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
   const [times, setTimes] = useState([{ start: '', end: '' }]);
   
@@ -20,13 +20,26 @@ const AddVideo = () => {
     };
 
     const handleAdd = () => {
-        console.log("Add video with times:", times);
-        // Logic to save to the database or db.json
-    };
+      onAddResource({
+        type: 'video',
+        title,
+        link,
+        times
+      })
+    setTitle('')
+    setLink('')
+    setTimes([{ start: '', end: ''}])
+    }
 
     return (
       <div>
         <div>
+          <input
+            type='text'
+            placeholder='Enter video title'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <input
             type='text'
             placeholder='Enter website link'

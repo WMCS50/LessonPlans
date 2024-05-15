@@ -1,16 +1,28 @@
 import { useState } from 'react'
 
-const AddWebsite = () => {
+const AddWebsite = ({ onAddResource }) => { // eslint-disable-line react/prop-types
+  const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
 
   const handleAdd = () => {
-    console.log('Add document with link, link')
-    //need logic here for saving to database / db.json
+    onAddResource({
+      type: 'website',
+      title,
+      link
+    })
+    setTitle('')
+    setLink('')
   }
 
   return (
     <div>
       <input 
+        type='text'
+        placeholder="Enter title for website"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
         type='text'
         placeholder="Enter website link"
         value={link}

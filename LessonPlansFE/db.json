@@ -20,9 +20,14 @@
       "createdBy": 1,
       "courseAssociation": "Mathematics",
       "dateAdded": "2024-04-30",
-      "sharedWithEditable": [2],
+      "sharedWithEditable": [
+        2
+      ],
       "sharedWithReadOnly": [],
-      "resources": [1, 2]
+      "resources": [
+        1,
+        2
+      ]
     },
     {
       "id": 2,
@@ -30,9 +35,14 @@
       "createdBy": 1,
       "courseAssociation": "Mathematics",
       "dateAdded": "2024-03-30",
-      "sharedWithEditable": [2],
+      "sharedWithEditable": [
+        2
+      ],
       "sharedWithReadOnly": [],
-      "resources": [1, 2]
+      "resources": [
+        1,
+        2
+      ]
     },
     {
       "id": 3,
@@ -41,8 +51,54 @@
       "courseAssociation": "Physics",
       "dateAdded": "2024-02-30",
       "sharedWithEditable": [],
-      "sharedWithReadOnly": [2],
-      "resources": [1, 2]
+      "sharedWithReadOnly": [
+        2
+      ],
+      "resources": [
+        1,
+        2
+      ]
+    },
+    {
+      "title": "uber",
+      "resources": [
+        {
+          "type": "video",
+          "title": "dfgdfgfd",
+          "link": "dfgdfgdsf",
+          "times": [
+            {
+              "start": "12",
+              "end": "14"
+            }
+          ]
+        }
+      ],
+      "id": 4
+    },
+    {
+      "title": "uber",
+      "resources": [
+        {
+          "type": "video",
+          "title": "dfgdfgfd",
+          "link": "dfgdfgdsf",
+          "times": [
+            {
+              "start": "12",
+              "end": "14"
+            }
+          ]
+        },
+        {
+          "type": "document",
+          "link": "66+56+",
+          "title": "TestTitletillmadedynamic",
+          "start_page": 1,
+          "end_page": 2
+        }
+      ],
+      "id": 5
     }
   ],
   "resources": [
@@ -50,17 +106,13 @@
       "id": 1,
       "type": "video",
       "link": "https://www.youtube.com/watch?v=Sgv1zbWs6vA",
-      "name": "Introduction to Algebra",
-      "start_time": "00:00:30",
-      "end_time": "00:05:00"
-    },
-    {
-      "id": 2,
-      "type": "pdf",
-      "link": "https://www.math.mcgill.ca/darmon/courses/19-20/algebra2/knapp.pdf",
-      "name": "Algebra Worksheet",
-      "start_page": 1,
-      "end_page": 2
+      "title": "Introduction to Algebra",
+      "times": [
+        {
+          "start": "00:00:30",
+          "end": "00:05:00"
+        }
+      ]
     }
   ],
   "feedback": [
