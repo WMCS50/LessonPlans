@@ -1,0 +1,21 @@
+.lesson-create-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+
+.resource-display {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.resource-item {
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  padding: 10px;
+}
