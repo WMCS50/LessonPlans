@@ -226,6 +226,43 @@
         }
       ],
       "id": 10
+    },
+    {
+      "title": "title with sort",
+      "resources": [
+        {
+          "type": "website",
+          "title": "aaa",
+          "link": "aaa",
+          "id": "ee7785ce-e4ef-469e-a1e2-85b18b47eeb0"
+        },
+        {
+          "type": "website",
+          "title": "sss",
+          "link": "sss",
+          "id": "f2565c9c-0bee-4d2c-98e3-406aeb4dcdec"
+        },
+        {
+          "type": "video",
+          "title": "vvv",
+          "link": "vvv",
+          "times": [
+            {
+              "id": "c3dfcbdb-6ad6-47ad-857f-bc4422dc437e",
+              "start": "1",
+              "end": "2"
+            }
+          ],
+          "id": "c92b8e44-266c-4ad6-9f73-2c44e6bd027e"
+        },
+        {
+          "type": "website",
+          "title": "ddd",
+          "link": "ddd",
+          "id": "69c4840b-fe99-4474-9b6c-cbe1ab85999d"
+        }
+      ],
+      "id": 11
     }
   ],
   "resources": [

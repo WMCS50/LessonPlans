@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 
 const AddVideo = ({ onAddResource }) => { // eslint-disable-line react/prop-types
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
-  const [times, setTimes] = useState([{ start: '', end: '' }]);
+  const [times, setTimes] = useState([{ id: uuidv4(), start: '', end: '' }]);
   
-    const handleTimeChange = (index, field, value) => {
-        const newTimes = times.map((time, i) => {
-            if (i === index) {
+    const handleTimeChange = (id, field, value) => {
+        const newTimes = times.map((time) => {
+            if (time.id === id) {
                 return { ...time, [field]: value };
             }
             return time;
@@ -16,7 +17,7 @@ const AddVideo = ({ onAddResource }) => { // eslint-disable-line react/prop-type
     };
 
     const addTime = () => {
-        setTimes([...times, { start: '', end: '' }]);
+        setTimes([...times, { id: uuidv4(), start: '', end: '' }]);
     };
 
     const handleAdd = () => {
@@ -55,13 +56,13 @@ const AddVideo = ({ onAddResource }) => { // eslint-disable-line react/prop-type
                   type="text"
                   placeholder="Start time"
                   value={time.start}
-                  onChange={e => handleTimeChange(index, 'start', e.target.value)}
+                  onChange={e => handleTimeChange(time.id, 'start', e.target.value)}
               />
               <input
                   type="text"
                   placeholder="End time"
                   value={time.end}
-                  onChange={e => handleTimeChange(index, 'end', e.target.value)}
+                  onChange={e => handleTimeChange(time.id, 'end', e.target.value)}
               />
             </div>
           ))}
