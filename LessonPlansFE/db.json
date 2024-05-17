@@ -263,6 +263,39 @@
         }
       ],
       "id": 11
+    },
+    {
+      "title": "test lesson 3",
+      "resources": [
+        {
+          "type": "website",
+          "title": "sdfdsf",
+          "link": "sdfdsf",
+          "id": "397060a0-a141-4585-9387-b735cc09bc45"
+        },
+        {
+          "type": "video",
+          "title": "ertret",
+          "link": "ertert",
+          "times": [
+            {
+              "id": "e8a92aea-d256-4f4f-9ac4-c974c21b38bf",
+              "start": "3",
+              "end": "4"
+            }
+          ],
+          "id": "3e0c2d16-78a4-48f8-af06-cad02e312742"
+        },
+        {
+          "type": "document",
+          "link": "dfdsfsd",
+          "title": "TestTitletillmadedynamic",
+          "start_page": 1,
+          "end_page": 2,
+          "id": "324e5531-8862-4bf7-af9e-9649f5794020"
+        }
+      ],
+      "id": 12
     }
   ],
   "resources": [

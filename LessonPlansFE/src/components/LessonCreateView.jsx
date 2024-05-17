@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import axios from 'axios'
-import AddResource from './AddResource'
+import ResponsiveAppBar from './ResponsiveAppBar'
+import AddDocument from './AddDocument'
+import AddWebsite from './AddWebsite'
+import AddVideo from './AddVideo'
 import { v4 as uuidv4 } from 'uuid'
 import {
   DndContext, 
@@ -21,9 +24,10 @@ import {
 import {CSS} from '@dnd-kit/utilities'
 import './LessonCreateView.css'
 
-  const LessonCreateView = () => {
+const LessonCreateView = () => {
   const [resources, setResources] = useState([])
   const [lessonTitle, setLessonTitle] = useState('')
+  const [activeForm, setActiveForm] = useState(null)
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -34,6 +38,7 @@ import './LessonCreateView.css'
     const resourceWithId = { ...newResource, id: uuidv4() }
     setResources([...resources, resourceWithId])
     console.log('new resource added', resourceWithId)
+    setActiveForm(null)
   }
 
   const handleSaveLesson = async () => {
@@ -117,7 +122,10 @@ import './LessonCreateView.css'
           value={lessonTitle}
           onChange={(e) => setLessonTitle(e.target.value)}
         />
-        <AddResource onAddResource={handleAddResource} />
+        <ResponsiveAppBar setActiveForm={setActiveForm} />
+          {activeForm === 'Add Document' && <AddDocument onAddResource={handleAddResource} /> }
+          {activeForm === 'Add Website' && <AddWebsite onAddResource={handleAddResource} /> }
+          {activeForm === 'Add Video' && <AddVideo onAddResource={handleAddResource} /> }
       </div>
       
       <div className='resource-display'>
