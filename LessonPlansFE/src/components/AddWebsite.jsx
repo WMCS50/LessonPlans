@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { resetActiveForm } from '../features/lessons/activeFormSlice'
 
 const AddWebsite = ({ onAddResource }) => { // eslint-disable-line react/prop-types
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
+  const dispatch = useDispatch()
 
   const handleAdd = () => {
     onAddResource({
@@ -12,6 +15,7 @@ const AddWebsite = ({ onAddResource }) => { // eslint-disable-line react/prop-ty
     })
     setTitle('')
     setLink('')
+    dispatch(resetActiveForm())
   }
 
   return (

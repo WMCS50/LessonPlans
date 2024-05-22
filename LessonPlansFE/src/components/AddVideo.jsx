@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'
+import { useDispatch } from 'react-redux'
+import { resetActiveForm } from '../features/lessons/activeFormSlice'
 
 const AddVideo = ({ onAddResource }) => { // eslint-disable-line react/prop-types
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
   const [times, setTimes] = useState([{ id: uuidv4(), start: '', end: '' }]);
-  
+  const dispatch = useDispatch()
+
     const handleTimeChange = (id, field, value) => {
         const newTimes = times.map((time) => {
             if (time.id === id) {
@@ -30,6 +33,7 @@ const AddVideo = ({ onAddResource }) => { // eslint-disable-line react/prop-type
     setTitle('')
     setLink('')
     setTimes([{ start: '', end: ''}])
+    dispatch(resetActiveForm())
     }
 
     return (

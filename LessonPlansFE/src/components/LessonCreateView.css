@@ -19,3 +19,23 @@
   margin-top: 10px;
   padding: 10px;
 }
+
+.lesson-title-input {
+  flex-grow: 1;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.save-lesson-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.save-lesson-button:hover {
+  background-color: blue;
+}

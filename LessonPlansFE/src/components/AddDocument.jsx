@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { resetActiveForm } from '../features/lessons/activeFormSlice'
 
 const AddDocument = ({ onAddResource }) => { // eslint-disable-line react/prop-types
   const [link, setLink] = useState('')
+  const dispatch = useDispatch()
 
   const handleAdd = async () => {
     onAddResource({
@@ -12,6 +15,7 @@ const AddDocument = ({ onAddResource }) => { // eslint-disable-line react/prop-t
       end_page: 2 //to be dynamic
     })
     setLink('')
+    dispatch(resetActiveForm())
   }
     
   return (
