@@ -1,4 +1,4 @@
-import AddDocument from './AddDocument'
+/* import AddDocument from './AddDocument'
 import AddWebsite from './AddWebsite'
 import AddVideo from './AddVideo'
 
@@ -12,4 +12,4 @@ const AddResource = ({ onAddResource }) => { // eslint-disable-line react/prop-t
   )
 }
 
-export default AddResource
+export default AddResource */

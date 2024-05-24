@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useSortable,} from '@dnd-kit/sortable'
 import {CSS} from '@dnd-kit/utilities'
+import DocumentDisplay from './DocumentDisplay'
+import WebsiteDisplay from './WebsiteDisplay'
+import VideoDisplay from './VideoDisplay'
 
 const SortableItem = ({ id, resource, handleDeleteResource }) => {
   const {
@@ -18,18 +21,24 @@ const SortableItem = ({ id, resource, handleDeleteResource }) => {
   
   return (
     <div 
-      ref={setNodeRef} style={style} className='resource-item'
-      {...attributes} {...listeners}
+      ref={setNodeRef} 
+      style={style} 
+      className='resource-item'
+      {...attributes} 
+      {...listeners}
     >
-      <p>Title: {resource.title}</p>
-      {resource.times && resource.times.map((time) => (
-        <div key={time.id}>
-          <p>Start Time: {time.start}</p>
-          <p>End Time: {time.end}</p>
-        </div>
-      ))}
-      <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
-    </div>
+      <div>
+        {resource.type === 'document' && 
+          <DocumentDisplay title={resource.title} link={resource.link} />}
+        {resource.type === 'website' && 
+          <WebsiteDisplay title={resource.title} link={resource.link} />}
+        {resource.type === 'video' &&
+          <VideoDisplay 
+            title={resource.title} link={resource.link} 
+            startTime={resource.startTime} endTime={resource.endTime}/>}
+      </div>
+    <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
+ </div>
   );
 }
 

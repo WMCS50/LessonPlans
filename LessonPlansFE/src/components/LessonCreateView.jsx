@@ -6,8 +6,8 @@ import { reorderResources, deleteResource } from '../features/lessons/resourcesS
 import ResponsiveAppBar from './ResponsiveAppBar'
 import ActiveForm from './ActiveForm'
 import SortableItem from './SortableItem'
-import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
-import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useSaveLesson } from '../hooks/useSaveLesson'
 import './LessonCreateView.css'
 
@@ -17,10 +17,13 @@ const LessonCreateView = () => {
   const resources = useSelector((state) => state.resources)
   const { handleSaveLesson } = useSaveLesson()
   
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
-  )
+  const pointerSensor = useSensor(PointerSensor, {
+    activationConstraint: {
+      distance: 5
+    }
+  })
+  
+  const sensors = useSensors(pointerSensor)
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
@@ -67,6 +70,7 @@ const LessonCreateView = () => {
           </div>
           </SortableContext>
         </DndContext>
+
 
       </div>
 

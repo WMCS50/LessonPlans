@@ -559,6 +559,38 @@
         }
       ],
       "id": 20
+    },
+    {
+      "title": "gfhgffgjgf",
+      "resources": [
+        {
+          "type": "document",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "title": "sample",
+          "start_page": 1,
+          "end_page": 2,
+          "id": "25875187-6971-4ddc-8d86-5be6c2aaa7dc"
+        },
+        {
+          "type": "video",
+          "title": "fghgfh",
+          "link": "fghfgdh",
+          "times": [
+            {
+              "id": "fdf3b91b-5a8d-4066-8476-3296ab8abc17",
+              "start": "1",
+              "end": "2"
+            },
+            {
+              "id": "324725e9-c63f-40bf-85bf-0447a4798e67",
+              "start": "2",
+              "end": "3"
+            }
+          ],
+          "id": "568f16cd-1897-4cfa-903b-f8cf5cb920f9"
+        }
+      ],
+      "id": 21
     }
   ],
   "resources": [
