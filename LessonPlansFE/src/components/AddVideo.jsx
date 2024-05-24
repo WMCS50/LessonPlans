@@ -54,7 +54,7 @@ const AddVideo = ({ onAddResource }) => { // eslint-disable-line react/prop-type
             onChange={e => setEndTime(e.target.value)}
           />
         </div>
-        {link && <VideoDisplay title={title} link={link} />}
+        {link && <VideoDisplay title={title} link={link} startTime={startTime} endTime={endTime}/>}
         <div>
           <button onClick={handleAdd}>+</button>
         </div>
