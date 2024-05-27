@@ -73,6 +73,7 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' 
           referrerPolicy='strict-origin-when-cross-origin'
           allowFullScreen
+          loading='lazy'
         ></iframe>
         ) : (
           <p>Please enter a valid Youtube URL</p>

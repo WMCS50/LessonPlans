@@ -20,6 +20,7 @@ const DocumentDisplay = ({ title, link }) => {
         width='100%'
         height='200px'
         title="Document Preview"
+        loading='lazy'
       ></iframe>
     <button onClick={handlePopOut}>View Full Document</button>
     </div>
