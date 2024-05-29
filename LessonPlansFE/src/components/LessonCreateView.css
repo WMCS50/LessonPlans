@@ -10,8 +10,10 @@
 }
 
 .resource-display {
-  padding: 20px;
-  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  min-height: max-content; /* Ensure there's enough space to right-click if no resources are present */
+  position: relative; /* To position the context menu correctly */
 }
 
 .resource-item {

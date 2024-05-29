@@ -33,7 +33,10 @@ const ResponsiveAppBar = ({ setActiveForm }) => {
   //(if selected) page
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
-    page && setActiveForm(page)
+    //page && setActiveForm(page)
+    if (page) {
+      setActiveForm({ type: page, index: 0 })
+    }
   };
 
   const handleCloseUserMenu = () => {

@@ -68,7 +68,7 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
         <iframe
           src={embedLink}
           width='560'
-          height='315' 
+          height='150' 
           title='Video Preview'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' 
           referrerPolicy='strict-origin-when-cross-origin'

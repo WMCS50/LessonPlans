@@ -591,6 +591,34 @@
         }
       ],
       "id": 21
+    },
+    {
+      "title": "yeehaw",
+      "resources": [
+        {
+          "type": "video",
+          "title": "test3",
+          "link": "https://www.youtube.com/watch?v=Xoa1zowwO34&feature=youtu.be",
+          "startTime": "123",
+          "endTime": "125",
+          "id": "5aac8d0b-38b2-442b-9e06-bb71f6d4ad66"
+        },
+        {
+          "type": "website",
+          "title": "test2",
+          "link": "https://ca.yahoo.com/?p=us",
+          "id": "f8a9805d-7a7b-47cd-b513-46b35deaa346"
+        },
+        {
+          "type": "document",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "title": "test1",
+          "start_page": 1,
+          "end_page": 2,
+          "id": "25446b8c-a106-4637-9689-3c81adf2d73f"
+        }
+      ],
+      "id": 22
     }
   ],
   "resources": [
