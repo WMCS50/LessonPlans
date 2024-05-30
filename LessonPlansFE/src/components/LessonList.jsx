@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchLessons } from '../features/lessons/lessonsSlice'
 import { useNavigate } from 'react-router-dom'
+import './LessonList.css'
+
 
 const LessonList = () => {
   const dispatch = useDispatch()
@@ -43,7 +45,15 @@ const LessonList = () => {
 
   return (
     <div>
-      <table>
+      <header className='lesson-list-header'>
+        <div className='header-logo'>Lesson Creator</div>
+        <input className='search-bar' type='text' placeholder='Search Lesson Title'/>
+        <div className='user-menu'>User Menu</div>
+      </header>
+      <button className='create-lesson-button' onClick={() => navigate('/create')}>
+        Create New Lesson
+      </button>
+      <table className='lesson-table'>
         <thead>
           <tr>
             <th onClick={() => requestSort('title')}>Title</th>

@@ -1,0 +1,61 @@
+.lesson-list-container {
+  padding: 1rem;
+}
+
+.lesson-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ccc;
+}
+
+.header-logo {
+  font-size: 1rem;
+}
+
+.search-bar {
+  width: 50%;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.user-menu {
+  font-size: 1rem;
+}
+
+.create-lesson-button {
+  margin: 20px 0;
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.create-lesson-button:hover {
+  background-color: #0056b3;
+}
+
+.lesson-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.lesson-table th,
+.lesson-table td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.lesson-table th {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.lesson-table tr:hover {
+  background-color: #f1f1f1;
+}

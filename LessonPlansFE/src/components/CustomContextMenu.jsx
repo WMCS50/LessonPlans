@@ -42,11 +42,6 @@ const CustomContextMenu = ({ options, onOptionSelect, children, position }) => {
       adjustedY = innerHeight  - menuHeight - 10
     }
 
-    if (position.y - menuHeight < innerHeight) {
-      adjustedY = innerHeight  - menuHeight - 10
-    }
-
-
     setAdjustedPosition({ x: adjustedX, y: adjustedY })
   }
 
