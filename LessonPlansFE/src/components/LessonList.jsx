@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchLessons } from '../features/lessons/lessonsSlice'
 import { useNavigate } from 'react-router-dom'
+import UserMenu from './UserMenu'
 import './LessonList.css'
 
+//placeholder logo
+import SchoolIcon from '@mui/icons-material/School' 
+import { green } from '@mui/material/colors'
 
 const LessonList = () => {
   const dispatch = useDispatch()
@@ -13,7 +17,8 @@ const LessonList = () => {
   const lessonsStatus = useSelector((state) => state.lessons.status)
   const error = useSelector((state) => state.lessons.error)
   const [sortConfig, setSortConfig] = useState({ key: 'title', direction: 'ascending' })
-  
+  const [searchQuery, setSearchQuery] = useState('')
+
   const requestSort = (key) => {
     let direction = 'ascending'
     if (sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -41,14 +46,23 @@ const LessonList = () => {
     }
   }, [lessonsStatus, dispatch])
 
-
+  //filters lesson based on searchQuery
+  const filteredLessons = sortedLessons.filter((lesson) =>
+    lesson.title.toLowerCase().includes(searchQuery.toLowerCase())
+  ) 
 
   return (
     <div>
       <header className='lesson-list-header'>
-        <div className='header-logo'>Lesson Creator</div>
-        <input className='search-bar' type='text' placeholder='Search Lesson Title'/>
-        <div className='user-menu'>User Menu</div>
+        <SchoolIcon sx={{ width: 50, height: 50 , color: green[900] }} />
+        <input 
+          className='search-bar' 
+          type='text' 
+          placeholder='Search Lesson Title'
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <UserMenu />
       </header>
       <button className='create-lesson-button' onClick={() => navigate('/create')}>
         Create New Lesson
@@ -63,7 +77,7 @@ const LessonList = () => {
           </tr>
         </thead>
         <tbody>
-          {sortedLessons.map((lesson) => (
+          {filteredLessons.map((lesson) => (
             <tr 
               key={lesson.id} 
               onClick={() => navigate(`/lessons/${lesson.id}`)}
