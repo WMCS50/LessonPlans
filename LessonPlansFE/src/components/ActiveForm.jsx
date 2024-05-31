@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import AddDocument from './AddDocument'
 import AddWebsite from './AddWebsite'
 import AddVideo from './AddVideo'
+import AddText from './AddText'
 import { addResource } from '../features/lessons/resourcesSlice'
 
 const ActiveForm = () => {
@@ -37,6 +38,8 @@ const ActiveForm = () => {
       return <AddWebsite  open={open} onClose={handleClose} onAddResource={handleAddResource} />
     case 'Add Video':
       return <AddVideo  open={open} onClose={handleClose} onAddResource={handleAddResource} />
+    case 'Add Text':
+      return <AddText  open={open} onClose={handleClose} onAddResource={handleAddResource} />
     default:
       return null
   }

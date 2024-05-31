@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSortable,} from '@dnd-kit/sortable'
 import {CSS} from '@dnd-kit/utilities'
+import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
@@ -28,6 +29,8 @@ const SortableItem = ({ id, resource, handleDeleteResource }) => {
       {...listeners}
     >
       <div>
+        {resource.type === 'text' && 
+          <TextDisplay title={resource.title} content={resource.content} />}
         {resource.type === 'document' && 
           <DocumentDisplay title={resource.title} link={resource.link} />}
         {resource.type === 'website' && 

@@ -8,7 +8,7 @@ import {
   Container, Button, MenuItem
 } from '@mui/material'
 
-const pages = ['Add Document', 'Add Website', 'Add Video'];
+const pages = ['Add Text', 'Add Document', 'Add Website', 'Add Video'];
 //currently a placeholder for what is to come
 
 const ResponsiveAppBar = ({ setActiveForm }) => {
