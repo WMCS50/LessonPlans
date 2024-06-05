@@ -15,21 +15,6 @@
   ],
   "lessons": [
     {
-      "id": 1,
-      "title": "Math Algebra Basics",
-      "createdBy": 1,
-      "courseAssociation": "Mathematics",
-      "dateAdded": "2024-04-30",
-      "sharedWithEditable": [
-        2
-      ],
-      "sharedWithReadOnly": [],
-      "resources": [
-        1,
-        2
-      ]
-    },
-    {
       "id": 2,
       "title": "Linear Algebra",
       "createdBy": 1,
@@ -60,588 +45,70 @@
       ]
     },
     {
-      "title": "uber",
+      "title": "zillow",
       "resources": [
         {
-          "type": "video",
-          "title": "dfgdfgfd",
-          "link": "dfgdfgdsf",
-          "times": [
-            {
-              "start": "12",
-              "end": "14"
-            }
-          ]
+          "type": "website",
+          "title": "zillow",
+          "link": "https://zillow.com",
+          "id": "17e264f6-5fb8-4079-b787-32d839463ac2"
         }
       ],
       "id": 4
     },
     {
-      "title": "uber",
+      "title": "new lesson",
       "resources": [
         {
-          "type": "video",
-          "title": "dfgdfgfd",
-          "link": "dfgdfgdsf",
-          "times": [
-            {
-              "start": "12",
-              "end": "14"
-            }
-          ]
+          "type": "text",
+          "title": "testst",
+          "content": "<p>wetwtwetwt</p>\n<p>sdfdsfs</p>\n<p>&nbsp;</p>",
+          "id": "3da1f9fd-40d2-44cf-9fbf-aac2ae8f9aed"
         },
         {
-          "type": "document",
-          "link": "66+56+",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2
+          "type": "website",
+          "title": "yahoo",
+          "link": "https://yahoo.com",
+          "id": "e33bc546-7c37-4b29-b248-d36d6d25cbe8"
         }
       ],
       "id": 5
     },
     {
-      "title": "title 2",
+      "title": "test",
       "resources": [
         {
-          "type": "document",
-          "link": "link2",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2
+          "type": "text",
+          "title": "text1",
+          "content": "",
+          "id": "5aee10db-b46a-4eaa-a766-8977cb2a03be"
         },
         {
-          "type": "website",
-          "title": "webby",
-          "link": "wwww.herereere"
-        },
-        {
-          "type": "video",
-          "title": "sdfs",
-          "link": "sdfsfs",
-          "times": [
-            {
-              "start": "1",
-              "end": "2"
-            },
-            {
-              "start": "2",
-              "end": "3"
-            }
-          ]
+          "type": "text",
+          "title": "text2",
+          "content": "",
+          "id": "fba081e9-9424-48ae-ae4c-99ab56eb89c2"
         }
       ],
       "id": 6
     },
     {
-      "title": "etertert",
+      "title": "test",
       "resources": [
         {
-          "type": "document",
-          "link": "werw",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2
+          "type": "text",
+          "title": "text1",
+          "content": "",
+          "id": "5aee10db-b46a-4eaa-a766-8977cb2a03be"
         },
         {
-          "type": "website",
-          "title": "ertewt",
-          "link": "ertewrt"
+          "type": "text",
+          "title": "text2",
+          "content": "",
+          "id": "fba081e9-9424-48ae-ae4c-99ab56eb89c2"
         }
       ],
       "id": 7
-    },
-    {
-      "title": "etertert",
-      "resources": [
-        {
-          "type": "document",
-          "link": "werw",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2
-        },
-        {
-          "type": "website",
-          "title": "ertewt",
-          "link": "ertewrt"
-        },
-        {
-          "type": "website",
-          "title": "dfdsf",
-          "link": "sdfsdf"
-        }
-      ],
-      "id": 8
-    },
-    {
-      "title": "dddd",
-      "resources": [
-        {
-          "type": "document",
-          "link": "dddd",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2
-        },
-        {
-          "type": "document",
-          "link": "dddd",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2
-        },
-        {
-          "type": "document",
-          "link": "dddddd",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2
-        }
-      ],
-      "id": 9
-    },
-    {
-      "title": "qqq",
-      "resources": [
-        {
-          "type": "document",
-          "link": "qqq",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "4aa11326-60e2-4fbd-b2f8-af00e559d5f7"
-        },
-        {
-          "type": "website",
-          "title": "qqq",
-          "link": "qqq",
-          "id": "a7ce9676-bd8f-43c2-b193-5ccba52f89f8"
-        },
-        {
-          "type": "website",
-          "title": "qqqq",
-          "link": "qqqq",
-          "id": "a8cb7881-3021-4c4b-8572-4461c1ec667c"
-        }
-      ],
-      "id": 10
-    },
-    {
-      "title": "title with sort",
-      "resources": [
-        {
-          "type": "website",
-          "title": "aaa",
-          "link": "aaa",
-          "id": "ee7785ce-e4ef-469e-a1e2-85b18b47eeb0"
-        },
-        {
-          "type": "website",
-          "title": "sss",
-          "link": "sss",
-          "id": "f2565c9c-0bee-4d2c-98e3-406aeb4dcdec"
-        },
-        {
-          "type": "video",
-          "title": "vvv",
-          "link": "vvv",
-          "times": [
-            {
-              "id": "c3dfcbdb-6ad6-47ad-857f-bc4422dc437e",
-              "start": "1",
-              "end": "2"
-            }
-          ],
-          "id": "c92b8e44-266c-4ad6-9f73-2c44e6bd027e"
-        },
-        {
-          "type": "website",
-          "title": "ddd",
-          "link": "ddd",
-          "id": "69c4840b-fe99-4474-9b6c-cbe1ab85999d"
-        }
-      ],
-      "id": 11
-    },
-    {
-      "title": "test lesson 3",
-      "resources": [
-        {
-          "type": "website",
-          "title": "sdfdsf",
-          "link": "sdfdsf",
-          "id": "397060a0-a141-4585-9387-b735cc09bc45"
-        },
-        {
-          "type": "video",
-          "title": "ertret",
-          "link": "ertert",
-          "times": [
-            {
-              "id": "e8a92aea-d256-4f4f-9ac4-c974c21b38bf",
-              "start": "3",
-              "end": "4"
-            }
-          ],
-          "id": "3e0c2d16-78a4-48f8-af06-cad02e312742"
-        },
-        {
-          "type": "document",
-          "link": "dfdsfsd",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "324e5531-8862-4bf7-af9e-9649f5794020"
-        }
-      ],
-      "id": 12
-    },
-    {
-      "title": "ttttttt",
-      "resources": [
-        {
-          "type": "website",
-          "title": "sdfdsafdas",
-          "link": "asdfsadf",
-          "id": "5f0c06f2-1f81-47c3-a28c-5cbfa08dabd1"
-        },
-        {
-          "type": "document",
-          "link": "dgdsgdsg",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "5fa55048-c55a-4ec1-b813-cf576977650c"
-        },
-        {
-          "type": "video",
-          "title": "sadfsdaf",
-          "link": "sdafsadf",
-          "times": [
-            {
-              "id": "5c5935ef-823d-4178-8c4b-5d8dfaeac6ec",
-              "start": "sdafasf",
-              "end": "asdfsaf"
-            }
-          ],
-          "id": "84b34d3b-70f2-4a91-9f2b-2339189981c0"
-        }
-      ],
-      "id": 13
-    },
-    {
-      "title": "tittieritet",
-      "resources": [
-        {
-          "type": "document",
-          "link": "dfgdfgdfg",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "1d9edd60-5086-438a-a0e7-e8092f696a9d"
-        },
-        {
-          "type": "website",
-          "title": "dfgdfgg",
-          "link": "dfgdfgd",
-          "id": "db4ea633-3e78-40c5-8a76-5d7e7f3a8583"
-        }
-      ],
-      "id": 14
-    },
-    {
-      "title": "tittieritet",
-      "resources": [
-        {
-          "type": "document",
-          "link": "dfgdfgdfg",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "1d9edd60-5086-438a-a0e7-e8092f696a9d"
-        },
-        {
-          "type": "website",
-          "title": "dfgdfgg",
-          "link": "dfgdfgd",
-          "id": "db4ea633-3e78-40c5-8a76-5d7e7f3a8583"
-        },
-        {
-          "type": "website",
-          "title": "sfdsfsdf",
-          "link": "sdfsdfsf",
-          "id": "6391aa7c-d5a7-4573-8318-f1aa514d3e42"
-        }
-      ],
-      "id": 15
-    },
-    {
-      "title": "sdfdsfsdfsdfsdfsdf",
-      "resources": [
-        {
-          "type": "document",
-          "link": "sdfdsfds",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "c44ed3dd-df16-46bf-99e4-0ec0fcde3173"
-        },
-        {
-          "type": "website",
-          "title": "sdfdsfds",
-          "link": "sdfdsf",
-          "id": "38131d4c-ed72-4b30-8eda-cdca864ffdbc"
-        }
-      ],
-      "id": 16
-    },
-    {
-      "title": "ghghjghjghj",
-      "resources": [
-        {
-          "type": "document",
-          "link": "sdfdsfadsf",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "1baeac18-398d-489e-8c54-acfbdab4eacc"
-        },
-        {
-          "type": "website",
-          "title": "safsadfas",
-          "link": "asdfsadf",
-          "id": "e5034721-8968-4194-b7a9-f6074233a085"
-        },
-        {
-          "type": "video",
-          "title": "sadfasf",
-          "link": "asdfsaf",
-          "times": [
-            {
-              "id": "0e7da22b-de82-4b6a-8b67-5b64d85a65e1",
-              "start": "5",
-              "end": "6"
-            }
-          ],
-          "id": "60fe4561-f517-415b-aaa3-3b3418983112"
-        }
-      ],
-      "id": 17
-    },
-    {
-      "title": "ghghjghjghj",
-      "resources": [
-        {
-          "type": "document",
-          "link": "sdfdsfadsf",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "1baeac18-398d-489e-8c54-acfbdab4eacc"
-        },
-        {
-          "type": "document",
-          "link": "sdfdascvxbxvcb",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "cbd2e8b4-a5f2-4eeb-a6c5-ab1c2034b41d"
-        },
-        {
-          "type": "website",
-          "title": "safsadfas",
-          "link": "asdfsadf",
-          "id": "e5034721-8968-4194-b7a9-f6074233a085"
-        },
-        {
-          "type": "video",
-          "title": "sadfasf",
-          "link": "asdfsaf",
-          "times": [
-            {
-              "id": "0e7da22b-de82-4b6a-8b67-5b64d85a65e1",
-              "start": "5",
-              "end": "6"
-            }
-          ],
-          "id": "60fe4561-f517-415b-aaa3-3b3418983112"
-        }
-      ],
-      "id": 18
-    },
-    {
-      "title": "agdfjhljhlkk",
-      "resources": [
-        {
-          "type": "video",
-          "title": "sdfsdf",
-          "link": "sdfdsf",
-          "times": [
-            {
-              "id": "6c367f6b-ed48-4f13-a058-420835411d64",
-              "start": "2",
-              "end": "3"
-            }
-          ],
-          "id": "2b35c9c6-4a60-4154-beee-a90b1c04922c"
-        },
-        {
-          "type": "document",
-          "link": "sdfsf",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "bcf1b3a5-8f79-45e9-8f60-343ab16cb161"
-        },
-        {
-          "type": "website",
-          "title": "sdfdsf",
-          "link": "sdfdsf",
-          "id": "dc74db9e-a1dd-43ba-84e9-7893af822fb9"
-        }
-      ],
-      "id": 19
-    },
-    {
-      "title": "jjj",
-      "resources": [
-        {
-          "type": "document",
-          "link": "sdfdsf",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "37d835e4-9123-484e-b80b-37465156b75b"
-        },
-        {
-          "type": "document",
-          "link": "sdfdsf",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "025207c9-2a68-4052-b1dd-0a9bf128ca4e"
-        },
-        {
-          "type": "video",
-          "title": "hgjghjghfj",
-          "link": "gjghfjghf",
-          "times": [
-            {
-              "id": "022706a6-335a-4f03-86a3-7769779bcfbe",
-              "start": "6",
-              "end": "7"
-            }
-          ],
-          "id": "e533da78-dd26-416d-b882-f67f5139b4fd"
-        },
-        {
-          "type": "document",
-          "link": "dfgfdg",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "e91743e8-2e3e-4ff4-b12f-f48e8cae175e"
-        },
-        {
-          "type": "document",
-          "link": "sdfdsfs",
-          "title": "TestTitletillmadedynamic",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "439a3a40-540b-4788-8fed-3715cd7a2d29"
-        },
-        {
-          "type": "website",
-          "title": "sdfdsfsdfs",
-          "link": "sdfdsfsdfsdf",
-          "id": "05ce8f77-a7ae-4d82-af76-304694a67371"
-        }
-      ],
-      "id": 20
-    },
-    {
-      "title": "gfhgffgjgf",
-      "resources": [
-        {
-          "type": "document",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "title": "sample",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "25875187-6971-4ddc-8d86-5be6c2aaa7dc"
-        },
-        {
-          "type": "video",
-          "title": "fghgfh",
-          "link": "fghfgdh",
-          "times": [
-            {
-              "id": "fdf3b91b-5a8d-4066-8476-3296ab8abc17",
-              "start": "1",
-              "end": "2"
-            },
-            {
-              "id": "324725e9-c63f-40bf-85bf-0447a4798e67",
-              "start": "2",
-              "end": "3"
-            }
-          ],
-          "id": "568f16cd-1897-4cfa-903b-f8cf5cb920f9"
-        }
-      ],
-      "id": 21
-    },
-    {
-      "title": "yeehaw",
-      "resources": [
-        {
-          "type": "video",
-          "title": "test3",
-          "link": "https://www.youtube.com/watch?v=Xoa1zowwO34&feature=youtu.be",
-          "startTime": "123",
-          "endTime": "125",
-          "id": "5aac8d0b-38b2-442b-9e06-bb71f6d4ad66"
-        },
-        {
-          "type": "website",
-          "title": "test2",
-          "link": "https://ca.yahoo.com/?p=us",
-          "id": "f8a9805d-7a7b-47cd-b513-46b35deaa346"
-        },
-        {
-          "type": "document",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "title": "test1",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "25446b8c-a106-4637-9689-3c81adf2d73f"
-        }
-      ],
-      "id": 22
-    }
-  ],
-  "resources": [
-    {
-      "id": 1,
-      "type": "video",
-      "link": "https://www.youtube.com/watch?v=Sgv1zbWs6vA",
-      "title": "Introduction to Algebra",
-      "times": [
-        {
-          "start": "00:00:30",
-          "end": "00:05:00"
-        }
-      ]
-    }
-  ],
-  "feedback": [
-    {
-      "id": 1,
-      "lessonId": 1,
-      "userId": 2,
-      "text": "Completed all tasks, students were engaged.",
-      "date": "2024-05-01"
     }
   ]
 }

@@ -9,7 +9,6 @@ import {
 } from '@mui/material'
 
 const pages = ['Add Text', 'Add Document', 'Add Website', 'Add Video'];
-//currently a placeholder for what is to come
 
 const ResponsiveAppBar = ({ setActiveForm }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -32,24 +31,6 @@ const ResponsiveAppBar = ({ setActiveForm }) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', sm: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Create View
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
             <IconButton
               size="large"

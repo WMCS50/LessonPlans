@@ -52,6 +52,7 @@ const CustomContextMenu = ({ options, onOptionSelect, children, position }) => {
         <ul className="custom-context-menu" style={{ top: adjustedPosition.y, left: adjustedPosition.x }}>
           {options.map((option, index) => (
             <li key={index} onClick={() => onOptionSelect(option, adjustedPosition)}>
+              {option.icon && <span className='menu-icon'>{option.icon}</span>}
               {option.label}
             </li>
           ))}
@@ -62,45 +63,3 @@ const CustomContextMenu = ({ options, onOptionSelect, children, position }) => {
 }
 
 export default CustomContextMenu
-
-/*
-import { useState, useEffect } from 'react';
-import './CustomContextMenu.css';
-
-const CustomContextMenu = ({ options, onOptionSelect, children }) => {
-  const [visible, setVisible] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleClick = () => setVisible(false);
-    window.addEventListener('click', handleClick);
-    return () => {
-      window.removeEventListener('click', handleClick);
-    };
-  }, []);
-
-  const handleContextMenu = (event) => {
-    event.preventDefault();
-    console.log('Context menu triggered');
-    setPosition({ x: event.clientX, y: event.clientY });
-    setVisible(true);
-  };
-
-  return (
-    <div onContextMenu={handleContextMenu} style={{ width: '100%', height: '100%' }}>
-      {visible && (
-        <ul className="custom-context-menu" style={{ top: position.y, left: position.x }}>
-          {options.map((option, index) => (
-            <li key={index} onClick={() => onOptionSelect(option)}>
-              {option.label}
-            </li>
-          ))}
-        </ul>
-      )}
-      {children}
-    </div>
-  );
-};
-
-export default CustomContextMenu;
-*/

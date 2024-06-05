@@ -53,7 +53,7 @@ const AddVideo = ({ open, onClose, onAddResource }) => { // eslint-disable-line 
            <TextField
             autoFocus
             margin='dense'
-            label="Start time"
+            label="Start time (s)"
             type='text'
             fullwidth='true'
             value={startTime}
@@ -62,7 +62,7 @@ const AddVideo = ({ open, onClose, onAddResource }) => { // eslint-disable-line 
            <TextField
             autoFocus
             margin='dense'
-            label="End time"
+            label="End time (s)"
             type='text'
             fullwidth='true'
             value={endTime}
