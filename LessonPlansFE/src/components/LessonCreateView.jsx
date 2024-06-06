@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
-import { reorderResources, deleteResource } from '../features/lessons/resourcesSlice'
+import { reorderResources, deleteResource, resetResources } from '../features/lessons/resourcesSlice'
 import ResponsiveAppBar from './ResponsiveAppBar'
 import ActiveForm from './ActiveForm'
 import SortableItem from './SortableItem'
@@ -17,13 +17,20 @@ import {
 } from '@mui/icons-material'
 
 const LessonCreateView = () => {
-  const [lessonTitle, setLessonTitle] = useState('')
-  const [currentLesson, setCurrentLesson] = useState(null)
   const dispatch = useDispatch()
   const resources = useSelector((state) => state.resources)
-  const { handleSave } = useSaveLesson()
+  const { handleSaveLesson } = useSaveLesson()
   const [contextPosition, setContextPosition] = useState(null)
+  const [currentLesson, setCurrentLesson] = useState(
+    { id: null, 
+      title: '', 
+      resources: []
+    })
   
+    useEffect(() => {
+      dispatch(resetResources())
+    }, [dispatch])
+
   const pointerSensor = useSensor(PointerSensor, {
     activationConstraint: {
       distance: 5
@@ -31,6 +38,7 @@ const LessonCreateView = () => {
   })
   
   const sensors = useSensors(pointerSensor)
+  console.log('length1', resources.length)
 
   const handleDragEnd = (event) => {
     const { active, over } = event
@@ -47,7 +55,8 @@ const LessonCreateView = () => {
   ]
 
   const handleOptionSelect = (option, position) => {
-    const resourceIndex = position ? getResourceIndexAtPosition(position.y) : resources.length
+    console.log('contextposition', position)
+    const resourceIndex = contextPosition ? getResourceIndexAtPosition(position.y) : resources.length
     dispatch(setActiveForm({ type: option.label, index: resourceIndex }))
   }
 
@@ -60,7 +69,6 @@ const LessonCreateView = () => {
   //based on the vertical position of a right-click event
   const getResourceIndexAtPosition = (yPosition) => {
     const resourceElements = document.querySelectorAll('.resource-item')
-    console.log('resourceElements', resourceElements)
     for (let i=0; i < resourceElements.length; i++) {
       const rect = resourceElements[i].getBoundingClientRect()
       if (yPosition < rect.top + rect.height / 2) {
@@ -70,9 +78,17 @@ const LessonCreateView = () => {
     return resources.length
   }
 
-//handleSaveLesson here
-  
-  console.log('currentLesson', currentLesson)
+  //constructs a lesson object then calls handleSaveLesson
+  const handleSave = async () => {
+    const lesson = {
+    ...currentLesson,
+    resources: resources
+    }
+    const result = await handleSaveLesson(lesson) //checks if lesson has an id
+    if (result && !currentLesson.id) {
+      setCurrentLesson({ ...lesson, id: result.id })
+    }
+  }
 
   return (
     <div className='lesson-create-view' onContextMenu={handleContextMenu}>
@@ -81,14 +97,16 @@ const LessonCreateView = () => {
           className='lesson-title-input'
           type='text'
           placeholder='Enter Lesson Title'
-          value={lessonTitle}
-          onChange={(e) => setLessonTitle(e.target.value)}
+          value={currentLesson.title}
+          onChange={(e) => setCurrentLesson({ ...currentLesson, title: e.target.value})}
         />
         <button 
           className='save-lesson-button' 
-          onClick={() => handleSaveLesson()}>Save Lesson
+          onClick={() => handleSave()}>Save Lesson
         </button>
-        <ResponsiveAppBar setActiveForm={(form) => dispatch(setActiveForm(form))} />
+        <ResponsiveAppBar 
+          setActiveForm={(form) => dispatch(setActiveForm(form))}
+          resourcesLength={resources.length} />
         <ActiveForm />
       </div>
       
@@ -118,13 +136,8 @@ const LessonCreateView = () => {
 
 export default LessonCreateView
 
-
-
-
-
-
 /* eslint-disable react/prop-types */
-/* import { useState } from 'react'
+/*import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
 import { reorderResources, deleteResource } from '../features/lessons/resourcesSlice'
@@ -239,4 +252,5 @@ const LessonCreateView = () => {
   )
 }
 
-export default LessonCreateView */
+export default LessonCreateView
+*/

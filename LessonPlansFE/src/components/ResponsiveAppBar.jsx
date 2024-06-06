@@ -10,20 +10,19 @@ import {
 
 const pages = ['Add Text', 'Add Document', 'Add Website', 'Add Video'];
 
-const ResponsiveAppBar = ({ setActiveForm }) => {
+const ResponsiveAppBar = ({ setActiveForm, resourcesLength }) => {
+  console.log('length2', resourcesLength)
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  //closes the navigation menu and sets the active form based on the
-  //(if selected) page
+  //closes the navigation menu and sets the active form
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
-    //page && setActiveForm(page)
     if (page) {
-      setActiveForm({ type: page, index: 0 })
+      setActiveForm({ type: page, index: resourcesLength })
     }
   };
 

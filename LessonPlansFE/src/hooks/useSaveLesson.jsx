@@ -1,40 +1,42 @@
-/* import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addLesson, updateLesson } from '../features/lessons/lessonsSlice'
 
 export const useSaveLesson = () => {
   const dispatch = useDispatch()
 
-  const handleSave = async (lesson) => {
+  const handleSaveLesson = async (lesson) => {
     if (!lesson.title || lesson.resources.length === 0) {
       alert('Please add a title and at least one resource before saving')
       return
     }
 
     try {
+      let result
       if (lesson.id) {
-        await dispatch(updateLesson({ id: lesson.id, lesson })).unwrap()
-        alert('Lesson updated successfully')
+        result = await dispatch(updateLesson({ id: lesson.id, lesson })).unwrap()
+        alert('Lesson updated')
       } else {
-        await dispatch(addLesson(lesson)).unwrap()
-        alert('Lesson saved successfully')
+      result = await dispatch(addLesson(lesson)).unwrap()
+      alert('Lesson saved')
       }
+      console.log(result)
+      return result
     } catch (error) {
-      console.error('Error saving lesson', error)
-      alert('Lesson could not be saved')
+      console.error('Error in saving lesson', error)
+      alert('Lesson did not save')
     }
-  }
+  } 
+  return { handleSaveLesson }
+}
 
-  return { handleSave }
-} */
-
-
+/*
 import { useDispatch } from 'react-redux'
 import { addLesson } from '../features/lessons/lessonsSlice'
 
 export const useSaveLesson = () => {
   const dispatch = useDispatch()
 
-  const handleSave = async (lessonTitle, resources) => {
+  const handleSaveLesson = async (lessonTitle, resources) => {
     if (!lessonTitle || resources.length === 0) {
       alert('Please add a title and at least one resource before saving')
       return
@@ -50,5 +52,6 @@ export const useSaveLesson = () => {
       alert('Lesson did not save')
     }
   } 
-  return { handleSave}
+  return { handleSaveLesson }
 }
+*/

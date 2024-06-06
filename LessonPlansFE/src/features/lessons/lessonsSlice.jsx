@@ -20,7 +20,7 @@ export const addLesson = createAsyncThunk('lessons/addLesson',
 //Update lesson
 export const updateLesson = createAsyncThunk('lessons/updateLesson',
   async ({ id, lesson }) => {
-    const response = await axios.put(`http://localhost:3001/lessons${id}`, lesson)
+    const response = await axios.put(`http://localhost:3001/lessons/${id}`, lesson)
     return response.data
   }
 )

@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import TextDisplay from './TextDisplay'
+import DocumentDisplay from './DocumentDisplay'
+import WebsiteDisplay from './WebsiteDisplay'
+import VideoDisplay from './VideoDisplay'
 import axios from 'axios'
 
 const LessonReadView = () => {
@@ -38,10 +42,29 @@ const LessonReadView = () => {
   if (error) return <div>Error: {error} </div>
   if (!lesson) return <div>No lesson found</div>
 
+  console.log('lesson content', lesson.resources)
+  const resources = lesson.resources
+
   return (
     <div>
       <h1>{lesson.title}</h1>
-      <p>{lesson.content}</p>
+      
+      {resources.map((resource) => {
+        switch (resource.type) {
+          case 'text':  
+            return <TextDisplay title={resource.title} content={resource.content} />
+          case 'document':
+            return <DocumentDisplay title={resource.title} link={resource.link} />
+          case 'website': 
+            return <WebsiteDisplay title={resource.title} link={resource.link} />
+          case 'video':
+            return <VideoDisplay 
+              title={resource.title} link={resource.link} 
+              startTime={resource.startTime} endTime={resource.endTime}/>
+          default:
+            return <p key ={resource.id}>Unknown resource type</p>
+        }
+      })}
     </div>
   )
 }

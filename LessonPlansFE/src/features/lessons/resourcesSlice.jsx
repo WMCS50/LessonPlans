@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
+const initialState = []
+
 export const resourcesSlice = createSlice({
   name: 'resources',
-  initialState: [],
+  initialState,
   reducers: {
     addResource: (state, action) => {
       const { resource, index } = action.payload
@@ -27,11 +29,11 @@ export const resourcesSlice = createSlice({
         return newState
       }
       return state
-
-     }
+     },
+    resetResources: () => initialState
   }
 })
 
-export const { addResource, deleteResource, updateResources, reorderResources } = resourcesSlice.actions
+export const { addResource, deleteResource, updateResources, reorderResources, resetResources } = resourcesSlice.actions
 
 export default resourcesSlice.reducer

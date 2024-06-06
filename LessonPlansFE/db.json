@@ -45,18 +45,6 @@
       ]
     },
     {
-      "title": "zillow",
-      "resources": [
-        {
-          "type": "website",
-          "title": "zillow",
-          "link": "https://zillow.com",
-          "id": "17e264f6-5fb8-4079-b787-32d839463ac2"
-        }
-      ],
-      "id": 4
-    },
-    {
       "title": "new lesson",
       "resources": [
         {
@@ -75,40 +63,38 @@
       "id": 5
     },
     {
-      "title": "test",
+      "id": 19,
+      "title": "real test lesson",
       "resources": [
         {
-          "type": "text",
-          "title": "text1",
-          "content": "",
-          "id": "5aee10db-b46a-4eaa-a766-8977cb2a03be"
+          "type": "video",
+          "title": "screen application",
+          "link": "https://www.youtube.com/watch?v=Xoa1zowwO34",
+          "startTime": "120",
+          "endTime": "130",
+          "id": "ceca272d-a468-4f7a-90e2-12e49c84be72"
+        },
+        {
+          "type": "website",
+          "title": "zillow",
+          "link": "https://zillow.com",
+          "id": "a0c7f2bc-4d99-4680-960e-121545e074a1"
+        },
+        {
+          "type": "document",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "title": "sample doc",
+          "start_page": 1,
+          "end_page": 2,
+          "id": "303c5ffa-2449-4e0a-82d3-7e7c0d8c9996"
         },
         {
           "type": "text",
-          "title": "text2",
-          "content": "",
-          "id": "fba081e9-9424-48ae-ae4c-99ab56eb89c2"
+          "title": "Text Title",
+          "content": "<p>This is the text body. I will give instructions here.</p>",
+          "id": "0521f8a7-c08c-4b59-be1c-daa922fb078e"
         }
-      ],
-      "id": 6
-    },
-    {
-      "title": "test",
-      "resources": [
-        {
-          "type": "text",
-          "title": "text1",
-          "content": "",
-          "id": "5aee10db-b46a-4eaa-a766-8977cb2a03be"
-        },
-        {
-          "type": "text",
-          "title": "text2",
-          "content": "",
-          "id": "fba081e9-9424-48ae-ae4c-99ab56eb89c2"
-        }
-      ],
-      "id": 7
+      ]
     }
   ]
 }
