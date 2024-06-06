@@ -45,24 +45,6 @@
       ]
     },
     {
-      "title": "new lesson",
-      "resources": [
-        {
-          "type": "text",
-          "title": "testst",
-          "content": "<p>wetwtwetwt</p>\n<p>sdfdsfs</p>\n<p>&nbsp;</p>",
-          "id": "3da1f9fd-40d2-44cf-9fbf-aac2ae8f9aed"
-        },
-        {
-          "type": "website",
-          "title": "yahoo",
-          "link": "https://yahoo.com",
-          "id": "e33bc546-7c37-4b29-b248-d36d6d25cbe8"
-        }
-      ],
-      "id": 5
-    },
-    {
       "id": 19,
       "title": "real test lesson",
       "resources": [

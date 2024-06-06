@@ -56,3 +56,29 @@
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }
+
+/* lesson read view styles */
+.lesson-read-container {
+  padding: 1rem;
+}
+
+.lesson-read-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ccc;
+}
+
+.lesson-read-content {
+
+  justify-content: center;
+  margin-top: 1rem;
+
+}
+
+.lesson-read-content > div {
+  margin: 0 auto;
+  width: 66.67%; /* 2/3 of the width */
+  border-bottom: 2px solid #ccc;
+}

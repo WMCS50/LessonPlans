@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import './ComponentDisplay.css'
+
 
 const WebsiteDisplay = ({ title, link }) => {
   const [metadata, setMetadata] = useState(null)
@@ -34,20 +36,18 @@ const WebsiteDisplay = ({ title, link }) => {
   return (
     <div className='website-display'>
       <h3>
-        <a 
+        <a className='website-display-link' 
           href={link} target='blank' rel='noopener noreferrer'>
           {metadata?.ogTitle || title}
         </a>
       </h3>
 
       {isValidUrl && metadata ? (
-        <div>
+        <div className='website-display-metadata'>
           <p>{metadata.ogUrl}</p>
           <img 
             src={getImageUrl(metadata.ogImage)} 
             alt={metadata.ogTitle}
-            width='20%'
-            height='auto'
           />
           {metadata.ogDescription && <p>{metadata.ogDescription}</p>}
         </div>

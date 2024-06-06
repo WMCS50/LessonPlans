@@ -5,7 +5,11 @@ import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
+import UserMenu from './UserMenu'
 import axios from 'axios'
+import SchoolIcon from '@mui/icons-material/School'
+import { green } from '@mui/material/colors'
+import './LessonList.css'
 
 const LessonReadView = () => {
   const { id } = useParams()
@@ -46,25 +50,30 @@ const LessonReadView = () => {
   const resources = lesson.resources
 
   return (
-    <div>
-      <h1>{lesson.title}</h1>
-      
-      {resources.map((resource) => {
-        switch (resource.type) {
-          case 'text':  
-            return <TextDisplay title={resource.title} content={resource.content} />
-          case 'document':
-            return <DocumentDisplay title={resource.title} link={resource.link} />
-          case 'website': 
-            return <WebsiteDisplay title={resource.title} link={resource.link} />
-          case 'video':
-            return <VideoDisplay 
-              title={resource.title} link={resource.link} 
-              startTime={resource.startTime} endTime={resource.endTime}/>
-          default:
-            return <p key ={resource.id}>Unknown resource type</p>
-        }
-      })}
+    <div className='lesson-read-container'>
+      <header className='lesson-read-header'>
+        <SchoolIcon sx={{ width: 50, height: 50, color: green[900] }} />
+        <h1>{lesson.title}</h1>
+        <UserMenu />
+      </header>
+      <div className='lesson-read-content'>      
+        {resources.map((resource) => {
+          switch (resource.type) {
+            case 'text':  
+              return <TextDisplay title={resource.title} content={resource.content} />
+            case 'document':
+              return <DocumentDisplay title={resource.title} link={resource.link} />
+            case 'website': 
+              return <WebsiteDisplay title={resource.title} link={resource.link} />
+            case 'video':
+              return <VideoDisplay 
+                title={resource.title} link={resource.link} 
+                startTime={resource.startTime} endTime={resource.endTime}/>
+            default:
+              return <p key ={resource.id}>Unknown resource type</p>
+          }
+        })}
+      </div>
     </div>
   )
 }

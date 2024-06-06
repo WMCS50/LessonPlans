@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import './ComponentDisplay.css'
+
 import DOMPurify from 'dompurify'
 import parse from 'html-react-parser'
 
@@ -9,8 +11,10 @@ const TextDisplay = ({ title, content }) => {
 
   return (
     <div className='text-display' >
-      <h3>{title}</h3>
-      <div className='content-display' style={{ textAlign: 'left'}} >{parsedContent}</div>
+      <div className='header'>
+        <h3>{title}</h3>
+      </div>
+      <div className='content-display' >{parsedContent}</div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
+import './ComponentDisplay.css'
 
 const VideoDisplay = ({ title, link, startTime, endTime }) => {
   const [embedLink, setEmbedLink] = useState('')
@@ -62,19 +63,22 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
 
   return (
     <div className='video-display'>
-      <h3>{title}</h3>
-      <p>Time Interval: {startTime} - {endTime}</p>
+      <div className='header'>
+        <h3>{title}</h3>
+        <p>(Time Interval: {startTime} - {endTime})</p>
+      </div>
+            
       {isValidUrl ? (
-        <iframe
-          src={embedLink}
-          width='560'
-          height='150' 
-          title='Video Preview'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' 
-          referrerPolicy='strict-origin-when-cross-origin'
-          allowFullScreen
-          loading='lazy'
-        ></iframe>
+        <div className='video-wrapper'>
+          <iframe
+            src={embedLink}
+            title='Video Preview'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' 
+            referrerPolicy='strict-origin-when-cross-origin'
+            allowFullScreen
+            loading='lazy'
+          ></iframe>
+        </div>
         ) : (
           <p>Please enter a valid Youtube URL</p>
         )}

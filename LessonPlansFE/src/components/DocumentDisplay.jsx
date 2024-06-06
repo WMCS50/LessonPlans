@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import './ComponentDisplay.css'
 
 const DocumentDisplay = ({ title, link }) => {
   const handlePopOut = () => {
@@ -14,7 +15,9 @@ const DocumentDisplay = ({ title, link }) => {
 
   return (
     <div className='document-display'>
-      <h3>{title}</h3>
+      <div className='header'>
+        <h3>{title}</h3>
+      </div>
       <iframe
         src={link}
         width='100%'
