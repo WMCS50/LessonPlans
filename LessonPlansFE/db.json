@@ -77,6 +77,52 @@
           "id": "0521f8a7-c08c-4b59-be1c-daa922fb078e"
         }
       ]
+    },
+    {
+      "id": 20,
+      "title": "another test lesson",
+      "resources": [
+        {
+          "type": "website",
+          "title": "testtewt",
+          "link": "https://www.greaterfool.ca/",
+          "id": "c3072902-bfc2-499a-abb8-da22ff23228b"
+        },
+        {
+          "type": "text",
+          "title": "text",
+          "content": "",
+          "id": "8b63d256-65c5-4940-be74-0de5807e652a"
+        },
+        {
+          "type": "document",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "title": "sadsf",
+          "start_page": 1,
+          "end_page": 2,
+          "id": "7b28d942-11c5-42c5-9b9d-8779b081980d"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "try this lesson for size",
+      "resources": [
+        {
+          "type": "document",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "title": "sample",
+          "start_page": 1,
+          "end_page": 2,
+          "id": "e866b9e7-5362-431c-bbb6-c6568203e711"
+        },
+        {
+          "type": "text",
+          "title": "Part 1",
+          "content": "<p>I want you to read carefully</p>",
+          "id": "9df34e47-74e3-4a9b-aea5-dcc439f687bb"
+        }
+      ]
     }
   ]
 }

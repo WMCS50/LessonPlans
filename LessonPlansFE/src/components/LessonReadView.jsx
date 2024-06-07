@@ -60,13 +60,13 @@ const LessonReadView = () => {
         {resources.map((resource) => {
           switch (resource.type) {
             case 'text':  
-              return <TextDisplay title={resource.title} content={resource.content} />
+              return <TextDisplay key={resource.id} title={resource.title} content={resource.content} />
             case 'document':
-              return <DocumentDisplay title={resource.title} link={resource.link} />
+              return <DocumentDisplay key={resource.id} title={resource.title} link={resource.link} />
             case 'website': 
-              return <WebsiteDisplay title={resource.title} link={resource.link} />
+              return <WebsiteDisplay key={resource.id} title={resource.title} link={resource.link} />
             case 'video':
-              return <VideoDisplay 
+              return <VideoDisplay key={resource.id}
                 title={resource.title} link={resource.link} 
                 startTime={resource.startTime} endTime={resource.endTime}/>
             default:

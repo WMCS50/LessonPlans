@@ -15,6 +15,10 @@ import {
   TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon,
   Web as WebIcon, OndemandVideo as OndemandVideoIcon,
 } from '@mui/icons-material'
+//placeholder logo
+import SchoolIcon from '@mui/icons-material/School'
+import { green } from '@mui/material/colors'
+import UserMenu from './UserMenu'
 
 const LessonCreateView = () => {
   const dispatch = useDispatch()
@@ -92,7 +96,8 @@ const LessonCreateView = () => {
 
   return (
     <div className='lesson-create-view' onContextMenu={handleContextMenu}>
-      <div className='toolbar'>
+      <div className='above-app-bar'>
+        <SchoolIcon sx={{ width: 50, height: 50, color: green[900], marginRight: 5 }} />
         <input 
           className='lesson-title-input'
           type='text'
@@ -102,34 +107,37 @@ const LessonCreateView = () => {
         />
         <button 
           className='save-lesson-button' 
-          onClick={() => handleSave()}>Save Lesson
+          onClick={() => handleSave()}>Save
         </button>
-        <ResponsiveAppBar 
+        <UserMenu className='user-menu'/>
+      </div>
+      <div className='app-bar'>
+        <ResponsiveAppBar className='responsive-app-bar'
           setActiveForm={(form) => dispatch(setActiveForm(form))}
           resourcesLength={resources.length} />
         <ActiveForm />
       </div>
       
-        <div className='resource-display'>
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext items={resources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
-              <div className='resource-display'>
-              {resources.map((resource) => (
-                <SortableItem 
-                  key={resource.id} 
-                  id={resource.id} 
-                  resource={resource} 
-                  handleDeleteResource={(id) => dispatch(deleteResource(id))} />
-                ))}
-              </div>
-            </SortableContext>
-        </DndContext>
-        <CustomContextMenu options={contextMenuOptions} onOptionSelect={handleOptionSelect} position={contextPosition} />
-        </div>
+      <div >
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext items={resources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
+            <div className='resource-display'>
+            {resources.map((resource) => (
+              <SortableItem 
+                key={resource.id} 
+                id={resource.id} 
+                resource={resource} 
+                handleDeleteResource={(id) => dispatch(deleteResource(id))} />
+              ))}
+            </div>
+          </SortableContext>
+      </DndContext>
+      <CustomContextMenu options={contextMenuOptions} onOptionSelect={handleOptionSelect} position={contextPosition} />
+      </div>
     </div>
   )
 }

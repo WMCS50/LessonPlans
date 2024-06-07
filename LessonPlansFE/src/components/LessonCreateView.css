@@ -3,41 +3,52 @@
   flex-direction: column;
 }
 
-.toolbar {
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
+.above-app-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5px;
+}
+
+.app-bar {
+  margin-bottom: 0.5px;
 }
 
 .resource-display {
   border: 1px solid #ccc;
   padding: 1rem;
-  min-height: max-content; /* Ensure there's enough space to right-click if no resources are present */
-  position: relative; /* To position the context menu correctly */
+  min-height: 350px;
+  position: relative; 
 }
 
 .resource-item {
-  border: 1px solid #ddd;
   margin-top: 10px;
   padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .lesson-title-input {
   flex-grow: 1;
+  max-width: 350px;
   margin-right: 1rem;
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .save-lesson-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  padding:  0.5rem 1rem;
+  font-size: 0.75rem;
   background-color: #0056b3;
   color: white;
   border: none;
   cursor: pointer;
+  margin-right: 220px; /*need to fix when adjusting screen size*/
+
 }
 
 .save-lesson-button:hover {
   background-color: blue;
+}
+
+.user-menu {
+  margin-left: auto;
 }
