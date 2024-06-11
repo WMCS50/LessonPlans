@@ -5,6 +5,7 @@ import AddWebsite from './AddWebsite'
 import AddVideo from './AddVideo'
 import AddText from './AddText'
 import { addResource } from '../features/lessons/resourcesSlice'
+import { resetActiveForm } from '../features/lessons/activeFormSlice'
 
 const ActiveForm = () => {
   const [open, setOpen] = useState(false)
@@ -21,6 +22,7 @@ const ActiveForm = () => {
 
   const handleClose = () => {
     setOpen(false)
+    dispatch(resetActiveForm())
   }
 
   const handleAddResource = (resource) => {

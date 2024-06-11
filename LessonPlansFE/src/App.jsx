@@ -15,6 +15,7 @@ const App = () => {
           <Route path='/lessons' element={<LessonList />} />
           <Route path='/lessons/:id' element={<LessonReadView />} />
           <Route path='/create' element={<LessonCreateView />} />
+          <Route path='/create/:id' element={<LessonCreateView />} />
           <Route path='/lesson-preview' element={<LessonReadView />} />
  
       </Routes>

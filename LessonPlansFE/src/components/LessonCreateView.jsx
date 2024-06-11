@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
-import { reorderResources, deleteResource, resetResources } from '../features/lessons/resourcesSlice'
+import { reorderResources, deleteResource, resetResources, updateResources } from '../features/lessons/resourcesSlice'
+import axios from 'axios'
 import ResponsiveAppBar from './ResponsiveAppBar'
 import ActiveForm from './ActiveForm'
 import SortableItem from './SortableItem'
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useSaveLesson } from '../hooks/useSaveLesson'
-
 import './LessonCreateView.css'
 import CustomContextMenu from './CustomContextMenu'
 import {
@@ -21,6 +22,7 @@ import { green } from '@mui/material/colors'
 import UserMenu from './UserMenu'
 
 const LessonCreateView = () => {
+  const { id } = useParams()
   const dispatch = useDispatch()
   const resources = useSelector((state) => state.resources)
   const { handleSaveLesson } = useSaveLesson()
@@ -31,9 +33,26 @@ const LessonCreateView = () => {
       resources: []
     })
   
-    useEffect(() => {
-      dispatch(resetResources())
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(resetResources())
+  }, [dispatch])
+
+//fetches existing lesson data if navigated to from read view
+  useEffect(() => {
+    if (id) {
+      const fetchLesson = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3001/lessons/${id}`)
+          const lessonData = response.data
+          setCurrentLesson(lessonData)
+          dispatch(updateResources(lessonData.resources))
+        } catch (error) {
+          console.error('Error fetching lesson:', error)
+        }
+      }
+      fetchLesson()
+    }
+  }, [id, dispatch])
 
   const pointerSensor = useSensor(PointerSensor, {
     activationConstraint: {
