@@ -58,11 +58,11 @@ const LessonReadView = () => {
   const resources = lesson.resources
 
   const renderEditButton = () => {
-    console.log('currentUser.id', currentUser.user.id)
-    console.log('lesson.creatorId', lesson.createdBy)
     //this needs to change when backend setup correctly
     //in terms of user and creator ids
     if (currentUser) {
+      console.log('currentUser.id', currentUser.user.id)
+      console.log('lesson.creatorId', lesson.createdBy)
       if (currentUser.user.id === lesson.createdBy) {
         return (
           <button onClick={editLesson} className='edit-lesson-button'>
