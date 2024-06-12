@@ -97,82 +97,6 @@
       "createdBy": 1
     },
     {
-      "id": 33,
-      "title": "new title again",
-      "resources": [
-        {
-          "type": "text",
-          "title": "text",
-          "content": "",
-          "id": "263d3f3f-38f0-47b0-8722-47f6c85f1403"
-        },
-        {
-          "type": "text",
-          "title": "test",
-          "content": "",
-          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
-        },
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "43a37595-aca4-459a-a2df-e3c9c3e596a2"
-        },
-        {
-          "type": "text",
-          "title": "2",
-          "content": "",
-          "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
-      "id": 36,
-      "title": "once again my friend",
-      "resources": [
-        {
-          "type": "text",
-          "title": "test",
-          "content": "",
-          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
-        },
-        {
-          "type": "text",
-          "title": "text",
-          "content": "",
-          "id": "263d3f3f-38f0-47b0-8722-47f6c85f1403"
-        },
-        {
-          "type": "video",
-          "title": "astley",
-          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "startTime": "100",
-          "endTime": "130",
-          "id": "b4ce0e7c-d448-4f0e-bfae-ce0cee54707e"
-        },
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "43a37595-aca4-459a-a2df-e3c9c3e596a2"
-        },
-        {
-          "type": "text",
-          "title": "2",
-          "content": "",
-          "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
-        },
-        {
-          "type": "text",
-          "title": "56",
-          "content": "",
-          "id": "30bf1abe-37fa-4d4c-8189-1a0fcdef5f53"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
       "id": 37,
       "title": "yay!",
       "resources": [
@@ -220,6 +144,90 @@
     {
       "id": 38,
       "title": "maybe?",
+      "resources": [
+        {
+          "type": "text",
+          "title": "text",
+          "content": "",
+          "id": "263d3f3f-38f0-47b0-8722-47f6c85f1403"
+        },
+        {
+          "type": "video",
+          "title": "astley",
+          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "startTime": "100",
+          "endTime": "130",
+          "id": "b4ce0e7c-d448-4f0e-bfae-ce0cee54707e"
+        },
+        {
+          "type": "text",
+          "title": "test",
+          "content": "",
+          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
+        },
+        {
+          "type": "text",
+          "title": "1",
+          "content": "",
+          "id": "43a37595-aca4-459a-a2df-e3c9c3e596a2"
+        },
+        {
+          "type": "text",
+          "title": "2",
+          "content": "",
+          "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
+        },
+        {
+          "type": "text",
+          "title": "56",
+          "content": "",
+          "id": "30bf1abe-37fa-4d4c-8189-1a0fcdef5f53"
+        }
+      ],
+      "createdBy": 1
+    },
+    {
+      "id": 39,
+      "title": "test lesson2",
+      "resources": [
+        {
+          "type": "text",
+          "title": "1",
+          "content": "",
+          "id": "bd95fa7c-efff-4670-9c1d-f64ac19a6cf8"
+        }
+      ],
+      "createdBy": 1
+    },
+    {
+      "id": 40,
+      "title": "test lesson3",
+      "resources": [
+        {
+          "type": "text",
+          "title": "1",
+          "content": "",
+          "id": "bd95fa7c-efff-4670-9c1d-f64ac19a6cf8"
+        }
+      ],
+      "createdBy": 1
+    },
+    {
+      "id": 41,
+      "title": "test lesson4",
+      "resources": [
+        {
+          "type": "text",
+          "title": "1",
+          "content": "",
+          "id": "bd95fa7c-efff-4670-9c1d-f64ac19a6cf8"
+        }
+      ],
+      "createdBy": 1
+    },
+    {
+      "id": 42,
+      "title": "maybe 2",
       "resources": [
         {
           "type": "text",
