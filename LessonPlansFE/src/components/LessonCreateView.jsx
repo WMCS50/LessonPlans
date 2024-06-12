@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
 import { reorderResources, deleteResource, resetResources, updateResources } from '../features/lessons/resourcesSlice'
 import axios from 'axios'
@@ -16,13 +16,13 @@ import {
   TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon,
   Web as WebIcon, OndemandVideo as OndemandVideoIcon,
 } from '@mui/icons-material'
-//placeholder logo
-import SchoolIcon from '@mui/icons-material/School'
-import { green } from '@mui/material/colors'
 import UserMenu from './UserMenu'
+import FileMenu from './FileMenu'
+import ChangeTitle from './ChangeTitle'
 
 const LessonCreateView = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const resources = useSelector((state) => state.resources)
   const { handleSaveLesson } = useSaveLesson()
@@ -32,6 +32,7 @@ const LessonCreateView = () => {
       title: '',
       resources: []
     })
+  const [changeTitleDialogOpen, setChangeTitleDialogOpen] = useState(false)
   
   useEffect(() => {
     dispatch(resetResources())
@@ -113,10 +114,29 @@ const LessonCreateView = () => {
     }
   }
 
+  const handleFileMenuClick = async (item) => {
+    if (item === 'Save') {
+      await handleSave()
+    }
+    if (item === 'Save As New') {
+      setChangeTitleDialogOpen(true)
+    }
+  }
+
+  const handleSaveAsNew = async (newTitle) => {
+    const newLesson = { ...currentLesson, title: newTitle, id: null, resources: resources }
+    const result = await handleSaveLesson(newLesson)
+    if (result && result.id) {
+      navigate(`/create/${result.id}`)
+    }
+    setChangeTitleDialogOpen(false)
+  }
+
+
   return (
     <div className='lesson-create-view' onContextMenu={handleContextMenu}>
       <div className='above-app-bar'>
-        <SchoolIcon sx={{ width: 50, height: 50, color: green[900], marginRight: 5 }} />
+        <FileMenu className='file-menu' onItemClick={handleFileMenuClick} />
         <input 
           className='lesson-title-input'
           type='text'
@@ -124,10 +144,6 @@ const LessonCreateView = () => {
           value={currentLesson.title}
           onChange={(e) => setCurrentLesson({ ...currentLesson, title: e.target.value})}
         />
-        <button 
-          className='save-lesson-button' 
-          onClick={() => handleSave()}>Save
-        </button>
         <UserMenu className='user-menu'/>
       </div>
       <div className='app-bar'>
@@ -157,127 +173,13 @@ const LessonCreateView = () => {
       </DndContext>
       <CustomContextMenu options={contextMenuOptions} onOptionSelect={handleOptionSelect} position={contextPosition} />
       </div>
+      <ChangeTitle 
+        open={changeTitleDialogOpen}
+        onClose={() => setChangeTitleDialogOpen(false)}
+        onSave={handleSaveAsNew}
+      />
     </div>
   )
 }
 
 export default LessonCreateView
-
-/* eslint-disable react/prop-types */
-/*import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setActiveForm } from '../features/lessons/activeFormSlice'
-import { reorderResources, deleteResource } from '../features/lessons/resourcesSlice'
-import ResponsiveAppBar from './ResponsiveAppBar'
-import ActiveForm from './ActiveForm'
-import SortableItem from './SortableItem'
-import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import { useSaveLesson } from '../hooks/useSaveLesson'
-
-import './LessonCreateView.css'
-import CustomContextMenu from './CustomContextMenu'
-import {
-  TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon,
-  Web as WebIcon, OndemandVideo as OndemandVideoIcon,
-} from '@mui/icons-material'
-
-const LessonCreateView = () => {
-  const [lessonTitle, setLessonTitle] = useState('')
-  const dispatch = useDispatch()
-  const resources = useSelector((state) => state.resources)
-  const { handleSaveLesson } = useSaveLesson()
-  const [contextPosition, setContextPosition] = useState(null)
-  
-  const pointerSensor = useSensor(PointerSensor, {
-    activationConstraint: {
-      distance: 5
-    }
-  })
-  
-  const sensors = useSensors(pointerSensor)
-
-  const handleDragEnd = (event) => {
-    const { active, over } = event
-    if (active.id !== over.id) {
-      dispatch(reorderResources({ activeId: active.id, overId: over.id}))
-    }
-  }
-
-  const contextMenuOptions = [
-    { label: 'Add Text', icon: < TextFieldsIcon /> },
-    { label: 'Add Document', icon: < NoteAddIcon /> },
-    { label: 'Add Website', icon: < WebIcon /> },
-    { label: 'Add Video', icon: < OndemandVideoIcon /> }
-  ]
-
-  const handleOptionSelect = (option, position) => {
-    const resourceIndex = position ? getResourceIndexAtPosition(position.y) : resources.length
-    dispatch(setActiveForm({ type: option.label, index: resourceIndex }))
-  }
-
-  const handleContextMenu = (event) => {
-    event.preventDefault()
-    setContextPosition({ x: event.clientX, y: event.clientY })
-  }
-
-  //determines the index where a new resource will be inserted
-  //based on the vertical position of a right-click event
-  const getResourceIndexAtPosition = (yPosition) => {
-    const resourceElements = document.querySelectorAll('.resource-item')
-    console.log('resourceElements', resourceElements)
-    for (let i=0; i < resourceElements.length; i++) {
-      const rect = resourceElements[i].getBoundingClientRect()
-      if (yPosition < rect.top + rect.height / 2) {
-        return i
-      }
-    }
-    return resources.length
-  }
-
-  console.log('current state of resources', resources)
-
-  return (
-    <div className='lesson-create-view' onContextMenu={handleContextMenu}>
-      <div className='toolbar'>
-        <input 
-          className='lesson-title-input'
-          type='text'
-          placeholder='Enter Lesson Title'
-          value={lessonTitle}
-          onChange={(e) => setLessonTitle(e.target.value)}
-        />
-        <button 
-          className='save-lesson-button' 
-          onClick={() => handleSaveLesson(lessonTitle, resources)}>Save Lesson
-        </button>
-        <ResponsiveAppBar setActiveForm={(form) => dispatch(setActiveForm(form))} />
-        <ActiveForm />
-      </div>
-      
-        <div className='resource-display'>
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext items={resources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
-              <div className='resource-display'>
-              {resources.map((resource) => (
-                <SortableItem 
-                  key={resource.id} 
-                  id={resource.id} 
-                  resource={resource} 
-                  handleDeleteResource={(id) => dispatch(deleteResource(id))} />
-                ))}
-              </div>
-            </SortableContext>
-        </DndContext>
-        <CustomContextMenu options={contextMenuOptions} onOptionSelect={handleOptionSelect} position={contextPosition} />
-        </div>
-    </div>
-  )
-}
-
-export default LessonCreateView
-*/

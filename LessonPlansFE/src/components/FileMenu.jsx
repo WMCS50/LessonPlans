@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { logout } from '../features/auth/authSlice'
-import { Box, IconButton, Avatar, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 
-const items = ['Profile', 'Dashboard', 'Logout'];
+import { Box, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
+//placeholder logo
+import SchoolIcon from '@mui/icons-material/School'
+import { green } from '@mui/material/colors'
 
-const UserMenu = () => {
+const items = ['Save', 'Save As New', 'Create New', 'Open', 'Share'];
+
+const FileMenu = ({ onItemClick }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const username = useSelector((state) => state.auth.user?.user.username || 'b')
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
 
   const handleCloseMenu = () => {
     setAnchorElUser(null)
@@ -19,21 +17,20 @@ const UserMenu = () => {
 
   const handleItemClick = (item) => {
     handleCloseMenu()
-    if (item === 'Dashboard') {
-      navigate('/lessons')
-    }
-    if (item === 'Logout') {
-      dispatch(logout())
-      navigate('/')
-    }
+    //logic of what to do on click here
+    console.log('item clicked', item)
+    onItemClick(item)
   }
+
+
 
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="Open user menu">
-        <IconButton onClick={(e) => setAnchorElUser(e.currentTarget)} sx={{ p: 0 }}>
-          <Avatar>{username.charAt(0).toUpperCase()} </Avatar> 
-        </IconButton>
+      <Tooltip title="Open file menu">
+        <SchoolIcon 
+          sx={{ width: 50, height: 50, color: green[900], marginRight: 5 }}
+          onClick={(e) => setAnchorElUser(e.currentTarget)} >
+        </SchoolIcon>
       </Tooltip>
       <Menu
         sx={{ mt: '45px' }}
@@ -57,7 +54,6 @@ const UserMenu = () => {
           </MenuItem>))}
       </Menu>
     </Box>
-
-  );
+  )
 }
-export default UserMenu;
+export default FileMenu

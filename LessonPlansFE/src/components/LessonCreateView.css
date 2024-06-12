@@ -5,6 +5,7 @@
 
 .above-app-bar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5px;
 }
@@ -32,21 +33,6 @@
   margin-right: 1rem;
   padding: 0.5rem;
   font-size: 0.75rem;
-}
-
-.save-lesson-button {
-  padding:  0.5rem 1rem;
-  font-size: 0.75rem;
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  cursor: pointer;
-  margin-right: 220px; /*need to fix when adjusting screen size*/
-
-}
-
-.save-lesson-button:hover {
-  background-color: blue;
 }
 
 .user-menu {
