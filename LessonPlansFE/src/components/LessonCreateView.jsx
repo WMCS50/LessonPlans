@@ -29,7 +29,7 @@ const LessonCreateView = () => {
   const [contextPosition, setContextPosition] = useState(null)
   const [currentLesson, setCurrentLesson] = useState(
     { id: null, 
-      title: '', 
+      title: '',
       resources: []
     })
   
@@ -37,14 +37,14 @@ const LessonCreateView = () => {
     dispatch(resetResources())
   }, [dispatch])
 
-//fetches existing lesson data if navigated to from read view
+//Fetches existing lesson data if navigated to from read view.
   useEffect(() => {
     if (id) {
       const fetchLesson = async () => {
         try {
           const response = await axios.get(`http://localhost:3001/lessons/${id}`)
           const lessonData = response.data
-          setCurrentLesson(lessonData)
+          setCurrentLesson (lessonData)
           dispatch(updateResources(lessonData.resources))
         } catch (error) {
           console.error('Error fetching lesson:', error)
@@ -61,7 +61,6 @@ const LessonCreateView = () => {
   })
   
   const sensors = useSensors(pointerSensor)
-  console.log('length1', resources.length)
 
   const handleDragEnd = (event) => {
     const { active, over } = event
@@ -104,10 +103,11 @@ const LessonCreateView = () => {
   //constructs a lesson object then calls handleSaveLesson
   const handleSave = async () => {
     const lesson = {
-    ...currentLesson,
-    resources: resources
+      ...currentLesson,
+      resources: resources
     }
-    const result = await handleSaveLesson(lesson) //checks if lesson has an id
+   
+    const result = await handleSaveLesson(lesson)
     if (result && !currentLesson.id) {
       setCurrentLesson({ ...lesson, id: result.id })
     }

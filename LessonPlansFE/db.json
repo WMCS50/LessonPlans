@@ -15,21 +15,6 @@
   ],
   "lessons": [
     {
-      "id": 2,
-      "title": "Linear Algebra",
-      "createdBy": 1,
-      "courseAssociation": "Mathematics",
-      "dateAdded": "2024-03-30",
-      "sharedWithEditable": [
-        2
-      ],
-      "sharedWithReadOnly": [],
-      "resources": [
-        1,
-        2
-      ]
-    },
-    {
       "id": 3,
       "title": "Electromagnetism",
       "createdBy": 2,
@@ -49,49 +34,87 @@
       ]
     },
     {
-      "id": 19,
-      "title": "real test lesson",
+      "title": "Linear Algebra4",
       "createdBy": 1,
+      "courseAssociation": "Mathematics",
+      "dateAdded": "2024-03-30",
+      "sharedWithEditable": [
+        2
+      ],
+      "sharedWithReadOnly": [],
       "resources": [
         {
-          "type": "video",
-          "title": "screen application",
-          "link": "https://www.youtube.com/watch?v=Xoa1zowwO34",
-          "startTime": "120",
-          "endTime": "130",
-          "id": "ceca272d-a468-4f7a-90e2-12e49c84be72"
-        },
-        {
-          "type": "website",
-          "title": "zillow",
-          "link": "https://zillow.com",
-          "id": "a0c7f2bc-4d99-4680-960e-121545e074a1"
+          "type": "text",
+          "title": "real",
+          "content": "<p>deal</p>",
+          "id": "85272896-0c63-42a8-b5d5-3030f30700f1"
         },
         {
           "type": "text",
-          "title": "Text Title",
-          "content": "<p>This is the text body. I will give instructions here.</p>",
-          "id": "0521f8a7-c08c-4b59-be1c-daa922fb078e"
+          "title": "holyfield",
+          "content": "",
+          "id": "42993661-b52f-431d-a76e-3486c5dc9be4"
         },
         {
-          "type": "document",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "title": "sample doc",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "303c5ffa-2449-4e0a-82d3-7e7c0d8c9996"
+          "type": "text",
+          "title": "again",
+          "content": "",
+          "id": "809ac8c5-d09d-4931-a1da-737301f31c20"
         }
-      ]
+      ],
+      "isTitleChanged": true,
+      "id": 27
     },
     {
-      "id": 20,
-      "title": "with createdBy",
+      "id": 28,
+      "title": "New Lesson3",
+      "isTitleChanged": false,
       "resources": [
         {
           "type": "text",
-          "title": "yup",
-          "content": "<p>should work</p>",
-          "id": "2738f285-a07e-49c0-a711-2bf32ad74be5"
+          "title": "1",
+          "content": "",
+          "id": "fa902e10-8175-4d87-87fb-823559f7e7d4"
+        },
+        {
+          "type": "text",
+          "title": "2",
+          "content": "",
+          "id": "8f526a44-293b-4f2b-b46e-172603b99c54"
+        }
+      ],
+      "createdBy": 1,
+      "originalTitle": "New Lesson2"
+    },
+    {
+      "title": "New Lesson3",
+      "isTitleChanged": false,
+      "resources": [
+        {
+          "type": "text",
+          "title": "1",
+          "content": "",
+          "id": "fa902e10-8175-4d87-87fb-823559f7e7d4"
+        },
+        {
+          "type": "text",
+          "title": "2",
+          "content": "",
+          "id": "8f526a44-293b-4f2b-b46e-172603b99c54"
+        }
+      ],
+      "createdBy": 1,
+      "id": 29
+    },
+    {
+      "id": 30,
+      "title": "it's new",
+      "resources": [
+        {
+          "type": "text",
+          "title": "test",
+          "content": "",
+          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
         }
       ],
       "createdBy": 1

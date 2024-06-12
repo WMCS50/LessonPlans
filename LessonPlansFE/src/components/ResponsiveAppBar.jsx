@@ -5,7 +5,6 @@ import { Box, Toolbar, Button } from '@mui/material'
 const pages = ['Add Text', 'Add Document', 'Add Website', 'Add Video'];
 
 const ResponsiveAppBar = ({ setActiveForm, resourcesLength }) => {
-  console.log('length2', resourcesLength)
 
   //closes the navigation menu and sets the active form
   const handleCloseNavMenu = (page) => {
