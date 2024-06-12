@@ -50,7 +50,8 @@
     },
     {
       "id": 19,
-      "title": "real test lesson2",
+      "title": "real test lesson",
+      "createdBy": 1,
       "resources": [
         {
           "type": "video",
@@ -84,61 +85,13 @@
     },
     {
       "id": 20,
-      "title": "testing createdBy",
+      "title": "with createdBy",
       "resources": [
         {
           "type": "text",
-          "title": "let's see",
-          "content": "",
-          "id": "63b79eea-8ea2-4a12-965e-db7d24d2d3e0"
-        }
-      ]
-    },
-    {
-      "id": 21,
-      "title": "createdBy again",
-      "resources": [
-        {
-          "type": "text",
-          "title": "fingers crossed",
-          "content": "",
-          "id": "128f4040-de45-4a32-ad76-99052ca12824"
-        }
-      ]
-    },
-    {
-      "id": 22,
-      "title": "testsetest",
-      "resources": [
-        {
-          "type": "text",
-          "title": "dfgfdg",
-          "content": "<p>dsfgfdsg</p>",
-          "id": "2aecc5a5-0d7a-4c5d-b415-963026d90eef"
-        }
-      ]
-    },
-    {
-      "id": 23,
-      "title": "save",
-      "resources": [
-        {
-          "type": "text",
-          "title": "testst",
-          "content": "",
-          "id": "1e59c116-9a46-4795-be4a-73164b0ee30a"
-        }
-      ]
-    },
-    {
-      "id": 24,
-      "title": "should work",
-      "resources": [
-        {
-          "type": "text",
-          "title": "dsgdssdgf",
-          "content": "",
-          "id": "0dfadfcc-8cae-43a2-bdfc-4a493460211d"
+          "title": "yup",
+          "content": "<p>should work</p>",
+          "id": "2738f285-a07e-49c0-a711-2bf32ad74be5"
         }
       ],
       "createdBy": 1

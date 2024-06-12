@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { logout } from '../features/auth/authSlice'
 import { Box, IconButton, Avatar, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 
 const items = ['Profile', 'Dashboard', 'Logout'];
@@ -10,6 +11,7 @@ const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const username = useSelector((state) => state.auth.user?.user.username || 'b')
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleCloseMenu = () => {
     setAnchorElUser(null)
@@ -19,6 +21,10 @@ const UserMenu = () => {
     handleCloseMenu()
     if (item === 'Dashboard') {
       navigate('/lessons')
+    }
+    if (item === 'Logout') {
+      dispatch(logout())
+      navigate('/')
     }
   }
 
