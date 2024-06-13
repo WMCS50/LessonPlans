@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchLessons } from '../features/lessons/lessonsSlice'
@@ -15,7 +17,7 @@ import {
 import SchoolIcon from '@mui/icons-material/School' 
 import { green } from '@mui/material/colors'
 
-const LessonList = () => {
+const LessonList = ({ onSelect }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const lessons = useSelector((state) => state.lessons.lessons)
@@ -92,6 +94,10 @@ const { handleDeleteLesson } = useDeleteLesson()
     setContextPosition(null)
   }
 
+  const handleLessonClick = (lesson) => {
+    onSelect ? onSelect(lesson) : navigate(`/lessons/${lesson.id}`)
+  }
+
   return (
     <div>
       {lessonsStatus === 'loading' && <p>Loading...</p>}
@@ -125,7 +131,7 @@ const { handleDeleteLesson } = useDeleteLesson()
             <tr 
               style={{cursor: 'pointer'}}  
               key={lesson.id} 
-                onClick={() => navigate(`/lessons/${lesson.id}`)} 
+                onClick={() => handleLessonClick(lesson)} 
                 onContextMenu={(event) => handleContextMenu(event, lesson)}>
               <td>{lesson.title}</td> 
               <td>{lesson.courseAssociation}</td>

@@ -200,32 +200,6 @@
       "createdBy": 1
     },
     {
-      "id": 40,
-      "title": "test lesson3",
-      "resources": [
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "bd95fa7c-efff-4670-9c1d-f64ac19a6cf8"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
-      "id": 41,
-      "title": "test lesson4",
-      "resources": [
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "bd95fa7c-efff-4670-9c1d-f64ac19a6cf8"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
       "id": 42,
       "title": "maybe 2",
       "resources": [
@@ -269,6 +243,38 @@
         }
       ],
       "createdBy": 1
+    },
+    {
+      "title": "test",
+      "createdBy": 1,
+      "courseAssociation": "Mathematics",
+      "dateAdded": "2024-03-30",
+      "sharedWithEditable": [
+        2
+      ],
+      "sharedWithReadOnly": [],
+      "resources": [
+        {
+          "type": "text",
+          "title": "real",
+          "content": "<p>deal</p>",
+          "id": "85272896-0c63-42a8-b5d5-3030f30700f1"
+        },
+        {
+          "type": "text",
+          "title": "holyfield",
+          "content": "",
+          "id": "42993661-b52f-431d-a76e-3486c5dc9be4"
+        },
+        {
+          "type": "text",
+          "title": "again",
+          "content": "",
+          "id": "809ac8c5-d09d-4931-a1da-737301f31c20"
+        }
+      ],
+      "isTitleChanged": true,
+      "id": 43
     }
   ]
 }
