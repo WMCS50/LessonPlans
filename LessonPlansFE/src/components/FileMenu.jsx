@@ -6,10 +6,10 @@ import { Box, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 import SchoolIcon from '@mui/icons-material/School'
 import { green } from '@mui/material/colors'
 
-const items = ['Save', 'Save As New', 'Create New', 'Open', 'Share'];
+//const items = ['Save', 'Save As New', 'Create New', 'Open', 'Share'];
 
-const FileMenu = ({ onItemClick }) => {
-  const [anchorElUser, setAnchorElUser] = useState(null);
+const FileMenu = ({ items, onItemClick }) => {
+  const [anchorElUser, setAnchorElUser] = useState(null)
 
   const handleCloseMenu = () => {
     setAnchorElUser(null)
@@ -21,8 +21,6 @@ const FileMenu = ({ onItemClick }) => {
     console.log('item clicked', item)
     onItemClick(item)
   }
-
-
 
   return (
     <Box sx={{ flexGrow: 0 }}>

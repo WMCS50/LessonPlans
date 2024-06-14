@@ -7,15 +7,13 @@ import { useDeleteLesson } from '../hooks/useDeleteLesson'
 import { useNavigate } from 'react-router-dom'
 import UserMenu from './UserMenu'
 import CustomContextMenu from './CustomContextMenu'
+import FileMenu from './FileMenu'
 import './LessonList.css'
 import {
   MoreVert as MoreVertIcon, FolderOpen as FolderOpenIcon,
   Edit as EditIcon,   Delete as DeleteIcon,
   OpenInNew as OpenInNewIcon,
 } from '@mui/icons-material'
-//placeholder logo
-import SchoolIcon from '@mui/icons-material/School' 
-import { green } from '@mui/material/colors'
 
 const LessonList = ({ onSelect }) => {
   const dispatch = useDispatch()
@@ -27,7 +25,9 @@ const LessonList = ({ onSelect }) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedLesson, setSelectedLesson] = useState(null)
   const [contextPosition, setContextPosition] = useState(null)
-const { handleDeleteLesson } = useDeleteLesson()
+  const { handleDeleteLesson } = useDeleteLesson()
+
+  const fileMenuItems = ['Create New', 'Open']
 
   const requestSort = (key) => {
     let direction = 'ascending'
@@ -98,12 +98,21 @@ const { handleDeleteLesson } = useDeleteLesson()
     onSelect ? onSelect(lesson) : navigate(`/lessons/${lesson.id}`)
   }
 
+  const handleFileMenuClick = (item) => {
+    if (item === 'Create New') {
+      navigate('/create')
+    }
+    if (item === 'Open') {
+      console.log('open from file menu')
+    }
+  }
+
   return (
     <div>
       {lessonsStatus === 'loading' && <p>Loading...</p>}
       {lessonsStatus === 'failed' && <p>Error: {error}</p>}
       <header className='lesson-list-header'>
-        <SchoolIcon sx={{ width: 50, height: 50 , color: green[900] }} />
+        <FileMenu className='file-menu' items={fileMenuItems} onItemClick={handleFileMenuClick} />
         <input 
           className='search-bar' 
           type='text' 

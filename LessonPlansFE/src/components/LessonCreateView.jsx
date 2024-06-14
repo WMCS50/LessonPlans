@@ -38,6 +38,8 @@ const LessonCreateView = () => {
   const [fileMenuDialogInputValue, setFileMenuDialogInputValue ] = useState('')
   const [lessonListDialogOpen, setLessonListDialogOpen] = useState(false)
 
+  const fileMenuItems = ['Save', 'Save As New','Create New', 'Open', 'Share']
+
 //Resets title and resources when creating a new lesson
   useEffect(() => {
     dispatch(resetResources())
@@ -140,6 +142,7 @@ const LessonCreateView = () => {
     }
     if (item === 'Open') {
       setLessonListDialogOpen(true)
+      setFileMenuDialogOpen(true)
     }
   }
 
@@ -179,7 +182,7 @@ console.log('filemenudialogtype', fileMenuDialogType)
   return (
     <div className='lesson-create-view' onContextMenu={handleContextMenu}>
       <div className='above-app-bar'>
-        <FileMenu className='file-menu' onItemClick={handleFileMenuClick} />
+        <FileMenu className='file-menu' items={fileMenuItems} onItemClick={handleFileMenuClick} />
         <input 
           className='lesson-title-input'
           type='text'
@@ -221,7 +224,7 @@ console.log('filemenudialogtype', fileMenuDialogType)
         onClose={() => setFileMenuDialogOpen(false)}
         onSave={handleFileMenuDialogSave}
         title={fileMenuDialogType === 'saveAsNew' ? 'Save As New' : (fileMenuDialogType === 'createNew' ? 'Create New' : 'Open Lesson')}
-        content={fileMenuDialogType === 'saveAsNew' ? 'Please enter a new title:' : 'Do you want to save the current lesson before creating a new one?'}
+        content={fileMenuDialogType === 'saveAsNew' ? 'Please enter a new title:' : (fileMenuDialogType === 'createNew' ? 'Do you want to save the current lesson before creating a new one?' : 'Do you want to save the current lesson before opening?')}
         inputLabel={fileMenuDialogType === 'saveAsNew' ? 'New Title' : null}
         inputValue={fileMenuDialogInputValue}
         setInputValue={setFileMenuDialogInputValue}
