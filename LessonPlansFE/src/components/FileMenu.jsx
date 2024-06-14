@@ -6,8 +6,6 @@ import { Box, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 import SchoolIcon from '@mui/icons-material/School'
 import { green } from '@mui/material/colors'
 
-//const items = ['Save', 'Save As New', 'Create New', 'Open', 'Share'];
-
 const FileMenu = ({ items, onItemClick }) => {
   const [anchorElUser, setAnchorElUser] = useState(null)
 
@@ -17,7 +15,6 @@ const FileMenu = ({ items, onItemClick }) => {
 
   const handleItemClick = (item) => {
     handleCloseMenu()
-    //logic of what to do on click here
     console.log('item clicked', item)
     onItemClick(item)
   }
