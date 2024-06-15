@@ -23,6 +23,8 @@ const LessonCreateView = () => {
       resources: []
     })
   
+    const fileMenuItems = ['Save', 'Save As New','Create New', 'Open', 'Share']
+
 //Resets title and resources when creating a new lesson
   useEffect(() => {
     dispatch(resetResources())
@@ -68,7 +70,12 @@ const LessonCreateView = () => {
   return (
     <div className='lesson-create-view' >
       <div className='above-app-bar'>
-        <FileMenuManager currentLesson={currentLesson} setCurrentLesson={setCurrentLesson} resources={resources} />
+        <FileMenuManager 
+          currentLesson={currentLesson} 
+          setCurrentLesson={setCurrentLesson} 
+          resources={resources}
+          fileMenuItems={fileMenuItems} 
+        />
         <LessonTitleInput currentLesson={currentLesson} setCurrentLesson={setCurrentLesson} />
         <UserMenu className='user-menu'/>
       </div>

@@ -8,7 +8,7 @@ import FileMenu from './FileMenu'
 import FileMenuDialog from './FileMenuDialog'
 import LessonListDialog from './LessonListDialog'
 
-const FileMenuManager = ({ currentLesson, setCurrentLesson, resources }) => {
+const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, fileMenuItems, skipDialogs }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { handleSaveLesson } = useSaveLesson()
@@ -16,8 +16,6 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources }) => {
   const [fileMenuDialogType, setFileMenuDialogType] = useState('')
   const [fileMenuDialogInputValue, setFileMenuDialogInputValue ] = useState('')
   const [lessonListDialogOpen, setLessonListDialogOpen] = useState(false)
-
-  const fileMenuItems = ['Save', 'Save As New','Create New', 'Open', 'Share']
 
   //constructs a lesson object then calls handleSaveLesson
   const handleSave = async () => {
@@ -37,12 +35,19 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources }) => {
       setFileMenuDialogOpen(true)
     }
     if (item === 'Create New') {
-      setFileMenuDialogType('createNew')
-      setFileMenuDialogOpen(true)
+      if (skipDialogs) {
+        navigate('/create');
+      } else {
+        setFileMenuDialogType('createNew');
+        setFileMenuDialogOpen(true);
+      }
     }
     if (item === 'Open') {
-      setFileMenuDialogType('openLesson'); // Added this line
-      setLessonListDialogOpen(true);
+      setFileMenuDialogType('openLesson')
+      setLessonListDialogOpen(true)
+    }
+    if (item === 'Edit') {
+      navigate(`/create/${currentLesson.id}`)
     }
   }
 
@@ -65,7 +70,7 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources }) => {
       })
       navigate('/create')
     } else if (fileMenuDialogType === 'openLesson') {
-      if (shouldSave) {
+      if (shouldSave && !skipDialogs) {
         await handleSave()
       }
       navigate(`/create/${inputValue}`)
@@ -76,7 +81,10 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources }) => {
   const handleLessonSelect = (lesson) => {
     setFileMenuDialogType('openLesson')
     setFileMenuDialogInputValue(lesson.id)
-    setFileMenuDialogOpen(true)
+    setFileMenuDialogOpen(!skipDialogs)
+    if (skipDialogs) {
+      navigate(`/create/${lesson.id}`)
+    }
   }
   
   console.log('filemenudialogtype', fileMenuDialogType)

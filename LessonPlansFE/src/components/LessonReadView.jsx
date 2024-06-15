@@ -6,9 +6,8 @@ import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
 import UserMenu from './UserMenu'
+import FileMenuManager from './FileMenuManager'
 import axios from 'axios'
-import SchoolIcon from '@mui/icons-material/School'
-import { green } from '@mui/material/colors'
 import './LessonList.css'
 
 const LessonReadView = () => {
@@ -17,7 +16,7 @@ const LessonReadView = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const previewLesson = useSelector(state => state.lessonPreview)
-  const currentUser = useSelector((state) => state.auth.user)
+  const userId = useSelector((state) => state.auth.user.user.id)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -53,17 +52,16 @@ const LessonReadView = () => {
     navigate(`/create/${id}`)
   }
 
-
-  console.log('lesson content', lesson.resources)
   const resources = lesson.resources
 
   const renderEditButton = () => {
+    console.log('renderEditButton hit')
     //this needs to change when backend setup correctly
     //in terms of user and creator ids
-    if (currentUser) {
-      console.log('currentUser.id', currentUser.user.id)
+    if (userId) {
+      console.log('currentUser.id', userId)
       console.log('lesson.creatorId', lesson.createdBy)
-      if (currentUser.user.id === lesson.createdBy) {
+      if (userId === lesson.createdBy) {
         return (
           <button onClick={editLesson} className='edit-lesson-button'>
           Edit
@@ -73,16 +71,18 @@ const LessonReadView = () => {
     return null
   }
 
+  const fileMenuItems = userId === lesson.createdBy ? ['Save As New', 'Edit'] : ['Save As New']
+ 
   return (
     <div className='lesson-read-container'>
       <header className='lesson-read-header'>
-        <SchoolIcon sx={{ width: 50, height: 50, color: green[900] }} />
+        <FileMenuManager 
+          currentLesson={lesson} 
+          setCurrentLesson={setLesson} 
+          resources={resources} 
+          fileMenuItems={fileMenuItems} />
         <h3>{lesson.title}</h3>
         {renderEditButton()}
-{/*         {currentUser && currentUser.id === lesson.creatorId && (
-        <button onClick={editLesson} className='edit-lesson-button'>
-          Edit
-        </button>)} */}
         <UserMenu />
       </header>
       <div className='lesson-read-content'>      

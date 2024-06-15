@@ -7,7 +7,7 @@ import { useDeleteLesson } from '../hooks/useDeleteLesson'
 import { useNavigate } from 'react-router-dom'
 import UserMenu from './UserMenu'
 import CustomContextMenu from './CustomContextMenu'
-import FileMenu from './FileMenu'
+import FileMenuManager from './FileMenuManager'
 import './LessonList.css'
 import {
   MoreVert as MoreVertIcon, FolderOpen as FolderOpenIcon,
@@ -98,21 +98,12 @@ const LessonList = ({ onSelect }) => {
     onSelect ? onSelect(lesson) : navigate(`/lessons/${lesson.id}`)
   }
 
-  const handleFileMenuClick = (item) => {
-    if (item === 'Create New') {
-      navigate('/create')
-    }
-    if (item === 'Open') {
-      console.log('open from file menu')
-    }
-  }
-
   return (
     <div>
       {lessonsStatus === 'loading' && <p>Loading...</p>}
       {lessonsStatus === 'failed' && <p>Error: {error}</p>}
       <header className='lesson-list-header'>
-        <FileMenu className='file-menu' items={fileMenuItems} onItemClick={handleFileMenuClick} />
+        <FileMenuManager fileMenuItems={fileMenuItems} skipDialogs={true} />
         <input 
           className='search-bar' 
           type='text' 
