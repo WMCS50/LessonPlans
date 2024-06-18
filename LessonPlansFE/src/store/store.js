@@ -4,7 +4,7 @@ import lessonsReducer from '../features/lessons/lessonsSlice'
 import lessonPreviewReducer from '../features/lessons/lessonPreviewSlice'
 import activeFormReducer from '../features/lessons/activeFormSlice'
 import resourcesReducer from '../features/lessons/resourcesSlice'
-
+import sectionsReducer from '../features/lessons/sectionsSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,5 +13,6 @@ export const store = configureStore({
     lessonPreview: lessonPreviewReducer,
     activeForm: activeFormReducer,
     resources: resourcesReducer,
+    sections: sectionsReducer
   }
 })

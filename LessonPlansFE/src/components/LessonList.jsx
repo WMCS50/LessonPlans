@@ -111,11 +111,12 @@ const LessonList = ({ onSelect }) => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
+        <button className='create-lesson-button' onClick={() => navigate('/create')}>
+          Create New Lesson
+        </button>
         <UserMenu />
       </header>
-      <button className='create-lesson-button' onClick={() => navigate('/create')}>
-        Create New Lesson
-      </button>
+
       <table className='lesson-table'>
         <thead>
           <tr>

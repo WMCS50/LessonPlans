@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
-import SortableItem from './SortableItem'
+import SortableResource from './SortableResource'
 import CustomContextMenu from './CustomContextMenu'
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
@@ -70,7 +70,7 @@ const ResourceList = () => {
         <SortableContext items={resources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
           <div className='resource-display'>
             {resources.map((resource) => (
-              <SortableItem 
+              <SortableResource 
                 key={resource.id} 
                 id={resource.id} 
                 resource={resource} 

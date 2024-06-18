@@ -24,12 +24,28 @@
       "sharedWithReadOnly": [
         2
       ],
-      "resources": [
+      "sections": [
         {
-          "type": "text",
-          "title": "text",
-          "content": "<p>here's a real resource</p>",
-          "id": "f32ec433-f8c1-4c6a-b733-6f1ac4c1e997"
+          "id": 1,
+          "title": "Introduction",
+          "resources": [
+            {
+              "id": 1,
+              "type": "text",
+              "content": "Welcome to the lesson!"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Main Content",
+          "resources": [
+            {
+              "id": 2,
+              "type": "video",
+              "link": "http://example.com/video"
+            }
+          ]
         }
       ]
     },
@@ -104,51 +120,6 @@
           "title": "2",
           "content": "",
           "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
-      "id": 37,
-      "title": "yay!",
-      "resources": [
-        {
-          "type": "video",
-          "title": "astley",
-          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "startTime": "100",
-          "endTime": "130",
-          "id": "b4ce0e7c-d448-4f0e-bfae-ce0cee54707e"
-        },
-        {
-          "type": "text",
-          "title": "text",
-          "content": "",
-          "id": "263d3f3f-38f0-47b0-8722-47f6c85f1403"
-        },
-        {
-          "type": "text",
-          "title": "test",
-          "content": "",
-          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
-        },
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "43a37595-aca4-459a-a2df-e3c9c3e596a2"
-        },
-        {
-          "type": "text",
-          "title": "2",
-          "content": "",
-          "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
-        },
-        {
-          "type": "text",
-          "title": "56",
-          "content": "",
-          "id": "30bf1abe-37fa-4d4c-8189-1a0fcdef5f53"
         }
       ],
       "createdBy": 1
@@ -290,181 +261,60 @@
     },
     {
       "id": 44,
-      "title": "astley again",
-      "resources": [
-        {
-          "type": "video",
-          "title": "astley",
-          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "startTime": "100",
-          "endTime": "130",
-          "id": "b4ce0e7c-d448-4f0e-bfae-ce0cee54707e"
-        },
-        {
-          "type": "text",
-          "title": "test",
-          "content": "",
-          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
-        },
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "43a37595-aca4-459a-a2df-e3c9c3e596a2"
-        },
-        {
-          "type": "text",
-          "title": "2",
-          "content": "",
-          "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
-        },
-        {
-          "type": "text",
-          "title": "56",
-          "content": "",
-          "id": "30bf1abe-37fa-4d4c-8189-1a0fcdef5f53"
-        },
-        {
-          "type": "website",
-          "title": "testing",
-          "link": "https://yahoo.com",
-          "id": "4e80b070-466f-4a32-a4b8-5a48cd5612af"
-        }
-      ],
+      "title": "1",
+      "resources": [],
       "createdBy": 1
     },
     {
-      "title": "trying to get this to work",
-      "createdBy": 1,
-      "courseAssociation": "Mathematics",
-      "dateAdded": "2024-03-30",
-      "sharedWithEditable": [
-        2
-      ],
-      "sharedWithReadOnly": [],
-      "resources": [
-        {
-          "type": "text",
-          "title": "down below",
-          "content": "",
-          "id": "e02526bf-a51f-45d4-b7ff-1a75fe441ea7"
-        },
-        {
-          "type": "text",
-          "title": "it's here",
-          "content": "",
-          "id": "dd2907f9-5915-4e5a-9d70-6652ce762b84"
-        },
-        {
-          "type": "text",
-          "title": "real",
-          "content": "<p>deal</p>",
-          "id": "85272896-0c63-42a8-b5d5-3030f30700f1"
-        },
-        {
-          "type": "text",
-          "title": "holyfield",
-          "content": "",
-          "id": "42993661-b52f-431d-a76e-3486c5dc9be4"
-        },
-        {
-          "type": "text",
-          "title": "again",
-          "content": "",
-          "id": "809ac8c5-d09d-4931-a1da-737301f31c20"
-        }
-      ],
-      "isTitleChanged": true,
-      "id": 45
+      "id": 45,
+      "title": "2",
+      "resources": [],
+      "createdBy": 1
     },
     {
       "id": 46,
-      "title": "new lesson",
-      "resources": [
-        {
-          "type": "video",
-          "title": "astley",
-          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "startTime": "100",
-          "endTime": "130",
-          "id": "b4ce0e7c-d448-4f0e-bfae-ce0cee54707e"
-        },
-        {
-          "type": "text",
-          "title": "test",
-          "content": "",
-          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
-        },
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "43a37595-aca4-459a-a2df-e3c9c3e596a2"
-        },
-        {
-          "type": "text",
-          "title": "2",
-          "content": "",
-          "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
-        },
-        {
-          "type": "text",
-          "title": "56",
-          "content": "",
-          "id": "30bf1abe-37fa-4d4c-8189-1a0fcdef5f53"
-        }
-      ],
+      "title": "3",
+      "resources": [],
       "createdBy": 1
     },
     {
       "id": 47,
-      "title": "it's new 2",
-      "resources": [
-        {
-          "type": "text",
-          "title": "text",
-          "content": "",
-          "id": "263d3f3f-38f0-47b0-8722-47f6c85f1403"
-        },
-        {
-          "type": "text",
-          "title": "test",
-          "content": "",
-          "id": "fb65b7b6-59e8-4f7f-b721-333e00bc71e8"
-        },
-        {
-          "type": "text",
-          "title": "1",
-          "content": "",
-          "id": "43a37595-aca4-459a-a2df-e3c9c3e596a2"
-        },
-        {
-          "type": "text",
-          "title": "2",
-          "content": "",
-          "id": "19f0cffc-a2d5-49f9-b3cc-8e8a9bdb08e7"
-        }
-      ],
+      "title": "ertretertreter",
+      "resources": [],
       "createdBy": 1
     },
     {
       "id": 48,
-      "title": "now it's mine!",
-      "createdBy": 1,
-      "courseAssociation": "Physics",
-      "dateAdded": "2024-02-30",
-      "sharedWithEditable": [],
-      "sharedWithReadOnly": [
-        2
-      ],
-      "resources": [
+      "title": "please",
+      "sections": [],
+      "resources": [],
+      "createdBy": 1
+    },
+    {
+      "id": 49,
+      "title": "please 2",
+      "sections": [
         {
-          "type": "text",
-          "title": "text",
-          "content": "<p>here's a real resource</p>",
-          "id": "f32ec433-f8c1-4c6a-b733-6f1ac4c1e997"
+          "id": "d6f05323-635d-4984-b8e4-bdff07dcce70",
+          "title": "New Section",
+          "resources": []
         }
-      ]
+      ],
+      "resources": [],
+      "createdBy": 1
+    },
+    {
+      "id": 50,
+      "title": "please 3",
+      "sections": [
+        {
+          "id": "d6f05323-635d-4984-b8e4-bdff07dcce70",
+          "title": "New Section",
+          "resources": []
+        }
+      ],
+      "resources": [],
+      "createdBy": 1
     }
   ]
 }
