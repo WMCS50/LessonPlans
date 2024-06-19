@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSortable,} from '@dnd-kit/sortable'
+import { useDispatch } from 'react-redux'
+import { deleteResource } from '../features/lessons/resourcesSlice'
 import {CSS} from '@dnd-kit/utilities'
 import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
@@ -7,7 +9,7 @@ import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
 
 
-const SortableResource = ({ id, resource, handleDeleteResource }) => {
+const SortableResource = ({ id, resource, sectionId }) => {
   const {
     attributes,
     listeners,
@@ -21,6 +23,12 @@ const SortableResource = ({ id, resource, handleDeleteResource }) => {
     transition,
   };
   
+  const dispatch = useDispatch()
+
+  const handleDeleteResource = (resourceId) => {
+    dispatch(deleteResource({ resourceId, sectionId}))
+  }
+
   return (
     <div 
       ref={setNodeRef} 

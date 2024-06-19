@@ -11,8 +11,7 @@ const ActiveForm = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const activeForm = useSelector((state) => state.activeForm)
-  
-  console.log('active form', activeForm)
+  const sections = useSelector((state) => state.sections)
   
   useEffect(() => {
     if(activeForm) {
@@ -26,7 +25,11 @@ const ActiveForm = () => {
   }
 
   const handleAddResource = (resource) => {
-    dispatch(addResource({ resource, index: activeForm.index }))
+    const sectionId = activeForm.sectionId || (sections.length > 0 ? sections[0].id : null)
+    if (sectionId) {
+      dispatch(addResource({ resource, sectionId }))
+    }
+
   }
 
   if (!activeForm) {

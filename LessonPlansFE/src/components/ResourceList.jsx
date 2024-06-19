@@ -6,15 +6,16 @@ import SortableResource from './SortableResource'
 import CustomContextMenu from './CustomContextMenu'
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import { reorderResources, deleteResource } from '../features/lessons/resourcesSlice'
+import { reorderResources } from '../features/lessons/resourcesSlice'
 import {
   TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon,
   Web as WebIcon, OndemandVideo as OndemandVideoIcon,
 } from '@mui/icons-material'
 
-const ResourceList = () => {
+const ResourceList = ({ sectionId }) => {
   const dispatch = useDispatch()
   const resources = useSelector((state) => state.resources)
+  const sectionResources = resources.filter(resource => resource.sectionId === sectionId)
   const [contextPosition, setContextPosition] = useState(null)
 
   const pointerSensor = useSensor(PointerSensor, {
@@ -28,7 +29,7 @@ const ResourceList = () => {
   const handleDragEnd = (event) => {
     const { active, over } = event
     if (active.id !== over.id) {
-      dispatch(reorderResources({ activeId: active.id, overId: over.id}))
+      dispatch(reorderResources({ activeId: active.id, overId: over.id, sectionId }))
     }
   }
 
@@ -41,7 +42,7 @@ const ResourceList = () => {
 
   const handleOptionSelect = (option, position) => {
     console.log('contextposition', position)
-    const resourceIndex = contextPosition ? getResourceIndexAtPosition(contextPosition.y) : resources.length
+    const resourceIndex = contextPosition ? getResourceIndexAtPosition(contextPosition.y) : sectionResources.length
     dispatch(setActiveForm({ type: option.label, index: resourceIndex }))
   }
 
@@ -49,7 +50,6 @@ const ResourceList = () => {
     event.preventDefault()
     setContextPosition({ x: event.clientX, y: event.clientY })
   }
-
 
   //determines the index where a new resource will be inserted
   //based on the vertical position of a right-click event
@@ -61,20 +61,20 @@ const ResourceList = () => {
         return i
       }
     }
-    return resources.length
+    return sectionResources.length
   }
 
   return (
     <div onContextMenu={handleContextMenu}>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} >
-        <SortableContext items={resources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
+        <SortableContext items={sectionResources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
           <div className='resource-display'>
-            {resources.map((resource) => (
+            {sectionResources.map((resource) => (
               <SortableResource 
                 key={resource.id} 
                 id={resource.id} 
                 resource={resource} 
-                handleDeleteResource={(id) => dispatch(deleteResource(id))} 
+                sectionId={sectionId} 
               />
             ))}
           </div>

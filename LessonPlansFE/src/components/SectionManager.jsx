@@ -5,12 +5,13 @@ import { v4 as uuidv4 } from 'uuid'
 import { addSection, updateSection, deleteSection } from '../features/lessons/sectionsSlice'
 import SectionList from './SectionList'
 
+
 const SectionManager = () => {
   const dispatch = useDispatch()
   const sections = useSelector((state) => state.sections)
 
   const handleAddSection = () => {
-    const newSection = { id: uuidv4(), title: 'New Section', resources: [] }
+    const newSection = { id: uuidv4() }
     dispatch(addSection({ section: newSection }))
   }
 

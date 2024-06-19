@@ -8,40 +8,33 @@ export const resourcesSlice = createSlice({
   initialState,
   reducers: {
     addResource: (state, action) => {
-      const { resource, index, sectionId } = action.payload
-      const section = state.find((s) => s.id === sectionId)
-      if (section) {
-        const resourceWithId = { ...resource, id: uuidv4() }
-        section.resources.splice(index, 0, resourceWithId)
-      }
+      const { resource, sectionId } = action.payload
+      const resourceWithId = { ...resource, id: uuidv4(), sectionId }
+      state.push(resourceWithId)
     },
+    
     deleteResource: (state, action) => {
       const { resourceId, sectionId } = action.payload
-      const section = state.find((s) => s.id === sectionId)
-      if (section) {
-        section.resources = section.resources.filter(resource => resource.id !== resourceId)
-      }
-      
+      return state.filter(resource => resource.id !== resourceId || resource.sectionId !== sectionId)
     },
     updateResources: (state, action) => {
       const { resources, sectionId } = action.payload
-      const section = state.find((s) => s.id === sectionId)
-      if (section) {
-        section.resources = resources
-      }
+      return state.map(resource => resource.sectionId === sectionId ? resources.find(r => r.id === resource.id) || resource : resource)
     },
     reorderResources: (state, action) => {
       const { activeId, overId, sectionId } = action.payload
-      const section = state.find((s) => s.id === sectionId)
-      if (section) {
-        const oldIndex = section.resources.findIndex(resource => resource.id === activeId)
-        const newIndex = section.resources.findIndex(resource => resource.id === overId)      
-        if (oldIndex !== -1 && newIndex !== -1) {
-          const [movedItem] = section.resources.splice(oldIndex, 1)
-          section.resources.splice(newIndex, 0, movedItem)
-        }
+      const sectionResources = state.filter(resource => resource.sectionId === sectionId)
+      const oldIndex = sectionResources.findIndex(resource => resource.id === activeId)
+      const newIndex = sectionResources.findIndex(resource => resource.id === overId)      
+        
+      if (oldIndex !== -1 && newIndex !== -1) {
+        const newState = [...state]
+        const [movedItem] = newState.splice(oldIndex, 1)
+        newState.splice(newIndex, 0, movedItem)
+        return newState
       }
-     },
+      return state
+    },
     resetResources: () => initialState
   }
 })
