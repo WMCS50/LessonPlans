@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import './CustomContextMenu.css'
 
-const CustomContextMenu = ({ options, onOptionSelect, children, position }) => {
+const CustomContextMenu = ({ options, onOptionSelect, position }) => {
   const [visible, setVisible] = useState(false)
   const [adjustedPosition, setAdjustedPosition] = useState(position)
 
@@ -24,31 +24,34 @@ const CustomContextMenu = ({ options, onOptionSelect, children, position }) => {
 
   const adjustPosition = (position) => {
     const { innerWidth, innerHeight } = window
-    console.log('innerWidth/Height', {innerWidth, innerHeight})
-    const menuHeight = 100
+    const { scrollX, scrollY } = window
+    const menuHeight = 200
     const menuWidth = 150
 
     let adjustedX = position.x
     let adjustedY = position.y
     
     if (position.x + menuWidth > innerWidth) {
-      adjustedX = innerWidth - menuWidth - 10
+      adjustedX = innerWidth - menuWidth - 10 + scrollX
     }
 
     if (position.y + menuHeight > innerHeight) {
-      adjustedY = innerHeight  - menuHeight - 10
+      adjustedY = innerHeight - menuHeight - 10 + scrollY
+    } else {
+      adjustedY = position.y + scrollY
     }
 
     setAdjustedPosition({ x: adjustedX, y: adjustedY })
+    console.log('position.y, innerHeight, menuHeight, scrollY, adjustedY', 
+      [position.y, innerHeight, menuHeight, scrollY, adjustedY])
   }
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      {children}
       {visible && adjustedPosition && (
         <ul className="custom-context-menu" style={{ top: adjustedPosition.y, left: adjustedPosition.x }}>
           {options.map((option, index) => (
-            <li key={index} onClick={() => onOptionSelect(option, adjustedPosition)}>
+            <li key={index} onClick={() => onOptionSelect(option)}>
               {option.icon && <span className='menu-icon'>{option.icon}</span>}
               {option.label}
             </li>

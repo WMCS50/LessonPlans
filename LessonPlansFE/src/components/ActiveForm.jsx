@@ -17,11 +17,18 @@ const ActiveForm = () => {
   const activeForm = useSelector((state) => state.activeForm)
   const activeSectionId = useSelector((state) => state.activeSection)
   
+  //hook to handle opening form dialogs or adding a section
   useEffect(() => {
     if(activeForm) {
-      setOpen(true)
+      if (activeForm.type === 'Add Section') {
+        const newSection = { id: uuidv4() }
+        dispatch(addSection({ section: newSection }))
+        dispatch(resetActiveForm())
+      } else {
+        setOpen(true)
+      }
     }
-  }, [activeForm])
+  }, [activeForm, dispatch])
 
   const handleClose = () => {
     setOpen(false)
@@ -36,32 +43,27 @@ const ActiveForm = () => {
       window.alert('Select a section to add a resource')
     }
   }
-
-  const handleAddSection = () => {
-    const newSection = { id: uuidv4() }
-    dispatch(addSection({ section: newSection }))
-    dispatch(resetActiveForm())
-  }
-
-  if (!activeForm) {
+  
+  if (!activeForm || activeForm.type === 'Add Section') {
     return null
   }
 
-  switch (activeForm.type) {
-    case 'Add Document':
-      return <AddDocument open={open} onClose={handleClose} onAddResource={handleAddResource} />
-    case 'Add Website':
-      return <AddWebsite  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-    case 'Add Video':
-      return <AddVideo  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-    case 'Add Text':
-      return <AddText  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-    case 'Add Section':
-      handleAddSection()
-      return null
-    default:
-      return null
+  const renderDialog = () => {
+    switch (activeForm.type) {
+      case 'Add Document':
+        return <AddDocument open={open} onClose={handleClose} onAddResource={handleAddResource} />
+      case 'Add Website':
+        return <AddWebsite  open={open} onClose={handleClose} onAddResource={handleAddResource} />
+      case 'Add Video':
+        return <AddVideo  open={open} onClose={handleClose} onAddResource={handleAddResource} />
+      case 'Add Text':
+        return <AddText  open={open} onClose={handleClose} onAddResource={handleAddResource} />
+      default:
+        return null
+    }
   }
+  
+  return renderDialog()
 }
 
 export default ActiveForm

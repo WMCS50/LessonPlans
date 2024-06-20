@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
+
+import { useRef, useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
 import SortableResource from './SortableResource'
@@ -63,8 +66,29 @@ const ResourceList = ({sectionId}) => {
     return sectionResources.length
   }
 
+
+const useClickOutside = (handler) => {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        handler();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [handler, ref]);
+
+  return ref;
+}
+const contextMenuRef = useClickOutside(() => setContextPosition(null));
+
+
   return (
-    <div onContextMenu={handleContextMenu}>
+    <div onContextMenu={handleContextMenu} ref={contextMenuRef}>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} >
         <SortableContext items={sectionResources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
           <div className='resource-display'>
@@ -79,7 +103,13 @@ const ResourceList = ({sectionId}) => {
           </div>
         </SortableContext>
       </DndContext>
-      <CustomContextMenu options={contextMenuOptions} onOptionSelect={handleOptionSelect} position={contextPosition} />
+      {contextPosition && (
+        <CustomContextMenu 
+          options={contextMenuOptions} 
+          onOptionSelect={handleOptionSelect} 
+          position={contextPosition} 
+        />
+      )}
     </div>
   )
 }
