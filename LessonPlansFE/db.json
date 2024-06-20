@@ -15,35 +15,41 @@
   ],
   "lessons": [
     {
-      "id": 44,
+      "id": 1,
       "title": "1",
-      "resources": [],
-      "createdBy": 1
-    },
-    {
-      "id": 45,
-      "title": "2",
-      "resources": [
-        {
-          "type": "document",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "title": "coder",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "b5913987-c26c-41cf-82bc-9d15623b5fb1"
-        }
-      ],
-      "createdBy": 1,
       "sections": [
         {
-          "id": "04e25a4d-df50-46d8-b765-cc2e9338cd39"
+          "id": "44b7aca7-5c09-47d6-a65e-258a272891e2",
+          "title": "2"
+        },
+        {
+          "id": "850dff48-1333-4cd8-9e2e-c857a035f124",
+          "title": "test section"
         }
-      ]
-    },
-    {
-      "id": 46,
-      "title": "3",
-      "resources": [],
+      ],
+      "resources": [
+        {
+          "type": "text",
+          "title": "2",
+          "content": "<p>2</p>",
+          "id": "a5dfb6a5-3eed-4a4a-9ef4-6e91497a96a6",
+          "sectionId": "44b7aca7-5c09-47d6-a65e-258a272891e2"
+        },
+        {
+          "type": "text",
+          "title": "3",
+          "content": "<p>3</p>",
+          "id": "c732c7dd-8493-424c-8a6c-bb9e19070e21",
+          "sectionId": "44b7aca7-5c09-47d6-a65e-258a272891e2"
+        },
+        {
+          "type": "text",
+          "title": "5",
+          "content": "<p>5</p>",
+          "id": "e2d2a0f3-e81a-429b-82dc-c0800983d629",
+          "sectionId": "850dff48-1333-4cd8-9e2e-c857a035f124"
+        }
+      ],
       "createdBy": 1
     }
   ]

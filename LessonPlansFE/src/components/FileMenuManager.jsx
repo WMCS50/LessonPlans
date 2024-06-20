@@ -89,8 +89,6 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections,
     }
   }
   
-  console.log('filemenudialogtype', fileMenuDialogType)
-
   return (
     <div>
       <FileMenu className='file-menu' items={fileMenuItems} onItemClick={handleFileMenuClick} />

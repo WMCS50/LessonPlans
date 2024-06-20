@@ -8,15 +8,18 @@
   margin-bottom: 20px;
 }
 
-@media (max-width: 769px) {
+.section-item.active-section {
+  border: 2px solid #007bff; /* Blue border for active section */
+}
+
+@media (max-width: 1190px) {
   .section-item {
     width: calc(100% - 40px); 
     margin: 20px auto;
   }
 }
 
-
-@media (min-width: 770px) {
+@media (min-width: 1191px) {
   .section-item {
     width: calc(100% - 160px); 
     margin-left: 120px;
@@ -24,7 +27,7 @@
 }
 
 .section-title-input {
-  width: 100%;
+  width: 50%;
   margin-bottom: 10px;
   padding: 10px;
   font-size: 16px;

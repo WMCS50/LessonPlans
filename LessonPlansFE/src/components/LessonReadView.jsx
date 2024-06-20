@@ -48,14 +48,18 @@ const LessonReadView = () => {
   if (!lesson) return <div>No lesson found</div>
 
   const editLesson = () => {
-    console.log({id})
     navigate(`/create/${id}`)
   }
 
   const resources = lesson.resources
+  const groupedResources = lesson.sections.map(section => {
+    return {
+      ...section,
+      resources: lesson.resources.filter(resource => resource.sectionId === section.id)
+    }
+  })
 
   const renderEditButton = () => {
-    console.log('renderEditButton hit')
     //this needs to change when backend setup correctly
     //in terms of user and creator ids
     if (userId) {
@@ -72,7 +76,7 @@ const LessonReadView = () => {
   }
 
   const fileMenuItems = userId === lesson.createdBy ? ['Save As New', 'Edit'] : ['Save As New']
- 
+
   return (
     <div className='lesson-read-container'>
       <header className='lesson-read-header'>
@@ -85,23 +89,28 @@ const LessonReadView = () => {
         {renderEditButton()}
         <UserMenu />
       </header>
-      <div className='lesson-read-content'>      
-        {resources.map((resource) => {
-          switch (resource.type) {
-            case 'text':  
-              return <TextDisplay key={resource.id} title={resource.title} content={resource.content} />
-            case 'document':
-              return <DocumentDisplay key={resource.id} title={resource.title} link={resource.link} />
-            case 'website': 
-              return <WebsiteDisplay key={resource.id} title={resource.title} link={resource.link} />
-            case 'video':
-              return <VideoDisplay key={resource.id}
-                title={resource.title} link={resource.link} 
-                startTime={resource.startTime} endTime={resource.endTime}/>
-            default:
-              return <p key={resource.id}>Unknown resource type</p>
-          }
-        })}
+      <div className='lesson-read-content'>
+        {groupedResources.map(section => (
+          <div key={section.id} className='section'>
+            <h4>{section.title}</h4>
+            {section.resources.map(resource => {
+              switch (resource.type) {
+                case 'text':  
+                  return <TextDisplay key={resource.id} title={resource.title} content={resource.content} />
+                case 'document':
+                  return <DocumentDisplay key={resource.id} title={resource.title} link={resource.link} />
+                case 'website': 
+                  return <WebsiteDisplay key={resource.id} title={resource.title} link={resource.link} />
+                case 'video':
+                  return <VideoDisplay key={resource.id}
+                    title={resource.title} link={resource.link} 
+                    startTime={resource.startTime} endTime={resource.endTime}/>
+                default:
+                  return <p key={resource.id}>Unknown resource type</p>
+              }
+            })}
+          </div>
+        ))}
       </div>
     </div>
   )

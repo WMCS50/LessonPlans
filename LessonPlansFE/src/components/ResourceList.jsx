@@ -12,7 +12,7 @@ import {
   Web as WebIcon, OndemandVideo as OndemandVideoIcon,
 } from '@mui/icons-material'
 
-const ResourceList = ({ sectionId }) => {
+const ResourceList = ({sectionId}) => {
   const dispatch = useDispatch()
   const resources = useSelector((state) => state.resources)
   const sectionResources = resources.filter(resource => resource.sectionId === sectionId)
@@ -40,8 +40,7 @@ const ResourceList = ({ sectionId }) => {
     { label: 'Add Video', icon: < OndemandVideoIcon /> }
   ]
 
-  const handleOptionSelect = (option, position) => {
-    console.log('contextposition', position)
+  const handleOptionSelect = (option) => {
     const resourceIndex = contextPosition ? getResourceIndexAtPosition(contextPosition.y) : sectionResources.length
     dispatch(setActiveForm({ type: option.label, index: resourceIndex }))
   }

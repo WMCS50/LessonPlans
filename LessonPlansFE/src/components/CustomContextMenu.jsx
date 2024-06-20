@@ -14,9 +14,6 @@ const CustomContextMenu = ({ options, onOptionSelect, children, position }) => {
       window.removeEventListener('click', handleClick)
     }
   }, [])
-
-  console.log('position', position)
-  console.log('adjustedPosition', adjustedPosition)
   
   useEffect(() => {
     if (position) {

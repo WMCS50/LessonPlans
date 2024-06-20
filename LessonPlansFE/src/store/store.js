@@ -5,6 +5,7 @@ import lessonPreviewReducer from '../features/lessons/lessonPreviewSlice'
 import activeFormReducer from '../features/lessons/activeFormSlice'
 import resourcesReducer from '../features/lessons/resourcesSlice'
 import sectionsReducer from '../features/lessons/sectionsSlice'
+import activeSectionReducer from '../features/lessons/activeSectionSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     lessonPreview: lessonPreviewReducer,
     activeForm: activeFormReducer,
     resources: resourcesReducer,
-    sections: sectionsReducer
+    sections: sectionsReducer,
+    activeSection: activeSectionReducer
   }
 })

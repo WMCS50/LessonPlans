@@ -8,7 +8,6 @@ import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
 
-
 const SortableResource = ({ id, resource, sectionId }) => {
   const {
     attributes,
@@ -52,7 +51,7 @@ const SortableResource = ({ id, resource, sectionId }) => {
 
     <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
  </div>
-  );
+  )
 }
 
 export default SortableResource
