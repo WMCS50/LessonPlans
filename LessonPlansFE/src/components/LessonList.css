@@ -74,6 +74,20 @@
   border-bottom: 2px solid #ccc;
 }
 
+@media (max-width: 1190px) {
+  .lesson-read-content > div {
+    width: calc(100% - 40px); 
+    margin: 20px auto;
+  }
+}
+
+@media (min-width: 1191px) {
+  .lesson-read-content > div {
+    width: calc(100% - 160px); 
+    margin-left: 120px;
+  }
+}
+
 .edit-lesson-button {
   margin-right: 1rem;
   padding: 0.75rem 1rem;

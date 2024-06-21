@@ -1,20 +1,26 @@
 /* eslint-disable react/prop-types */
-
-import { useState, useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './CustomContextMenu.css'
 
-const CustomContextMenu = ({ options, onOptionSelect, position }) => {
+const CustomContextMenu = ({ options, onOptionSelect, position, onClose }) => {
   const [visible, setVisible] = useState(false)
   const [adjustedPosition, setAdjustedPosition] = useState(position)
+  const contextMenuRef = useRef(null)
 
   useEffect(() => {
-    const handleClick = () => setVisible(false)
-    window.addEventListener('click', handleClick)
-    return () => {
-      window.removeEventListener('click', handleClick)
+    const handleClickOutside = (event) => {
+      if (contextMenuRef.current && !contextMenuRef.current.contains(event.target)) {
+        setVisible(false)
+        onClose()
+      }
     }
-  }, [])
-  
+
+    window.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [onClose])
+
   useEffect(() => {
     if (position) {
       setVisible(true)
@@ -23,16 +29,15 @@ const CustomContextMenu = ({ options, onOptionSelect, position }) => {
   }, [position])
 
   const adjustPosition = (position) => {
-    const { innerWidth, innerHeight } = window
-    const { scrollX, scrollY } = window
-    const menuHeight = 200
+    const { innerWidth, innerHeight, scrollY } = window
+    const menuHeight = 100
     const menuWidth = 150
 
     let adjustedX = position.x
-    let adjustedY = position.y
-    
+    let adjustedY = position.y + scrollY
+
     if (position.x + menuWidth > innerWidth) {
-      adjustedX = innerWidth - menuWidth - 10 + scrollX
+      adjustedX = innerWidth - menuWidth - 10
     }
 
     if (position.y + menuHeight > innerHeight) {
@@ -42,14 +47,12 @@ const CustomContextMenu = ({ options, onOptionSelect, position }) => {
     }
 
     setAdjustedPosition({ x: adjustedX, y: adjustedY })
-    console.log('position.y, innerHeight, menuHeight, scrollY, adjustedY', 
-      [position.y, innerHeight, menuHeight, scrollY, adjustedY])
   }
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
       {visible && adjustedPosition && (
-        <ul className="custom-context-menu" style={{ top: adjustedPosition.y, left: adjustedPosition.x }}>
+        <ul ref={contextMenuRef} className="custom-context-menu" style={{ top: adjustedPosition.y, left: adjustedPosition.x }}>
           {options.map((option, index) => (
             <li key={index} onClick={() => onOptionSelect(option)}>
               {option.icon && <span className='menu-icon'>{option.icon}</span>}

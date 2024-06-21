@@ -107,7 +107,8 @@ const contextMenuRef = useClickOutside(() => setContextPosition(null));
         <CustomContextMenu 
           options={contextMenuOptions} 
           onOptionSelect={handleOptionSelect} 
-          position={contextPosition} 
+          position={contextPosition}
+          onClose={() => setContextPosition(null)}
         />
       )}
     </div>
