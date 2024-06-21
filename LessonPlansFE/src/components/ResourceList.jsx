@@ -11,8 +11,9 @@ import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from 
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { reorderResources } from '../features/lessons/resourcesSlice'
 import {
-  TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon,
-  Web as WebIcon, OndemandVideo as OndemandVideoIcon,
+  TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon, Web as WebIcon, 
+  OndemandVideo as OndemandVideoIcon, 
+  ArrowUpward as ArrowUpwardIcon, ArrowDownward as ArrowDownwardIcon
 } from '@mui/icons-material'
 
 const ResourceList = ({sectionId}) => {
@@ -40,12 +41,21 @@ const ResourceList = ({sectionId}) => {
     { label: 'Add Text', icon: < TextFieldsIcon /> },
     { label: 'Add Document', icon: < NoteAddIcon /> },
     { label: 'Add Website', icon: < WebIcon /> },
-    { label: 'Add Video', icon: < OndemandVideoIcon /> }
+    { label: 'Add Video', icon: < OndemandVideoIcon /> },
+    { label: 'Add Section Above', icon: <ArrowUpwardIcon /> },
+    { label: 'Add Section Below', icon: <ArrowDownwardIcon /> }
   ]
 
   const handleOptionSelect = (option) => {
     const resourceIndex = contextPosition ? getResourceIndexAtPosition(contextPosition.y) : sectionResources.length
-    dispatch(setActiveForm({ type: option.label, index: resourceIndex }))
+    if (option.label === 'Add Section Above') {
+      dispatch(setActiveForm({ type: 'Add Section', position: 'above', sectionId }))
+    } else if (option.label === 'Add Section Below') {
+      dispatch(setActiveForm({ type: 'Add Section', position: 'below', sectionId }))
+    } else {
+      dispatch(setActiveForm({ type: option.label, index: resourceIndex }))
+    }
+    setContextPosition(null)
   }
 
   const handleContextMenu = (event) => {
