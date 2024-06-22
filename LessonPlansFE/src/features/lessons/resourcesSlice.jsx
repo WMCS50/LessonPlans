@@ -12,10 +12,16 @@ export const resourcesSlice = createSlice({
       const resourceWithId = { ...resource, id: uuidv4(), sectionId }
       state.push(resourceWithId)
     },
-    
     deleteResource: (state, action) => {
       const { resourceId, sectionId } = action.payload
       return state.filter(resource => resource.id !== resourceId || resource.sectionId !== sectionId)
+    },
+    updateResource: (state, action) => {
+      const { resourceId, content } = action.payload
+      const resource = state.find((res) => res.id === resourceId)
+      if (resource) {
+        resource.content = content
+      }
     },
     updateResources: (state, action) => {
       return action.payload
@@ -40,6 +46,6 @@ export const resourcesSlice = createSlice({
   }
 })
 
-export const { addResource, deleteResource, updateResources, reorderResources, resetResources } = resourcesSlice.actions
+export const { addResource, deleteResource, updateResource, updateResources, reorderResources, resetResources } = resourcesSlice.actions
 
 export default resourcesSlice.reducer

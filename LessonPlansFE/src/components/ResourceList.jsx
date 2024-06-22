@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
-
-import { useRef, useEffect } from 'react'
-
+import { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
+import { reorderResources, addResource } from '../features/lessons/resourcesSlice'
 import SortableResource from './SortableResource'
 import CustomContextMenu from './CustomContextMenu'
+import { v4 as uuidv4 } from 'uuid'
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import { reorderResources } from '../features/lessons/resourcesSlice'
 import {
   TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon, Web as WebIcon, 
   OndemandVideo as OndemandVideoIcon, 
@@ -21,6 +19,7 @@ const ResourceList = ({sectionId}) => {
   const resources = useSelector((state) => state.resources)
   const sectionResources = resources.filter(resource => resource.sectionId === sectionId)
   const [contextPosition, setContextPosition] = useState(null)
+  const [isAddingText, setIsAddingText] = useState(false)
 
   const pointerSensor = useSensor(PointerSensor, {
     activationConstraint: {
@@ -76,30 +75,42 @@ const ResourceList = ({sectionId}) => {
     return sectionResources.length
   }
 
+  const useClickOutside = (handler) => {
+    const ref = useRef(null)
 
-const useClickOutside = (handler) => {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        handler();
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          handler()
+        }
       }
-    };
 
-    document.addEventListener('click', handleClickOutside);
+      document.addEventListener('click', handleClickOutside)
 
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [handler, ref]);
+      return () => document.removeEventListener('click', handleClickOutside)
+    }, [handler, ref])
 
-  return ref;
-}
-const contextMenuRef = useClickOutside(() => setContextPosition(null));
+    return ref
+  }
 
+  const contextMenuRef = useClickOutside(() => setContextPosition(null))
+
+  const handleSectionClick = () => {
+    if (isAddingText) { 
+      const newTextResource = {
+        id: uuidv4(),
+        type: 'text',
+        content: '',
+        sectionId
+      }
+      dispatch(addResource({ resource: newTextResource }))
+      setIsAddingText(false)
+    }
+  }
 
   return (
-    <div onContextMenu={handleContextMenu} ref={contextMenuRef}>
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} >
+    <div onContextMenu={handleContextMenu} ref={contextMenuRef} onClick={handleSectionClick}>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={sectionResources.map(resource => resource.id)} strategy={verticalListSortingStrategy}>
           <div className='resource-display'>
             {sectionResources.map((resource) => (

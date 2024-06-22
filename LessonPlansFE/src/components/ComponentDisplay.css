@@ -48,3 +48,15 @@
   width: 20%;
   height: auto;
 }
+
+/* ComponentDisplay.css */
+.text-editor-container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.resource-list {
+  margin-top: 10px;
+}

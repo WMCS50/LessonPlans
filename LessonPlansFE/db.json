@@ -16,45 +16,36 @@
   "lessons": [
     {
       "id": 1,
-      "title": "1",
+      "title": "Lesson1",
       "sections": [
         {
-          "id": "b8d28ca2-23f9-4a74-aa97-a78f1e7fd75d",
-          "title": "Part 1 of the lesson"
-        },
-        {
-          "id": "f3454906-8517-4ae4-841f-fd293277fcc1",
-          "title": "Part 2 of the lesson"
+          "id": "2c9a5060-5cb8-44f6-85c7-b52badb11fec",
+          "title": "1"
         }
       ],
       "resources": [
         {
           "type": "text",
-          "title": "title",
-          "content": "<p>this is some text</p>",
-          "id": "db137f90-fc79-4944-81fe-10b41bce9e1e",
-          "sectionId": "f3454906-8517-4ae4-841f-fd293277fcc1"
+          "title": "2",
+          "content": "<p>this is number 2</p>",
+          "id": "647ce9dc-d689-4a2f-bcb5-5d54bfa72319",
+          "sectionId": "2c9a5060-5cb8-44f6-85c7-b52badb11fec"
+        },
+        {
+          "type": "document",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "title": "doc",
+          "start_page": 1,
+          "end_page": 2,
+          "id": "1d53acb4-cdc6-4f33-bb9a-46fd4f504c38",
+          "sectionId": "2c9a5060-5cb8-44f6-85c7-b52badb11fec"
         },
         {
           "type": "text",
           "title": "1",
-          "content": "<p>1</p>",
-          "id": "64a2bb02-c28e-4fb1-a3b5-76478531ef5f",
-          "sectionId": "f3454906-8517-4ae4-841f-fd293277fcc1"
-        },
-        {
-          "type": "text",
-          "title": "",
-          "content": "<p>For this first part, take navigate the website below and do something about it</p>",
-          "id": "74963e0c-5c1d-493c-9d0a-940c25874fac",
-          "sectionId": "b8d28ca2-23f9-4a74-aa97-a78f1e7fd75d"
-        },
-        {
-          "type": "website",
-          "title": "some website",
-          "link": "https://finance.yahoo.com/",
-          "id": "6863ae95-bb84-4651-bc09-b5a2f72cb68a",
-          "sectionId": "b8d28ca2-23f9-4a74-aa97-a78f1e7fd75d"
+          "content": "<p>interesting</p>",
+          "id": "8e0b06b1-8ce0-4500-8771-9de17e7208f1",
+          "sectionId": "2c9a5060-5cb8-44f6-85c7-b52badb11fec"
         }
       ],
       "createdBy": 1
