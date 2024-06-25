@@ -16,36 +16,22 @@
   "lessons": [
     {
       "id": 1,
-      "title": "Lesson1",
+      "title": "Test",
       "sections": [
         {
-          "id": "2c9a5060-5cb8-44f6-85c7-b52badb11fec",
-          "title": "1"
+          "id": "e2e1e267-5404-4be9-b53a-eeaf67f8d010",
+          "title": "Part 1"
         }
       ],
       "resources": [
         {
-          "type": "text",
-          "title": "2",
-          "content": "<p>this is number 2</p>",
-          "id": "647ce9dc-d689-4a2f-bcb5-5d54bfa72319",
-          "sectionId": "2c9a5060-5cb8-44f6-85c7-b52badb11fec"
-        },
-        {
           "type": "document",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "title": "doc",
+          "link": "https://lalin2014.edublogs.org/files/2018/08/Science-in-Action-7-xsry09-1i0tjuj.pdf",
+          "title": "science",
           "start_page": 1,
           "end_page": 2,
-          "id": "1d53acb4-cdc6-4f33-bb9a-46fd4f504c38",
-          "sectionId": "2c9a5060-5cb8-44f6-85c7-b52badb11fec"
-        },
-        {
-          "type": "text",
-          "title": "1",
-          "content": "<p>interesting</p>",
-          "id": "8e0b06b1-8ce0-4500-8771-9de17e7208f1",
-          "sectionId": "2c9a5060-5cb8-44f6-85c7-b52badb11fec"
+          "id": "fde99b56-d59d-4169-bf75-9e42733cba8f",
+          "sectionId": "e2e1e267-5404-4be9-b53a-eeaf67f8d010"
         }
       ],
       "createdBy": 1

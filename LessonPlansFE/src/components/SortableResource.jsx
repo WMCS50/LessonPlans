@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useSortable} from '@dnd-kit/sortable'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteResource, updateResource } from '../features/lessons/resourcesSlice'
 import {CSS} from '@dnd-kit/utilities'
@@ -7,8 +8,11 @@ import TextEditor from './TextEditor'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
+import AddResource from './AddResource'
 
 const SortableResource = ({ id, resource, sectionId }) => {
+  const [initialText, setInitialText] = useState(undefined)
+  const [isEditing, setIsEditing] = useState(false)
   const {
     attributes,
     listeners,
@@ -24,40 +28,72 @@ const SortableResource = ({ id, resource, sectionId }) => {
   
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    setTimeout(() => setInitialText(resource.content), 500)
+  // had to follow TinyMCE documentation here precisely 
+  // in setting initial value as it doesn't work otherwise
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const handleDeleteResource = (resourceId) => {
     dispatch(deleteResource({ resourceId, sectionId}))
   }
 
-  const handleUpdateResourceContent = (resourceId, content) => {
+  const handleUpdateTextContent = (resourceId, content) => {
     dispatch(updateResource({ resourceId, content }))
   }
 
+  const handleSaveEdit = (resource) => {
+    dispatch(updateResource({ resourceId: id, ...resource }))
+    setIsEditing(false)
+  }
+
+  const renderDisplay = () => {
+    switch (resource.type) {
+      case 'text':  
+      return (
+        <TextEditor className='text-editor-container'
+          initialValue={initialText}
+          onEditorChange={(content) => handleUpdateTextContent(resource.id, content)}
+        />
+      )
+      case 'document': 
+        return <DocumentDisplay title={resource.title} link={resource.link} />
+      case 'website': 
+        return <WebsiteDisplay title={resource.title} link={resource.link} />
+      case 'video':
+        return <VideoDisplay 
+          title={resource.title} 
+          link={resource.link} 
+          startTime={resource.startTime} 
+          endTime={resource.endTime}
+        />
+      default:
+        return null
+    }
+  }
+    
   return (
-    <div 
+    <div className='resource-item'
       ref={setNodeRef} 
       style={style} 
-      className='resource-item'
       {...attributes} 
       {...listeners}
     >
-      <div>
-        {resource.type === 'text' && 
-          <TextEditor 
-            initialValue={''}
-            onEditorChange={(content) => handleUpdateResourceContent(resource.id, content)}
-            className='text-editor-container'
-          />}
-        {resource.type === 'document' && 
-          <DocumentDisplay title={resource.title} link={resource.link} />}
-        {resource.type === 'website' && 
-          <WebsiteDisplay title={resource.title} link={resource.link} />}
-        {resource.type === 'video' &&
-          <VideoDisplay 
-            title={resource.title} link={resource.link} 
-            startTime={resource.startTime} endTime={resource.endTime}/>}
-      </div>
-
-    <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
+    <div>
+      {renderDisplay()}
+      <button onClick={() => setIsEditing(true)}>Edit</button>
+      <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
+    </div>
+    {isEditing && (
+      <AddResource
+        open={isEditing}
+        onClose={() => setIsEditing(false)}
+        onAddResource={handleSaveEdit}
+        resource={resource}
+        type={resource.type}
+      />
+    )}
  </div>
   )
 }
