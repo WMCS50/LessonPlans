@@ -1,4 +1,34 @@
 /* eslint-disable react/prop-types */
+import { useSelector } from 'react-redux'
+import SortableResource from './SortableResource'
+import DragAndDropHandler from './DragAndDropHandler'
+
+const ResourceList = ({ sectionId }) => {
+  const resources = useSelector((state) => state.resources)
+  const sectionResources = resources.filter(resource => resource.sectionId === sectionId)
+
+  return (
+    <div>
+      <DragAndDropHandler sectionResources={sectionResources} sectionId={sectionId}>
+          <div className='resource-display'>
+            {sectionResources.map((resource) => (
+              <SortableResource 
+                key={resource.id} 
+                id={resource.id} 
+                resource={resource} 
+                sectionId={sectionId} 
+              />
+            ))}
+          </div>
+        </DragAndDropHandler>
+    </div>
+  )
+}
+
+export default ResourceList
+
+/* 
+prior to refactoring
 import { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
@@ -21,6 +51,15 @@ const ResourceList = ({sectionId}) => {
   const [contextPosition, setContextPosition] = useState(null)
   const [isAddingText, setIsAddingText] = useState(false)
 
+  const contextMenuOptions = [
+    { label: 'Add Text', icon: < TextFieldsIcon /> },
+    { label: 'Add Document', icon: < NoteAddIcon /> },
+    { label: 'Add Website', icon: < WebIcon /> },
+    { label: 'Add Video', icon: < OndemandVideoIcon /> },
+    { label: 'Add Section Above', icon: <ArrowUpwardIcon /> },
+    { label: 'Add Section Below', icon: <ArrowDownwardIcon /> }
+  ]
+
   const pointerSensor = useSensor(PointerSensor, {
     activationConstraint: {
       distance: 5
@@ -35,15 +74,6 @@ const ResourceList = ({sectionId}) => {
       dispatch(reorderResources({ activeId: active.id, overId: over.id, sectionId }))
     }
   }
-
-  const contextMenuOptions = [
-    { label: 'Add Text', icon: < TextFieldsIcon /> },
-    { label: 'Add Document', icon: < NoteAddIcon /> },
-    { label: 'Add Website', icon: < WebIcon /> },
-    { label: 'Add Video', icon: < OndemandVideoIcon /> },
-    { label: 'Add Section Above', icon: <ArrowUpwardIcon /> },
-    { label: 'Add Section Below', icon: <ArrowDownwardIcon /> }
-  ]
 
   const handleOptionSelect = (option) => {
     const resourceIndex = contextPosition ? getResourceIndexAtPosition(contextPosition.y) : sectionResources.length
@@ -136,4 +166,4 @@ const ResourceList = ({sectionId}) => {
   )
 }
 
-export default ResourceList
+export default ResourceList */

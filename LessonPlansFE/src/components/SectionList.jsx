@@ -8,8 +8,9 @@ import { setActiveSection } from '../features/lessons/activeSectionSlice'
 import './SectionList.css'
 import SortableSection from './SortableSection'
 
-const SectionList = ({ sections = [] }) => {
+const SectionList = () => {
   const dispatch = useDispatch()
+  const sections = useSelector((state) => state.sections)
   const activeSectionId = useSelector((state) => state.activeSection)
 
   const pointerSensor = useSensor(PointerSensor, {

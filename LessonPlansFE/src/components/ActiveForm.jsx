@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import AddDocument from './AddDocument'
-import AddWebsite from './AddWebsite'
-import AddVideo from './AddVideo'
-import AddText from './AddText'
+import AddEditResource from './AddEditResource'
 import { addResource } from '../features/lessons/resourcesSlice'
-import { addSection, updateSections } from '../features/lessons/sectionsSlice'
-import { v4 as uuidv4 } from 'uuid'
 import { resetActiveForm } from '../features/lessons/activeFormSlice'
+import SectionManager from './SectionManager'
 
 const ActiveForm = () => {
   const [open, setOpen] = useState(false)
@@ -18,36 +14,10 @@ const ActiveForm = () => {
   
   //hook to handle opening form dialogs or adding a section
   useEffect(() => {
-    if (activeForm) {
-      if (activeForm.type === 'Add Section') {
-        const newSection = { id: uuidv4() }
-        let newSections
-        if (activeForm.position === 'above') {
-          const index = sections.findIndex(section => section.id === activeForm.sectionId)
-          newSections = [
-            ...sections.slice(0, index),
-            newSection,
-            ...sections.slice(index)
-          ]
-        } else if (activeForm.position === 'below') {
-          const index = sections.findIndex(section => section.id === activeForm.sectionId) + 1
-          newSections = [
-            ...sections.slice(0, index),
-            newSection,
-            ...sections.slice(index)
-          ]
-        } else {
-          newSections = [...sections, newSection]
-        }
-
-        dispatch(addSection({ section: newSection }))
-        dispatch(updateSections(newSections))
-        dispatch(resetActiveForm())
-      } else {
-        setOpen(true)
-      } 
+    if (activeForm && activeForm.type !== 'Add Section') {
+      setOpen(true)
     }
-  }, [activeForm, dispatch, sections])
+  }, [activeForm])
 
   const handleClose = () => {
     setOpen(false)
@@ -56,46 +26,39 @@ const ActiveForm = () => {
 
   const handleAddResource = (resource) => {
     if (activeSectionId) {
-      const sectionId = activeSectionId
-      dispatch(addResource({ resource, sectionId }))
+      dispatch(addResource({ resource, sectionId: activeSectionId }))
     } else {
       window.alert('Select a section to add a resource')
     }
   }
   
-  if (!activeForm || activeForm.type === 'Add Section') {
+  if (!activeForm) {
     return null
   }
 
-  const renderDialog = () => {
-    switch (activeForm.type) {
-      case 'Add Document':
-        return <AddDocument open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      case 'Add Website':
-        return <AddWebsite  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      case 'Add Video':
-        return <AddVideo  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      case 'Add Text':
-        return <AddText  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      default:
-        return null
-    }
-  }
-  
-  return renderDialog()
+  return (
+    <>
+      <SectionManager activeForm={activeForm} sections={sections} />
+      {activeForm.type !== 'Add Section' && (
+        <AddEditResource 
+          open={open}
+          onClose={handleClose}
+          onAddResource={handleAddResource}
+          resource={null}
+          type={activeForm.type.replace('Add ', '').toLowerCase()}
+          sectionId={activeSectionId}
+        />
+      )}
+    </>
+  )
 }
 
 export default ActiveForm
 
 
-/* 
-prior to adding where clicked
-import { useState, useEffect } from 'react'
+/* import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import AddDocument from './AddDocument'
-import AddWebsite from './AddWebsite'
-import AddVideo from './AddVideo'
-import AddText from './AddText'
+import AddEditResource from './AddEditResource'
 import { addResource } from '../features/lessons/resourcesSlice'
 import { addSection, updateSections } from '../features/lessons/sectionsSlice'
 import { v4 as uuidv4 } from 'uuid'
@@ -148,8 +111,7 @@ const ActiveForm = () => {
 
   const handleAddResource = (resource) => {
     if (activeSectionId) {
-      const sectionId = activeSectionId
-      dispatch(addResource({ resource, sectionId }))
+      dispatch(addResource({ resource, sectionId: activeSectionId }))
     } else {
       window.alert('Select a section to add a resource')
     }
@@ -159,22 +121,16 @@ const ActiveForm = () => {
     return null
   }
 
-  const renderDialog = () => {
-    switch (activeForm.type) {
-      case 'Add Document':
-        return <AddDocument open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      case 'Add Website':
-        return <AddWebsite  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      case 'Add Video':
-        return <AddVideo  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      case 'Add Text':
-        return <AddText  open={open} onClose={handleClose} onAddResource={handleAddResource} />
-      default:
-        return null
-    }
-  }
-  
-  return renderDialog()
+    return (
+      <AddEditResource 
+        open={open}
+        onClose={handleClose}
+        onAddResource={handleAddResource}
+        resource={null}
+        type={activeForm.type.replace('Add ', '').toLowerCase()}
+        sectionId={activeSectionId}
+      />
+    )
 }
 
 export default ActiveForm */

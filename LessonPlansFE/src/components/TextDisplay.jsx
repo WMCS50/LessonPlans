@@ -1,21 +1,31 @@
 /* eslint-disable react/prop-types */
-import './ComponentDisplay.css'
-
+import { useState, useEffect } from 'react'
 import DOMPurify from 'dompurify'
-import parse from 'html-react-parser'
+import TextEditor from './TextEditor'
+import { useDispatch } from 'react-redux'
+import { updateResource } from '../features/lessons/resourcesSlice'
 
-const TextDisplay = ({ title, content }) => {
+const TextDisplay = ({ resource }) => {
+  const [initialText, setInitialText] = useState('')
+  const dispatch = useDispatch()
 
-  const sanitizedContent = DOMPurify.sanitize(content)
-  const parsedContent = parse(sanitizedContent)
+  useEffect(() => {
+    setTimeout(() => setInitialText(resource.content), 500)
+  // had to follow TinyMCE documentation here precisely 
+  // in setting initial value as it doesn't work otherwise
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const handleUpdateTextContent = (content) => {
+    const sanitizedContent = DOMPurify.sanitize(content)
+    dispatch(updateResource({ resourceId: resource.id, content: sanitizedContent }))
+  }
 
   return (
-    <div className='text-display' >
-      <div className='header'>
-        <h3>{title}</h3>
-      </div>
-      <div className='content-display' >{parsedContent}</div>
-    </div>
+    <TextEditor className='text-editor-container'
+      initialValue={initialText}
+      onEditorChange={handleUpdateTextContent}
+  />
   )
 }
 

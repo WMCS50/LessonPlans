@@ -1,43 +1,45 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { resetActiveForm } from '../features/lessons/activeFormSlice'
+import { resetActiveForm } from '../../features/lessons/activeFormSlice'
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField} from '@mui/material'
 
-const AddWebsite = ({ open, onClose, onAddResource }) => { // eslint-disable-line react/prop-types
-  const [title, setTitle] = useState('')
+const AddDocument = ({ open, onClose, onAddResource }) => { // eslint-disable-line react/prop-types
   const [link, setLink] = useState('')
-  
+  const [title, setTitle] = useState('')
+
   const dispatch = useDispatch()
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     onAddResource({
-      type: 'website',
+      type: 'document',
+      link,
       title,
-      link
+      start_page: 1, //to be dynamic
+      end_page: 2 //to be dynamic
     })
-    setTitle('')
     setLink('')
+    setTitle('')
     dispatch(resetActiveForm())
     onClose()
   }
-
+    
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Add Website</DialogTitle>
+     <Dialog open={open} onClose={onClose}>
+      <DialogTitle>Add Document</DialogTitle>
       <DialogContent>
-        <TextField 
+        <TextField
           autoFocus
           margin='dense'
-          label="Enter title for website"
+          label='Enter document title'
           type='text'
           fullwidth='true'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <TextField
+          <TextField
           autoFocus
           margin='dense'
-          label="Enter website link"
+          label='Enter document link'
           type='text'
           fullwidth='true'
           value={link}
@@ -52,4 +54,4 @@ const AddWebsite = ({ open, onClose, onAddResource }) => { // eslint-disable-lin
   )
 }
 
-export default AddWebsite
+export default AddDocument

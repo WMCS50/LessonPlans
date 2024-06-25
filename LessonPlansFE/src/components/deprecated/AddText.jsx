@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { resetActiveForm } from '../features/lessons/activeFormSlice'
+import { resetActiveForm } from '../../features/lessons/activeFormSlice'
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material';
-import TextEditor from './TextEditor'
+import TextEditor from '../TextEditor'
 
 const AddText = ({ open, onClose, onAddResource }) => { // eslint-disable-line react/prop-types
 
