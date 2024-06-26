@@ -21,10 +21,15 @@ export const resourcesSlice = createSlice({
   name: 'resources',
   initialState,
   reducers: {
-    addResource: (state, action) => {
+/*  before change to add at right-click   addResource: (state, action) => {
       const { resource, sectionId } = action.payload
       const resourceWithId = { ...resource, id: uuidv4(), sectionId }
       state.push(resourceWithId)
+    }, */
+    addResource: (state, action) => {
+      const { resource, sectionId, index } = action.payload
+      const resourceWithId = { ...resource, id: uuidv4(), sectionId }
+      state.splice(index, 0, resourceWithId)
     },
     deleteResource: (state, action) => {
       const { resourceId, sectionId } = action.payload

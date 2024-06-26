@@ -96,7 +96,7 @@ const LessonReadView = () => {
             {section.resources.map(resource => {
               switch (resource.type) {
                 case 'text':  
-                  return <TextDisplay key={resource.id} title={resource.title} content={resource.content} />
+                  return <TextDisplay key={resource.id} resource={resource} readOnly={true} />
                 case 'document':
                   return <DocumentDisplay key={resource.id} title={resource.title} link={resource.link} />
                 case 'website': 

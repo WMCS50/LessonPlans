@@ -1,17 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material'
 import { resetActiveForm } from '../features/lessons/activeFormSlice'
 import { updateResource, addResource } from '../features/lessons/resourcesSlice'
 
-const AddEditResource = ({ open, onClose, resource, type, sectionId }) => {
+const AddEditResource = ({ open, onClose }) => {
+  const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
   const [startTime, setStartTime] = useState('')
   const [endTime, setEndTime] = useState('')
-  const dispatch = useDispatch()
+  const activeForm = useSelector((state) => state.activeForm)
+  const activeSectionId = useSelector((state) => state.activeSection)
+  const { resource, type: formType, index } = activeForm || {}
 
+  const type = formType ? formType.replace('Add ', '').toLowerCase() : ''
+  const sectionId = activeSectionId
+  
   useEffect(() => {
     if (resource) {
       setTitle(resource.title)
@@ -35,9 +41,8 @@ const AddEditResource = ({ open, onClose, resource, type, sectionId }) => {
     if (resource) {
       dispatch(updateResource({ resourceId: resource.id, ...newResource}))
     } else {
-      dispatch(addResource({ resource: newResource, sectionId }))
+      dispatch(addResource({ resource: newResource, sectionId, index }))
     }
-
     setTitle('')
     setLink('')
     setStartTime('')
@@ -99,7 +104,6 @@ const AddEditResource = ({ open, onClose, resource, type, sectionId }) => {
       </DialogActions>
     </Dialog>
   )
-
 }
 
 export default AddEditResource

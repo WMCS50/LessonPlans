@@ -16,17 +16,27 @@
   "lessons": [
     {
       "id": 1,
-      "title": "Test",
+      "title": "Test Title",
       "sections": [
         {
           "id": "e2e1e267-5404-4be9-b53a-eeaf67f8d010",
-          "title": "Part 1"
+          "title": "Science Lesson Part 1"
         },
         {
-          "id": "0ba1b840-9981-4632-807a-6c78fdca048e"
+          "id": "0ba1b840-9981-4632-807a-6c78fdca048e",
+          "title": "Science Lesson Part 2"
         }
       ],
       "resources": [
+        {
+          "type": "text",
+          "title": "test text",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": null,
+          "id": "6bf2a4be-50f2-4c53-aa8c-0ad42d3f6d3a"
+        },
         {
           "type": "document",
           "link": "https://lalin2014.edublogs.org/files/2018/08/Science-in-Action-7-xsry09-1i0tjuj.pdf",

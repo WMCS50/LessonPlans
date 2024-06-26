@@ -5,7 +5,7 @@ import TextEditor from './TextEditor'
 import { useDispatch } from 'react-redux'
 import { updateResource } from '../features/lessons/resourcesSlice'
 
-const TextDisplay = ({ resource }) => {
+const TextDisplay = ({ resource, readOnly = false }) => {
   const [initialText, setInitialText] = useState('')
   const dispatch = useDispatch()
 
@@ -19,6 +19,12 @@ const TextDisplay = ({ resource }) => {
   const handleUpdateTextContent = (content) => {
     const sanitizedContent = DOMPurify.sanitize(content)
     dispatch(updateResource({ resourceId: resource.id, content: sanitizedContent }))
+  }
+
+  if (readOnly) {
+    return (
+      <div className="text-display-container" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(resource.content) }} />
+    )
   }
 
   return (
