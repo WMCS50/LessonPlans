@@ -14,11 +14,6 @@
   margin-bottom: 0.5px;
 }
 
-.resource-display {
-  min-height: 350px;
-  position: relative; 
-}
-
 .lesson-title-input {
   flex-grow: 1;
   max-width: 350px;

@@ -54,7 +54,11 @@ const CustomContextMenu = ({ options, onOptionSelect, position, onClose }) => {
       {visible && adjustedPosition && (
         <ul ref={contextMenuRef} className="custom-context-menu" style={{ top: adjustedPosition.y, left: adjustedPosition.x }}>
           {options.map((option, index) => (
-            <li key={index} onClick={() => onOptionSelect(option)}>
+            <li key={index} onClick={(event) => {
+              console.log("Option clicked:", option);
+
+              onOptionSelect(option, event)}}>
+            
               {option.icon && <span className='menu-icon'>{option.icon}</span>}
               {option.label}
             </li>

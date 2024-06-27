@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
+import { loadUserFromStorage } from '../features/auth/authSlice'
 import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
@@ -11,38 +12,54 @@ import axios from 'axios'
 import './LessonList.css'
 
 const LessonReadView = () => {
+  const dispatch = useDispatch()
   const { id } = useParams()
   const [lesson, setLesson] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const previewLesson = useSelector(state => state.lessonPreview)
-  const userId = useSelector((state) => state.auth.user.user.id)
+  const user = useSelector(state => state.auth.user)
+  const [userId, setUserId] = useState('null')
   const navigate = useNavigate()
 
   useEffect(() => {
-    //if there's an id in the URL, then we will fetch a saved lesson;
-    //otherewise we'll fetch a preview lesson from the store   
-    if (id) {
-      console.log('fetching saved lesson with ID', id)
-      const fetchLesson = async () => {
-        setIsLoading(true)
-        try {
-          const response = await axios.get(`http://localhost:3001/lessons/${id}`)
-          console.log('fetchLesson', response.data)
-          setLesson(response.data)
-          setIsLoading(false)
-        } catch (error) {
-          setError(error.message)
-          setIsLoading(false)
-        }
-      }
-      fetchLesson()
-    } else {
-      console.log('loading preview lesson from state')
-      setLesson(previewLesson)
+    if (!user) {
+      dispatch(loadUserFromStorage())
     }
-  }, [id, previewLesson])
-  
+  }, [dispatch, user])
+
+  // Set userId when user data is available
+  useEffect(() => {
+    if (user) {
+      setUserId(user.user.id)
+    }
+  }, [user])
+
+  //fetch saved lesson or preview if user data is available
+  useEffect(() => {
+    if (userId) {
+      if (id) {
+        console.log('fetching saved lesson with ID', id)
+        const fetchLesson = async () => {
+          setIsLoading(true)
+          try {
+            const response = await axios.get(`http://localhost:3001/lessons/${id}`)
+            console.log('fetchLesson', response.data)
+            setLesson(response.data)
+            setIsLoading(false)
+          } catch (error) {
+            setError(error.message)
+            setIsLoading(false)
+          }
+        }
+        fetchLesson()
+      } else {
+        console.log('loading preview lesson from state')
+        setLesson(previewLesson)
+      }
+    } 
+  }, [id, previewLesson, userId])
+
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error} </div>
   if (!lesson) return <div>No lesson found</div>
@@ -60,8 +77,6 @@ const LessonReadView = () => {
   })
 
   const renderEditButton = () => {
-    //this needs to change when backend setup correctly
-    //in terms of user and creator ids
     if (userId) {
       console.log('currentUser.id', userId)
       console.log('lesson.creatorId', lesson.createdBy)

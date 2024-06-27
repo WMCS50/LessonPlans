@@ -8,6 +8,7 @@ import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
+import './Creator.css'
 
 const SortableResource = ({ id, resource, sectionId }) => {
   const {
@@ -62,8 +63,10 @@ const SortableResource = ({ id, resource, sectionId }) => {
     >
     <div>
       {renderDisplay()}
-      <button onClick={handleEditResource}>Edit</button>
-      <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
+      <div className='resource-buttons'>
+        <button onClick={handleEditResource}>Edit</button>
+        <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
+      </div>
     </div>
  </div>
   )

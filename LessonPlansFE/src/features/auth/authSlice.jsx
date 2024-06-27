@@ -27,6 +27,14 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null
       state.token = null
+      localStorage.removeItem('user')
+    },
+    loadUserFromStorage: (state) => {
+      const storedUser = localStorage.getItem('user')
+      if (storedUser) {
+        state.user = JSON.parse(storedUser)
+        state.status = 'succeeded'
+      }
     }
   },
   extraReducers: (builder) => {
@@ -37,6 +45,7 @@ const authSlice = createSlice({
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = action.payload
         state.status = 'succeeded'
+        localStorage.setItem('user', JSON.stringify(action.payload))
       })
       .addCase(signIn.rejected, (state, action) => {
         state.error = action.payload
@@ -45,7 +54,7 @@ const authSlice = createSlice({
   }
 })
 
-export const { logout } = authSlice.actions
+export const { logout, loadUserFromStorage } = authSlice.actions
 
 export default authSlice.reducer
 

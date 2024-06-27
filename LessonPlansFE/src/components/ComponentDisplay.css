@@ -60,3 +60,8 @@
 .resource-list {
   margin-top: 10px;
 }
+
+.resource-display {
+  min-height: 350px;
+  position: relative; 
+}

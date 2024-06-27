@@ -13,7 +13,7 @@ import UserMenu from './UserMenu'
 import FileMenuManager from './FileMenuManager'
 import SectionList from './SectionList'
 import ContextMenuHandler from './ContextMenuHandler'
-import './LessonCreateView.css'
+import './Creator.css'
 
 const LessonCreateView = () => {
   const { id } = useParams()

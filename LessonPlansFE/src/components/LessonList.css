@@ -38,6 +38,12 @@
   background-color: #f1f1f1;
 }
 
+.more-vert-icon {
+  cursor: pointer;
+  padding: 8px; 
+  margin: -8px; 
+}
+
 .more-vert-icon:hover {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;

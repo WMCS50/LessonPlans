@@ -3,11 +3,23 @@ import SignInPage from './components/SignInPage'
 import LessonList from './components/LessonList'
 import LessonReadView from './components/LessonReadView'
 import LessonCreateView from './components/LessonCreateView'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { loadUserFromStorage } from './features/auth/authSlice'
 
 const App = () => {
+  const dispatch = useDispatch()
   const user = useSelector(state => state.auth.user)
-  console.log('App sees user', user)
+  const status = useSelector(state => state.auth.status)
+
+  useEffect(() => {
+    dispatch(loadUserFromStorage())
+  }, [dispatch])
+
+  if (status === 'loading') {
+    return <div>Loading...</div>
+  }
+
   return (
     <div>
       <Routes>
