@@ -51,11 +51,10 @@ const AddEditResource = ({ open, onClose }) => {
     onClose()
   }
 
-  useEffect(() => {
-    if (!open) {
-      dispatch(resetActiveForm())
-    }
-  }, [open, dispatch])
+  const handleDialogClose = () => {
+    dispatch(resetActiveForm())
+    onClose()
+  }
 
   return (
     <Dialog open={open} onClose={onClose}>
@@ -105,7 +104,7 @@ const AddEditResource = ({ open, onClose }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={handleDialogClose}>Cancel</Button>
         <Button onClick={handleSave}>{resource ? 'Save' : 'Add'}</Button>
       </DialogActions>
     </Dialog>

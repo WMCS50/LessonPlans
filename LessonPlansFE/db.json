@@ -108,30 +108,6 @@
         }
       ],
       "createdBy": 1
-    },
-    {
-      "id": 7,
-      "title": "1151125558910",
-      "sections": [
-        {
-          "title": "sdfsdfs",
-          "resources": [],
-          "id": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf"
-        }
-      ],
-      "resources": [
-        {
-          "type": "text",
-          "title": "dddddd",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
-          "id": "b5c9d201-72cc-46ed-9a50-d9fdb9ebd77e",
-          "content": "<p>dddddd</p>"
-        }
-      ],
-      "createdBy": 1
     }
   ]
 }

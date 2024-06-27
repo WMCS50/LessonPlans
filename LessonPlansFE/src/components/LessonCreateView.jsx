@@ -30,8 +30,7 @@ const LessonCreateView = () => {
     })
   const [contextPosition, setContextPosition] = useState(null)
     
-//Resets title and sections when creating a new lesson
-//and creates and sets active the first section
+//Resets title and sections for new lesson, then creates and sets active the first section
   useEffect(() => {
     dispatch(resetResources())
     dispatch(resetSections())

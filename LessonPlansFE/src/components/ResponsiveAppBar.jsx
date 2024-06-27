@@ -8,6 +8,7 @@ const ResponsiveAppBar = ({ setActiveForm, resourcesLength }) => {
 
   //closes the navigation menu and sets the active form
   const handleCloseNavMenu = (page) => {
+    console.log(`Menu item ${page} clicked, setting active form`)
     if (page) {
       setActiveForm({ type: page, index: resourcesLength })
     }

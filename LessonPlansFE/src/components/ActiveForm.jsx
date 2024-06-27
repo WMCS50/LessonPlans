@@ -9,12 +9,12 @@ const ActiveForm = () => {
   const dispatch = useDispatch()
   const activeForm = useSelector((state) => state.activeForm)
   const sections = useSelector((state) => state.sections)
-  
+
   //hook to handle opening form dialogs or adding a section
   useEffect(() => {
     if (activeForm && activeForm.type !== 'Add Section') {
       setOpen(true)
-    }
+    } 
   }, [activeForm])
 
   const handleClose = () => {
