@@ -16,120 +16,15 @@
   "lessons": [
     {
       "id": 1,
-      "title": "Test Title",
+      "title": "sdfasfasf",
       "sections": [
         {
-          "id": "e2e1e267-5404-4be9-b53a-eeaf67f8d010",
-          "title": "Science Lesson Part 1"
-        },
-        {
-          "id": "0ba1b840-9981-4632-807a-6c78fdca048e",
-          "title": "Science Lesson Part 2"
+          "title": "",
+          "resources": [],
+          "id": "f43561ed-c2e0-4b45-b08c-9142ca00045c"
         }
       ],
-      "resources": [
-        {
-          "type": "text",
-          "title": "test text",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": null,
-          "id": "6bf2a4be-50f2-4c53-aa8c-0ad42d3f6d3a"
-        },
-        {
-          "type": "document",
-          "link": "https://lalin2014.edublogs.org/files/2018/08/Science-in-Action-7-xsry09-1i0tjuj.pdf",
-          "title": "science",
-          "start_page": 1,
-          "end_page": 2,
-          "id": "fde99b56-d59d-4169-bf75-9e42733cba8f",
-          "sectionId": "e2e1e267-5404-4be9-b53a-eeaf67f8d010"
-        },
-        {
-          "type": "text",
-          "title": "text",
-          "content": "<p>and how about this</p>",
-          "id": "dccc0bfd-2d02-47fa-bed1-ec674f039872",
-          "sectionId": "e2e1e267-5404-4be9-b53a-eeaf67f8d010"
-        },
-        {
-          "type": "text",
-          "title": "test",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "0ba1b840-9981-4632-807a-6c78fdca048e",
-          "id": "e57f5b67-57be-43b1-82fa-c5582dcb0c17",
-          "content": "<p>i'm here!</p>"
-        },
-        {
-          "type": "document",
-          "title": "sample",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "0ba1b840-9981-4632-807a-6c78fdca048e",
-          "id": "28a39d82-a704-4678-a823-9d4239a5c30f"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
-      "id": 2,
-      "title": "rtertet",
-      "sections": [
-        {
-          "id": "1b27d643-aad4-4c8b-ac3f-0c7552ff0d63",
-          "title": "2"
-        },
-        {
-          "id": "28b621a8-4d88-4230-b772-c190561f6a11",
-          "title": "1"
-        }
-      ],
-      "resources": [
-        {
-          "type": "text",
-          "title": "test",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "1b27d643-aad4-4c8b-ac3f-0c7552ff0d63",
-          "id": "ca2d93af-a0ee-4f7c-862f-07cec6bcb731",
-          "content": "<p>111222333444555</p>"
-        },
-        {
-          "type": "text",
-          "title": "222",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "1b27d643-aad4-4c8b-ac3f-0c7552ff0d63",
-          "id": "ab337365-6b4f-482a-bbb5-7489f5ccf049",
-          "content": "<p>222</p>"
-        },
-        {
-          "type": "text",
-          "title": "3",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "1b27d643-aad4-4c8b-ac3f-0c7552ff0d63",
-          "id": "21d7e740-6a28-4acf-bb74-049b7d5c5ef8",
-          "content": "<p>333</p>"
-        },
-        {
-          "type": "text",
-          "title": "4",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "28b621a8-4d88-4230-b772-c190561f6a11",
-          "id": "16988d16-9c5f-4479-8a12-3c531742969d",
-          "content": "<p>444</p>"
-        }
-      ],
+      "resources": [],
       "createdBy": 1
     }
   ]

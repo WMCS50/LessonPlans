@@ -67,7 +67,7 @@ const LessonReadView = () => {
       console.log('lesson.creatorId', lesson.createdBy)
       if (userId === lesson.createdBy) {
         return (
-          <button onClick={editLesson} className='edit-lesson-button'>
+          <button onClick={editLesson} >
           Edit
         </button>)
       }

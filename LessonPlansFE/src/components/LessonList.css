@@ -16,20 +16,6 @@
   font-size: 0.75rem;
 }
 
-.create-lesson-button {
-  margin: 20px 0;
-  padding: 10px 20px;
-  font-size: 0.75rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.create-lesson-button:hover {
-  background-color: #0056b3;
-}
-
 .lesson-table {
   width: 100%;
   border-collapse: collapse;
@@ -86,19 +72,4 @@
     width: calc(100% - 160px); 
     margin-left: 120px;
   }
-}
-
-.edit-lesson-button {
-  margin-right: 1rem;
-  padding: 0.75rem 1rem;
-  background-color: rgb(100, 170, 210);
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 0.75rem;
-  border-radius: 15px;
-}
-
-.edit-lesson-button:hover {
-  background-color: rgb(100, 160, 210);
 }

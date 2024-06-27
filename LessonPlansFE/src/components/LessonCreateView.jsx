@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
+import { setActiveSection } from '../features/lessons/activeSectionSlice'
 import { resetResources, updateResources } from '../features/lessons/resourcesSlice'
-import { resetSections, updateSections } from '../features/lessons/sectionsSlice'
+import { resetSections, updateSections, addSection } from '../features/lessons/sectionsSlice'
 import axios from 'axios'
 import ResponsiveAppBar from './ResponsiveAppBar'
 import ActiveForm from './ActiveForm'
@@ -30,6 +31,7 @@ const LessonCreateView = () => {
   const [contextPosition, setContextPosition] = useState(null)
     
 //Resets title and sections when creating a new lesson
+//and creates and sets active the first section
   useEffect(() => {
     dispatch(resetResources())
     dispatch(resetSections())
@@ -40,8 +42,15 @@ const LessonCreateView = () => {
         sections: [],
         resources: [],
       })
+      dispatch(addSection({ section: { title: '', resources: [] } }))
     }
   }, [dispatch, id])
+
+  useEffect(() => {
+    if (sections.length > 0) {
+      dispatch(setActiveSection(sections[0].id))
+    }
+  }, [sections, dispatch])
 
 //Fetches existing lesson data if navigated to from read view.
   useEffect(() => {

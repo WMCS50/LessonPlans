@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useSortable} from '@dnd-kit/sortable'
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteResource, updateResource } from '../features/lessons/resourcesSlice'
+import { deleteResource } from '../features/lessons/resourcesSlice'
+import { setActiveForm } from '../features/lessons/activeFormSlice'
 import {CSS} from '@dnd-kit/utilities'
 import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
 import VideoDisplay from './VideoDisplay'
-import AddEditResource from './AddEditResource'
 
 const SortableResource = ({ id, resource, sectionId }) => {
-  const [isEditing, setIsEditing] = useState(false)
   const {
     attributes,
     listeners,
@@ -31,9 +29,8 @@ const SortableResource = ({ id, resource, sectionId }) => {
     dispatch(deleteResource({ resourceId, sectionId}))
   }
 
-  const handleSaveEdit = (resource) => {
-    dispatch(updateResource({ resourceId: id, ...resource }))
-    setIsEditing(false)
+  const handleEditResource = () => {
+    dispatch(setActiveForm({ type: `${resource.type}`, resource, sectionId }))
   }
 
   const renderDisplay = () => {
@@ -65,18 +62,9 @@ const SortableResource = ({ id, resource, sectionId }) => {
     >
     <div>
       {renderDisplay()}
-      <button onClick={() => setIsEditing(true)}>Edit</button>
+      <button onClick={handleEditResource}>Edit</button>
       <button onClick={() => handleDeleteResource(resource.id)}>Delete</button>
     </div>
-    {isEditing && (
-      <AddEditResource
-        open={isEditing}
-        onClose={() => setIsEditing(false)}
-        onAddResource={handleSaveEdit}
-        resource={resource}
-        type={resource.type}
-      />
-    )}
  </div>
   )
 }

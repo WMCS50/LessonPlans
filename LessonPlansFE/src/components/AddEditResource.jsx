@@ -51,6 +51,12 @@ const AddEditResource = ({ open, onClose }) => {
     onClose()
   }
 
+  useEffect(() => {
+    if (!open) {
+      dispatch(resetActiveForm())
+    }
+  }, [open, dispatch])
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{resource ? 'Edit' : 'Add'} {type.charAt(0).toUpperCase() + type.slice(1)}</DialogTitle>

@@ -15,16 +15,8 @@
 }
 
 .resource-display {
-  border: 1px solid #ccc;
-  padding: 1rem;
   min-height: 350px;
   position: relative; 
-}
-
-.resource-item {
-  margin-top: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
 }
 
 .lesson-title-input {
@@ -32,7 +24,6 @@
   max-width: 350px;
   margin-right: 1rem;
   padding: 0.5rem;
-  font-size: 0.75rem;
 }
 
 .user-menu {
