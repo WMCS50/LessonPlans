@@ -1,0 +1,22 @@
+.resource-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.more-vert-icon {
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.menu-icon {
+  margin-right: 8px;
+}

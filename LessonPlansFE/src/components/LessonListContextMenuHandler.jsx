@@ -16,8 +16,6 @@ const LessonListContextMenuHandler = ({ selectedLesson, contextPosition, setCont
 
   const handleOptionSelect = (option, event) => {
     event.stopPropagation()
-    console.log('Option selected:', option.value)
-
     if (option.value === 'delete') {
       handleDeleteLesson(selectedLesson.id)
     } else if (option.value === 'open') {

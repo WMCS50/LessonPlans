@@ -21,7 +21,6 @@ const LessonList = ({ onSelect }) => {
   const [contextPosition, setContextPosition] = useState(null)
 
   const fileMenuItems = ['Create New', 'Open']
-
   const requestSort = (key) => {
     let direction = 'ascending'
     if (sortConfig.key === key && sortConfig.direction === 'ascending') {

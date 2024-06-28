@@ -15,29 +15,6 @@
   ],
   "lessons": [
     {
-      "id": 2,
-      "title": "abc",
-      "sections": [
-        {
-          "title": "test this",
-          "resources": [],
-          "id": "f43561ed-c2e0-4b45-b08c-9142ca00045c"
-        }
-      ],
-      "resources": [
-        {
-          "type": "document",
-          "title": "sfsdf",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "startTime": "",
-          "endTime": "",
-          "sectionId": "f43561ed-c2e0-4b45-b08c-9142ca00045c",
-          "id": "8710644d-408a-4181-aaca-6c9c7efd86c9"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
       "id": 3,
       "title": "sfdssf",
       "sections": [
@@ -81,13 +58,22 @@
           "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
           "id": "b5c9d201-72cc-46ed-9a50-d9fdb9ebd77e",
           "content": "<p>dddddd</p>"
+        },
+        {
+          "type": "video",
+          "title": "sdfdsf",
+          "link": "https://youtu.be/Xoa1zowwO34",
+          "startTime": "120",
+          "endTime": "300",
+          "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
+          "id": "8011feba-88cd-4784-81f5-011ed66ff7a1"
         }
       ],
       "createdBy": 1
     },
     {
       "id": 6,
-      "title": "115112555",
+      "title": "dsdsfdsfdsf",
       "sections": [
         {
           "title": "sdfsdfs",
@@ -98,13 +84,33 @@
       "resources": [
         {
           "type": "text",
-          "title": "dddddd",
+          "title": "dsdsfs",
           "link": "",
           "startTime": "",
           "endTime": "",
           "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
-          "id": "b5c9d201-72cc-46ed-9a50-d9fdb9ebd77e",
-          "content": "<p>dddddd</p>"
+          "id": "acf9b0ad-905b-4f35-8d79-970789ba529b",
+          "content": "<p>qqq</p>"
+        },
+        {
+          "type": "text",
+          "title": "sdfdsfs",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
+          "id": "243a5de2-be73-4f70-979d-3123f461d553",
+          "content": "<p>www</p>"
+        },
+        {
+          "type": "text",
+          "title": "sdffdsf",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
+          "id": "af13a58e-f028-46fc-a245-321fb8c4bf92",
+          "content": "<p>eee</p>"
         }
       ],
       "createdBy": 1

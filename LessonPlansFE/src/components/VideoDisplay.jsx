@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import './ComponentDisplay.css'
+import './VideoDisplay.css'
 
 const VideoDisplay = ({ title, link, startTime, endTime }) => {
   const [embedLink, setEmbedLink] = useState('')

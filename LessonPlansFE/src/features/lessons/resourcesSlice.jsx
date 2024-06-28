@@ -1,21 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
 const initialState = []
-
-/* export const saveResource = createAsyncThunk('resources/saveResource',
-  async (resource, { rejectWithValue }) => {
-    try {
-      const response = await axios
-        .put(`http://localhost:3001/resources/${resource.id}`, resource)
-        console.log('resource saved', response.data)
-        return response.data
-    } catch (error) {
-      return rejectWithValue(error.response.data)
-    }
-  }
-) */
 
 export const resourcesSlice = createSlice({
   name: 'resources',
@@ -32,10 +18,6 @@ export const resourcesSlice = createSlice({
     },
     updateResource: (state, action) => {
       const { resourceId, ...resource } = action.payload
-/*       const resource = state.find((res) => res.id === resourceId)
-      if (resource) {
-        resource.content = content
-      } */
         const index = state.findIndex(resource => resource.id === resourceId)
         if (index !== -1) {
           state[index] = { ...state[index], ...resource }
@@ -62,15 +44,6 @@ export const resourcesSlice = createSlice({
     },
     resetResources: () => initialState
   },
-/*   extraReducers: (builder) => {
-    builder
-      .addCase(saveResource.fulfilled, (state, action) => {
-        const index = state.findIndex(resource => resource.id === action.payload.id)
-        if (index !== -1) {
-          state[index] = action.payload
-        }
-      })
-  } */
 })
 
 export const { addResource, deleteResource, updateResource, updateResources, reorderResources, resetResources } = resourcesSlice.actions
