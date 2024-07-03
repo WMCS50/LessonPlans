@@ -2,7 +2,7 @@
 import { useSelector } from 'react-redux'
 import SortableResource from './SortableResource'
 import DragAndDropHandler from './DragAndDropHandler'
-import './ComponentDisplay.css'
+import './ResourceType.css'
 
 const ResourceList = ({ sectionId }) => {
   const resources = useSelector((state) => state.resources)

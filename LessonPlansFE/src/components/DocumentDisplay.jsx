@@ -1,18 +1,7 @@
 /* eslint-disable react/prop-types */
-import './ComponentDisplay.css'
+import './ResourceType.css'
 
 const DocumentDisplay = ({ title, link }) => {
-  const handlePopOut = () => {
-    console.log('button clicked')
-    console.log('Opening link:', link)
-    const newWindow = window.open(link, '_blank', 'noopener,noreferrer')
-    if (newWindow) {
-      newWindow.opener = null
-    } else {
-      console.error('Failed to open new window');
-    }
-  }
-
   return (
     <div className='document-display'>
       <div className='header'>
@@ -25,7 +14,6 @@ const DocumentDisplay = ({ title, link }) => {
         title="Document Preview"
         loading='lazy'
       ></iframe>
-    <button onClick={handlePopOut}>View Full Document</button>
     </div>
   )
 }

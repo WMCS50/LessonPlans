@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import './VideoDisplay.css'
+import './ResourceType.css'
 
 const VideoDisplay = ({ title, link, startTime, endTime }) => {
   const [embedLink, setEmbedLink] = useState('')
@@ -47,19 +47,6 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
     }
     
   }, [link, startTime, endTime, videoStart, videoEnd, embedLink])
-  
-
-  const handlePopOut = () => {
-    console.log('button clicked')
-    console.log('Opening link:', link)
-    
-    const newWindow = window.open(link, '_blank')
-    if (newWindow) {
-      newWindow.opener = null
-    } else {
-      console.error('Failed to open new window')
-    }
-  };
 
   return (
     <div className='video-display'>
@@ -82,11 +69,7 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
         ) : (
           <p>Please enter a valid Youtube URL</p>
         )}
-
-      <button onClick={handlePopOut}>View in another window</button>
     </div>
-
-
   )
 }
 

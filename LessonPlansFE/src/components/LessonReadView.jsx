@@ -107,7 +107,7 @@ const LessonReadView = () => {
       <div className='lesson-read-content'>
         {groupedResources.map(section => (
           <div key={section.id} className='section'>
-            <h4>{section.title}</h4>
+            <h4 className='section-title'>{section.title}</h4>
             {section.resources.map(resource => {
               switch (resource.type) {
                 case 'text':  

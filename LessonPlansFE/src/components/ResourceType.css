@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: 10pt;
 }
 
 .content-display {
@@ -29,7 +30,24 @@
 }
 
 /*website specific styling*/
+.website-display {
+  max-width: 100%;
+  min-height: 200px;
+}
+
 .website-display-link {
   text-decoration: none;
   color: inherit;
+}
+
+.website-display-link:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* texteditor styling* */
+.text-editor-container {
+  min-height: 25px; /* Set a minimum height */
+  text-align: left;
+  font-size: 10pt;
 }

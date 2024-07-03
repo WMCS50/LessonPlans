@@ -5,7 +5,6 @@ import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from 
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { reorderSections } from '../features/lessons/sectionsSlice'
 import { setActiveSection } from '../features/lessons/activeSectionSlice'
-import './SectionList.css'
 import SortableSection from './SortableSection'
 
 const SectionList = () => {
@@ -31,7 +30,6 @@ const SectionList = () => {
   const handleSectionClick = (sectionId) => {
     dispatch(setActiveSection(sectionId))
   }
-
   return (
     <div>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} >

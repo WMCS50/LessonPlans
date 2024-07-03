@@ -19,36 +19,20 @@
       "title": "sfdssf",
       "sections": [
         {
-          "title": "sdfsdfs",
-          "resources": [],
-          "id": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf"
+          "id": "77b97580-593a-4563-b3c7-033ad277f486",
+          "title": "to stay"
         }
       ],
       "resources": [
         {
-          "type": "text",
-          "title": "dddddd",
-          "link": "",
+          "type": "document",
+          "title": "3",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
           "startTime": "",
           "endTime": "",
-          "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
-          "id": "b5c9d201-72cc-46ed-9a50-d9fdb9ebd77e",
-          "content": "<p>dddddd</p>"
-        }
-      ],
-      "createdBy": 1
-    },
-    {
-      "id": 5,
-      "title": "115112",
-      "sections": [
-        {
-          "title": "sdfsdfs",
-          "resources": [],
-          "id": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf"
-        }
-      ],
-      "resources": [
+          "sectionId": "77b97580-593a-4563-b3c7-033ad277f486",
+          "id": "d86751c3-b60e-4bb1-8755-3d9bafc39362"
+        },
         {
           "type": "text",
           "title": "dddddd",
@@ -60,13 +44,22 @@
           "content": "<p>dddddd</p>"
         },
         {
-          "type": "video",
+          "type": "document",
+          "title": "1",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "77b97580-593a-4563-b3c7-033ad277f486",
+          "id": "42a6aa71-7b81-42a0-9d9d-c78c806eee36"
+        },
+        {
+          "type": "document",
           "title": "sdfdsf",
-          "link": "https://youtu.be/Xoa1zowwO34",
-          "startTime": "120",
-          "endTime": "300",
-          "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
-          "id": "8011feba-88cd-4784-81f5-011ed66ff7a1"
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "77b97580-593a-4563-b3c7-033ad277f486",
+          "id": "3f32ec5c-b8d9-46c0-b80a-50b484388b32"
         }
       ],
       "createdBy": 1
@@ -111,6 +104,150 @@
           "sectionId": "55208a4f-4a49-4ee0-8597-4ec94ea7daaf",
           "id": "af13a58e-f028-46fc-a245-321fb8c4bf92",
           "content": "<p>eee</p>"
+        }
+      ],
+      "createdBy": 1
+    },
+    {
+      "id": 7,
+      "title": "Test lesson",
+      "sections": [
+        {
+          "title": "Part 1",
+          "resources": [],
+          "id": "2df82cea-14a7-46fa-a549-6ee347155724"
+        },
+        {
+          "id": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "title": "Part 2"
+        }
+      ],
+      "resources": [
+        {
+          "type": "text",
+          "title": "part2",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "c26a36f7-bda3-4f5e-b9c2-a4b7b1fb964b",
+          "content": "<p>Now here's this is a story all about how...</p>\n<p style=\"text-align: left;\">I made an app that you can insert video into.</p>"
+        },
+        {
+          "type": "video",
+          "title": "sfdsf",
+          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "startTime": "100",
+          "endTime": "110",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "6c9dbcff-d31b-47f1-ac9b-e0f9ba96bed8"
+        },
+        {
+          "type": "text",
+          "title": "sdfsf",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "aaeb9762-6241-4a20-8d9d-6667b0cb4f07",
+          "content": "<p style=\"text-align: left;\">And you can also add resources like wherever. Including websites.</p>"
+        },
+        {
+          "type": "website",
+          "title": "zillow",
+          "link": "https://zillow.com",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "6173de48-3d2f-4325-8d40-3217a91f9c91"
+        },
+        {
+          "type": "text",
+          "title": "Title for Text",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "85a368f6-44fc-4023-8b5d-a4b93d256d3d",
+          "content": "<p>does this one have a title?</p>"
+        },
+        {
+          "type": "text",
+          "title": "sdfsf",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "0947ff58-aa9a-464d-b01f-d719638ba1ba",
+          "content": "<p>Yes! We can start typing instructions here!</p>"
+        },
+        {
+          "type": "text",
+          "title": "add",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "c23ec7da-6c33-4353-90ba-9f5a47aace46",
+          "content": "<p style=\"text-align: right;\">dfdsf</p>"
+        },
+        {
+          "type": "text",
+          "title": "sdf",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "b7dc3ef2-cacd-4cec-810f-a4559f212432",
+          "content": "<p>sdfdsf</p>"
+        },
+        {
+          "type": "text",
+          "title": "sdf",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "56298b83-9ec4-4615-974d-56cf70ef8bb6",
+          "content": "<p>So this is the default styles, i don't mind</p>"
+        },
+        {
+          "type": "text",
+          "title": "intro",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "9d822bb4-c3e6-4db1-8300-9eecba33c20d",
+          "content": "<p style=\"text-align: left;\">Let's just start typing here, shall we. The instructions will be clear when you see it.Just read the pdf below and then the video.</p>"
+        },
+        {
+          "type": "document",
+          "title": "sdfdsf",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "565be3e1-e14e-44a5-a624-317e0dc6d1bf"
+        },
+        {
+          "type": "text",
+          "title": "ssdfsf",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "662e4cbe-dfeb-40d1-b74d-587a0407c033"
+        },
+        {
+          "type": "text",
+          "title": "dfgfdg",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "93702ff0-9c7f-40a5-be6f-7db9fb3af9e8",
+          "content": "<p>This one's the newest text. Most def left.</p>"
         }
       ],
       "createdBy": 1

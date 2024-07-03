@@ -9,18 +9,21 @@ const ResourceContextMenuHandler = ({ selectedResource, sectionId, contextPositi
   const dispatch = useDispatch()
   const { handleDeleteResource } = useDeleteResource()
 
-  const contextMenuOptions = [
-    { label: 'Open in new window', value: 'open', icon: <OpenInNewIcon /> },
+  let contextMenuOptions = [
     { label: 'Edit Resource', value: 'edit', icon: <EditIcon /> },
     { label: 'Delete Resource', value: 'delete', icon: <DeleteIcon /> }
   ]
+
+  if (selectedResource.type === 'document') {
+    contextMenuOptions = [{ label: 'Open in new window', value: 'open', icon: <OpenInNewIcon /> }, ...contextMenuOptions]
+  }
   
   const handleOptionSelect = (option, event) => {
     event.stopPropagation()
     if (option.value === 'delete') {
       handleDeleteResource({resourceId: selectedResource.id, sectionId: sectionId})
     } else if (option.value === 'open') {
-      console.log('open in new window')
+      window.open(selectedResource.link, '_blank', 'noopener,noreferrer')
     } else if (option.value === 'edit') {
       dispatch(setActiveForm({ type: selectedResource.type, resource: selectedResource, sectionId }))
     }

@@ -16,6 +16,10 @@ export const resourcesSlice = createSlice({
       const { resourceId, sectionId } = action.payload
       return state.filter(resource => resource.id !== resourceId || resource.sectionId !== sectionId)
     },
+    deleteSectionResources: (state, action) => {
+      const sectionId = action.payload
+      return state.filter(resource => resource.sectionId !== sectionId)
+    },
     updateResource: (state, action) => {
       const { resourceId, ...resource } = action.payload
         const index = state.findIndex(resource => resource.id === resourceId)
@@ -46,6 +50,6 @@ export const resourcesSlice = createSlice({
   },
 })
 
-export const { addResource, deleteResource, updateResource, updateResources, reorderResources, resetResources } = resourcesSlice.actions
+export const { addResource, deleteResource, updateResource, updateResources, reorderResources, resetResources, deleteSectionResources } = resourcesSlice.actions
 
 export default resourcesSlice.reducer

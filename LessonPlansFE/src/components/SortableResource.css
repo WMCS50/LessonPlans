@@ -12,11 +12,9 @@
   align-items: center;
 }
 
-.more-vert-icon {
+.more-horiz-icon {
   cursor: pointer;
-  margin-right: 8px;
+  margin-right: 0px;
 }
 
-.menu-icon {
-  margin-right: 8px;
-}
+

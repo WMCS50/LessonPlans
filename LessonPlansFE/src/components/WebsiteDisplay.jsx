@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import './ComponentDisplay.css'
+import './ResourceType.css'
 
 
 const WebsiteDisplay = ({ title, link }) => {

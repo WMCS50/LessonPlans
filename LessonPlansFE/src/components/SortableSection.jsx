@@ -2,20 +2,24 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { useDispatch } from 'react-redux'
 import ResourceList from './ResourceList'
-import { updateSection, deleteSection } from '../features/lessons/sectionsSlice';
+import { updateSection } from '../features/lessons/sectionsSlice';
+import { useDeleteSection } from '../hooks/useDeleteSection'
 import {CSS} from '@dnd-kit/utilities'
+import './SortableSection.css'
 
 const SortableSection = ({ section, isActive, onClick }) => {
-  const { id, title } = section
+  const { id: sectionId, title } = section
+  
   const {
     attributes,
     listeners,
     setNodeRef,
     transform,
     transition,
-  } = useSortable({ id })
+  } = useSortable({ sectionId })
 
   const dispatch = useDispatch()
+  const { handleDeleteSection } = useDeleteSection()
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -23,11 +27,7 @@ const SortableSection = ({ section, isActive, onClick }) => {
   }
   
   const handleUpdateSectionTitle = (e) => {
-    dispatch(updateSection({ sectionId: id, title: e.target.value }));
-  }
-
-  const handleDeleteSection = () => {
-    dispatch(deleteSection(id));
+    dispatch(updateSection({ sectionId, title: e.target.value }));
   }
 
   return (
@@ -46,9 +46,9 @@ const SortableSection = ({ section, isActive, onClick }) => {
         value={title || ''}
         onChange={handleUpdateSectionTitle}
       />
-      <button onClick={handleDeleteSection}>Delete Section</button>
-      <ResourceList sectionId={id} />
- </div>
+      <button onClick={()=> handleDeleteSection(sectionId)}>Delete Section</button>
+      <ResourceList sectionId={sectionId} />
+    </div>
   )
 }
 

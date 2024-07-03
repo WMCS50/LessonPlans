@@ -20,7 +20,6 @@ const SortableResource = ({ id, resource, sectionId }) => {
     console.log('contextPosition', contextPosition)
   }, [selectedResource, contextPosition])
 
-
   const {
     attributes,
     listeners,
@@ -62,27 +61,28 @@ const SortableResource = ({ id, resource, sectionId }) => {
   }
     
   return (
-    <div className='resource-item'
-      ref={setNodeRef} 
-      style={style} 
-      {...attributes} 
-      {...listeners}
-    >
-      <div>
-        {renderDisplay()}
-        <div className='resource-actions'>
-          <MoreHorizIcon className='more-vert-icon' onClick={(event) => handleHorizIconClick(event, resource)} />
+    <div>
+      <div className='resource-item'
+        ref={setNodeRef} 
+        style={style} 
+        {...attributes} 
+        {...listeners}
+      >
+        <div>
+          {renderDisplay()}
+          <div className='resource-actions'>
+            <MoreHorizIcon className='more-horiz-icon' onClick={(event) => handleHorizIconClick(event, resource)} />
+          </div>
         </div>
       </div>
-      
       {contextPosition && (
-        <ResourceContextMenuHandler
-          contextPosition={contextPosition}
-          setContextPosition={setContextPosition}
-          selectedResource={selectedResource}
-          sectionId={sectionId}
-        />
-      )}
+          <ResourceContextMenuHandler
+            contextPosition={contextPosition}
+            setContextPosition={setContextPosition}
+            selectedResource={selectedResource}
+            sectionId={sectionId}
+          />
+        )}
     </div>
   )
 }
