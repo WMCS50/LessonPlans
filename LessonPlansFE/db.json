@@ -62,7 +62,8 @@
           "id": "3f32ec5c-b8d9-46c0-b80a-50b484388b32"
         }
       ],
-      "createdBy": 1
+      "createdBy": "admin",
+      "dateModified": "2024-07-04T04:03:33.626Z"
     },
     {
       "id": 6,
@@ -106,7 +107,9 @@
           "content": "<p>eee</p>"
         }
       ],
-      "createdBy": 1
+      "createdBy": "admin",
+      "dateModified": "2024-07-04T04:03:09.273Z",
+      "courseAssociations": "math"
     },
     {
       "id": 7,
@@ -250,7 +253,24 @@
           "content": "<p>This one's the newest text. Most def left.</p>"
         }
       ],
-      "createdBy": 1
+      "createdBy": "admin",
+      "dateModified": "2024-07-04T04:03:00.348Z",
+      "courseAssociations": "physics, math, science"
+    },
+    {
+      "id": 8,
+      "title": "try",
+      "courseAssociations": "test",
+      "sections": [
+        {
+          "title": "",
+          "resources": [],
+          "id": "a70e2683-452e-4e6e-81f0-2a29004873c9"
+        }
+      ],
+      "resources": [],
+      "createdBy": "admin",
+      "dateModified": "2024-07-04T04:03:43.436Z"
     }
   ]
 }

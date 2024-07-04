@@ -25,6 +25,7 @@ const LessonCreateView = () => {
   const [currentLesson, setCurrentLesson] = useState(
     { id: null, 
       title: '',
+      courseAssociations: [],
       sections: [],
       resources: []
     })
@@ -38,6 +39,7 @@ const LessonCreateView = () => {
       setCurrentLesson({
         id: null,
         title: '',
+        courseAssociations: [],
         sections: [],
         resources: [],
       })
@@ -92,6 +94,13 @@ const LessonCreateView = () => {
           placeholder='Enter Lesson Title'
           value={currentLesson.title}
           onChange={(e) => setCurrentLesson({ ...currentLesson, title: e.target.value})}
+        />
+        <input 
+          className='lesson-course-associations-input'
+          type='text'
+          placeholder='Enter Course Associations (comma separated)'
+          value={currentLesson.courseAssociations}
+          onChange={(e) => setCurrentLesson({ ...currentLesson, courseAssociations: e.target.value})}
         />
         <UserMenu className='user-menu'/>
       </div>

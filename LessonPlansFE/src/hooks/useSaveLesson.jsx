@@ -11,8 +11,8 @@ export const useSaveLesson = () => {
       return
     }
 
-    const currentUserId = currentUser.user.id
-    
+    const currentUserName = currentUser.user.username
+
     if (!lesson.title) {
       alert('Please add a title before saving')
       return
@@ -20,12 +20,14 @@ export const useSaveLesson = () => {
 
     try {
       let result
+      const dateModified = new Date().toISOString()
+
       if (lesson.id) {
-        result = await dispatch(updateLesson({ id: lesson.id, lesson: { ...lesson, createdBy: currentUserId, sections: lesson.sections } })).unwrap()
+        result = await dispatch(updateLesson({ id: lesson.id, lesson: { ...lesson, createdBy: currentUserName, sections: lesson.sections, dateModified } })).unwrap()
         console.log('lesson updated', result)
         alert('Lesson updated')
       } else {
-        result = await dispatch(addLesson({ ...lesson, createdBy: currentUserId, sections: lesson.sections })).unwrap()
+        result = await dispatch(addLesson({ ...lesson, createdBy: currentUserName, sections: lesson.sections, dateModified })).unwrap()
         console.log('lesson saved', result)
         alert('Lesson saved')
       }

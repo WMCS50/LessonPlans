@@ -14,10 +14,10 @@
   margin-bottom: 0.5px;
 }
 
-.lesson-title-input {
-  flex-grow: 1;
-  max-width: 350px;
-  margin-right: 1rem;
+.lesson-title-input, .lesson-course-associations-input {
+  /* flex-grow: 1; */
+  min-width: calc(200px + 5vw);
+ /*  margin-right: 1rem; */
   padding: 0.5rem;
 }
 

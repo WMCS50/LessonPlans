@@ -19,7 +19,7 @@ const LessonReadView = () => {
   const [error, setError] = useState(null)
   const previewLesson = useSelector(state => state.lessonPreview)
   const user = useSelector(state => state.auth.user)
-  const [userId, setUserId] = useState('null')
+  const [username, setUsername] = useState('null')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -28,16 +28,16 @@ const LessonReadView = () => {
     }
   }, [dispatch, user])
 
-  // Set userId when user data is available
+  // Set username when user data is available
   useEffect(() => {
     if (user) {
-      setUserId(user.user.id)
+    setUsername(user.user.username)  
     }
   }, [user])
 
   //fetch saved lesson or preview if user data is available
   useEffect(() => {
-    if (userId) {
+    if (username) {
       if (id) {
         console.log('fetching saved lesson with ID', id)
         const fetchLesson = async () => {
@@ -58,7 +58,7 @@ const LessonReadView = () => {
         setLesson(previewLesson)
       }
     } 
-  }, [id, previewLesson, userId])
+  }, [id, previewLesson, username])
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error} </div>
@@ -77,10 +77,10 @@ const LessonReadView = () => {
   })
 
   const renderEditButton = () => {
-    if (userId) {
-      console.log('currentUser.id', userId)
-      console.log('lesson.creatorId', lesson.createdBy)
-      if (userId === lesson.createdBy) {
+    if (username) {
+      console.log('currentUser.name', username)
+      console.log('lesson.createdBy', lesson.createdBy)
+      if (username === lesson.createdBy) {
         return (
           <button onClick={editLesson} >
           Edit
@@ -90,7 +90,7 @@ const LessonReadView = () => {
     return null
   }
 
-  const fileMenuItems = userId === lesson.createdBy ? ['Save As New', 'Edit'] : ['Save As New']
+  const fileMenuItems = username === lesson.createdBy ? ['Save As New', 'Edit'] : ['Save As New']
 
   return (
     <div className='lesson-read-container'>
