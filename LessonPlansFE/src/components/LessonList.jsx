@@ -50,7 +50,7 @@ const LessonList = ({ onSelect }) => {
 
   //filters lesson based on searchQuery
   const filteredLessons = sortedLessons.filter((lesson) =>
-    lesson.title.toLowerCase().includes(searchQuery.toLowerCase())
+    lesson.title && lesson.title.toLowerCase().includes(searchQuery.toLowerCase())
   ) 
 
   const handleLessonClick = (lesson) => {

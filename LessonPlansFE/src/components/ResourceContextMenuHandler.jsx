@@ -35,7 +35,6 @@ const ResourceContextMenuHandler = ({ selectedResource, sectionId, contextPositi
       options={contextMenuOptions}
       position={contextPosition}
       onOptionSelect={handleOptionSelect}
-      onClose={() => setContextPosition(null)}
     />
   )           
 }

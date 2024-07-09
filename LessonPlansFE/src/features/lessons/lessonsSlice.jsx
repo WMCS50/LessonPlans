@@ -9,7 +9,7 @@ export const fetchLessons = createAsyncThunk('lessons/fetchLessons',
   }
 )
 
-//Add lesson
+// Add lesson
 export const addLesson = createAsyncThunk('lessons/addLesson',
   async (lesson) => {
     const response = await axios.post('http://localhost:3001/lessons', lesson)
@@ -17,7 +17,7 @@ export const addLesson = createAsyncThunk('lessons/addLesson',
   }
 )
 
-//Update lesson
+// Update lesson
 export const updateLesson = createAsyncThunk('lessons/updateLesson',
   async ({ id, lesson }) => {
     const response = await axios.put(`http://localhost:3001/lessons/${id}`, lesson)
@@ -31,6 +31,30 @@ export const deleteLesson = createAsyncThunk('lessons/deleteLesson',
     try {
       await axios.delete(`http://localhost:3001/lessons/${lessonId}`)
       return lessonId
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)
+
+// Share lesson
+export const shareLesson = createAsyncThunk('lessons/shareLesson',
+  async({ lessonId, users }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`http://localhost:3001/lessons/${lessonId}/share`, { users })
+      return response.data
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)
+
+// Fetch shared lessons
+export const fetchSharedLessons = createAsyncThunk('lessons/fetchSharedLessons',
+  async (userId, { rejectWithValue}) => {
+    try {
+      const response = await axios.get(`http:\\localhost:3001/users/${userId}/shared-lessons`)
+      return response.data
     } catch (error) {
       return rejectWithValue(error.response.data)
     }
@@ -91,6 +115,27 @@ const lessonsSlice = createSlice({
         state.error(action.payload)
         state.status = 'failed'
       })
+      .addCase(shareLesson.fulfilled, (state, action) => {
+        // placeholder
+        console.log(action.payload)
+        state.status = 'succeeded'
+      })
+      .addCase(shareLesson.rejected, (state, action) => {
+        state.error = action.payload
+        state.status = 'failed'
+      })
+      .addCase(fetchSharedLessons.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchSharedLessons.fulfilled, (state, action) => {
+        state.sharedLessons = action.payload
+        state.status = 'succeeded'
+      })
+      .addCase(fetchSharedLessons.rejected, (state, action) => {
+        state.error = action.payload
+        state.status = 'failed'
+      })
+
   }
 })
 

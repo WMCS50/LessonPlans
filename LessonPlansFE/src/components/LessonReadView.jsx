@@ -44,8 +44,9 @@ const LessonReadView = () => {
           setIsLoading(true)
           try {
             const response = await axios.get(`http://localhost:3001/lessons/${id}`)
-            console.log('fetchLesson', response.data)
-            setLesson(response.data)
+            const lessonData = response.data
+            console.log('fetchLesson', lessonData)
+            setLesson(lessonData )
             setIsLoading(false)
           } catch (error) {
             setError(error.message)
@@ -69,12 +70,16 @@ const LessonReadView = () => {
   }
 
   const resources = lesson.resources
+  console.log('lesson', lesson)
+  
   const groupedResources = lesson.sections.map(section => {
     return {
       ...section,
       resources: lesson.resources.filter(resource => resource.sectionId === section.id)
     }
   })
+
+  console.log('groupedResources', groupedResources)
 
   const renderEditButton = () => {
     if (username) {
@@ -90,7 +95,7 @@ const LessonReadView = () => {
     return null
   }
 
-  const fileMenuItems = username === lesson.createdBy ? ['Save As New', 'Edit'] : ['Save As New']
+  const fileMenuItems = username === lesson.createdBy ? ['Save As New', 'Edit', 'Share'] : ['Save As New']
 
   return (
     <div className='lesson-read-container'>
@@ -99,6 +104,7 @@ const LessonReadView = () => {
           currentLesson={lesson} 
           setCurrentLesson={setLesson} 
           resources={resources} 
+          sections={lesson.sections}
           fileMenuItems={fileMenuItems} />
         <h3>{lesson.title}</h3>
         {renderEditButton()}

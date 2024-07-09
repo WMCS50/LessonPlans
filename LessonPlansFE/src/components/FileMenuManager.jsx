@@ -8,6 +8,7 @@ import { resetSections } from '../features/lessons/sectionsSlice'
 import FileMenu from './FileMenu'
 import FileMenuDialog from './FileMenuDialog'
 import LessonListDialog from './LessonListDialog'
+import ShareLessonModal from './ShareLessonModal'
 
 const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections, fileMenuItems, skipDialogs }) => {
   const navigate = useNavigate()
@@ -17,10 +18,13 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections,
   const [fileMenuDialogType, setFileMenuDialogType] = useState('')
   const [fileMenuDialogInputValue, setFileMenuDialogInputValue ] = useState('')
   const [lessonListDialogOpen, setLessonListDialogOpen] = useState(false)
+  const [showShareModal, setShowShareModal] = useState(false)
 
   //constructs a lesson object then calls handleSaveLesson
   const handleSave = async () => {
     const lesson = { ...currentLesson, resources, sections }
+    console.log('Saving lesson:', lesson); // Debugging line
+
     const result = await handleSaveLesson(lesson)
     if (result && !currentLesson.id) {
       setCurrentLesson({ ...lesson, id: result.id })
@@ -50,11 +54,16 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections,
     if (item === 'Edit') {
       navigate(`/create/${currentLesson.id}`)
     }
+    if (item === 'Share') {
+      setShowShareModal(true)
+    }
   }
 
   const handleFileMenuDialogSave = async (inputValue, shouldSave) => {
     if (fileMenuDialogType === 'saveAsNew') {
       const newLesson = { ...currentLesson, title: inputValue, id: null, resources, sections }
+      console.log('Save as new lesson:', newLesson); // Debugging line
+
       const result = await handleSaveLesson(newLesson)
       if (result && result.id) {
         navigate(`/create/${result.id}`)
@@ -109,6 +118,12 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections,
         onClose={() => setLessonListDialogOpen(false)}
         onSelect={handleLessonSelect}
       />
+      {showShareModal && (
+        <ShareLessonModal 
+          lessonId={currentLesson.id}
+          open={showShareModal}
+          onClose={()=> setShowShareModal(false)} />
+      )}
     </div>
   )
 }

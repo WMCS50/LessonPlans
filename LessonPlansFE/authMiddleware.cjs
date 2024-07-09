@@ -10,7 +10,8 @@ module.exports = (req, res, next) => {
               user: { id: 1, username: 'admin' },
               token: 'mock-token'
           });
-      } else {
+      } 
+      else {
           res.status(400).json({ message: 'Incorrect username or password' });
       }
   } else {
