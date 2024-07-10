@@ -1,7 +1,7 @@
 import { createSlice} from '@reduxjs/toolkit'
 
 const lessonPreviewSlice = createSlice({
-  name: 'lessonPreview',
+  name: 'lesson',
   initialState: {
     lesson: null
   },
