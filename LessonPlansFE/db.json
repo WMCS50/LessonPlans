@@ -600,6 +600,93 @@
       "resources": [],
       "createdBy": "admin",
       "dateModified": "2024-07-10T03:44:58.224Z"
+    },
+    {
+      "id": 28,
+      "title": "9",
+      "sections": [
+        {
+          "title": "Part 1",
+          "resources": [],
+          "id": "2df82cea-14a7-46fa-a549-6ee347155724"
+        },
+        {
+          "id": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "title": "Part 2"
+        }
+      ],
+      "resources": [
+        {
+          "type": "text",
+          "title": "part2",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "c26a36f7-bda3-4f5e-b9c2-a4b7b1fb964b",
+          "content": "<p>Now here's this is a story all about how...</p>\n<p style=\"text-align: left;\">I made an app that you can insert video into.</p>"
+        },
+        {
+          "type": "video",
+          "title": "sfdsf",
+          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "startTime": "100",
+          "endTime": "110",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "6c9dbcff-d31b-47f1-ac9b-e0f9ba96bed8"
+        },
+        {
+          "type": "text",
+          "title": "sdfsf",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "aaeb9762-6241-4a20-8d9d-6667b0cb4f07",
+          "content": "<p style=\"text-align: left;\">And you can also add resources like wherever. Including websites.</p>"
+        },
+        {
+          "type": "website",
+          "title": "zillow",
+          "link": "https://zillow.com",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "bd62b1a8-ea4b-4735-9621-2f7e49044571",
+          "id": "6173de48-3d2f-4325-8d40-3217a91f9c91"
+        },
+        {
+          "type": "text",
+          "title": "intro",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "9d822bb4-c3e6-4db1-8300-9eecba33c20d",
+          "content": "<p style=\"text-align: left;\">Let's just start typing here, shall we. The instructions will be clear when you see it.Just read the pdf below and then the video.</p>"
+        },
+        {
+          "type": "document",
+          "title": "sdfdsf",
+          "link": "https://pdfobject.com/pdf/sample.pdf",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "565be3e1-e14e-44a5-a624-317e0dc6d1bf"
+        },
+        {
+          "type": "text",
+          "title": "dfgfdg",
+          "link": "",
+          "startTime": "",
+          "endTime": "",
+          "sectionId": "2df82cea-14a7-46fa-a549-6ee347155724",
+          "id": "93702ff0-9c7f-40a5-be6f-7db9fb3af9e8",
+          "content": "<p>This one's the newest text. Most def left.</p>"
+        }
+      ],
+      "createdBy": "admin",
+      "dateModified": "2024-07-10T04:26:03.626Z",
+      "courseAssociations": "physics, math, science"
     }
   ]
 }
