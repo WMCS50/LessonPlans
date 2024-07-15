@@ -15,7 +15,7 @@ const typeDefs = `
     sections: [Section]
     resources: [Resource]
     createdBy: String!
-    dateModified: String!
+    dateModified: String
     courseAssociations: String
   }
 
@@ -58,7 +58,7 @@ const typeDefs = `
       sections: [SectionInput],
       resources: [ResourceInput],
       createdBy: String!,
-      dateModified: String!,
+      dateModified: String,
       courseAssociations: [String]
     ): Lesson
   }

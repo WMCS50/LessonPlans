@@ -7,14 +7,7 @@ const initializeDatabase = async () => {
   await User.deleteMany({})
   await Lesson.deleteMany({})
 
-  const saltRounds = 10
-  const usersWithHash = await Promise.all(initialData.users.map(
-    async user => {
-      const passwordHash = await bcrypt.hash(user.password, saltRounds)
-      return { ...user, passwordHash }
-  }))
-
-  await User.insertMany(usersWithHash)
+  await User.insertMany(initialData.users)
   await Lesson.insertMany(initialData.lessons)
 }
 

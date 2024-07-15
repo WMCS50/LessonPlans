@@ -1,19 +1,19 @@
 {
   "users": [
     {
-      "username": "teacher1",
-      "password": "hashed_password",
+      "username": "testuser",
+      "passwordHash": "$2b$10$ykRKokDZ08ztm8U6xQqi2elsr1x0WgxqAgAU09GiLG7aaihNL4Cp.",
       "role": "teacher"
     },
     {
-      "username": "substitute1",
-      "password": "hashed_password",
+      "username": "substitute",
+      "passwordHash": "$2b$10$anotherhashedpassword",
       "role": "substitute"
     },
     {
       "username": "admin",
-      "password": "password",
-      "role": "teacher"
+      "passwordHash": "$2b$10$yetanotherhashedpassword",
+      "role": "admin"
     }
   ],
   "lessons": [

@@ -57,6 +57,10 @@ const resolvers = {
       } catch (error) {
         throw new Error('Error fetching lesson')
       }
+    },
+    me: (root, args, context) => {
+      console.log('****context****', context)
+      return context.currentUser
     }
   },
   Mutation: {
@@ -94,9 +98,16 @@ const resolvers = {
 
       return { value: jwt.sign(userForToken, process.env.JWT_SECRET)}
     },
-    addLesson: async(root, args) => {
+    addLesson: async(root, args, context) => {
+      if (!context.currentUser) {
+        throw new GraphQLError('User not authenticated', {
+          extensions: {
+            code: 'BAD_USER_INPUT'
+          }
+        })
+      }
       try {
-        const lesson = new Lesson({ ...args})
+        const lesson = new Lesson({ ...args, createdBy: context.currentUser.username })
         await lesson.save()
         return lesson
       } catch (error) {
