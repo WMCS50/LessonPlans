@@ -1,8 +1,13 @@
 const User = require('./models/user')
 const Lesson = require('./models/lesson')
 const { GraphQLError } = require('graphql')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
 
-const validation = (username, role) => {
+dotenv.config()
+
+const validation = (username, password, role) => {
   if (username.length < 3 ) {
     throw new GraphQLError('Username must be at least 3 characters long', {
       extensions: {
@@ -57,13 +62,37 @@ const resolvers = {
   Mutation: {
     addUser: async (_, { username, password, role }) => {
       validation(username, password, role)
+      
+      const saltRounds = 10
+      const passwordHash = await bcrypt.hash(password, saltRounds)
+      
       try {
-        const user = new User({ username, password, role })
+        const user = new User({ username, passwordHash, role })
         await user.save()
         return user
       } catch (error) {
         throw new Error('Error adding user')
       }
+    },
+    login: async (_, { username, password }) => {
+      const user = await User.findOne({ username })
+      const passwordCorrect = user === null
+        ? false
+        : await bcrypt.compare(password, user.passwordHash)
+
+      if (!(user && passwordCorrect)) {
+        throw new GraphQLError('wrong credentials', {
+          extensions: {
+            code: 'BAD_USER_INPUT'
+          }
+        })
+      }
+      const userForToken = {
+        username: user.username,
+        id: user._id
+      }
+
+      return { value: jwt.sign(userForToken, process.env.JWT_SECRET)}
     },
     addLesson: async(root, args) => {
       try {
@@ -78,30 +107,3 @@ const resolvers = {
 }
 
 module.exports = resolvers
-
-/*prior to error handling
-const User = require('./models/user')
-const Lesson = require('./models/lesson')
-
-const resolvers = {
-  Query: {
-    users: () => users,
-    lessons: () => lessons,
-    lesson: (_, { id }) => lessons.find(lesson => lesson.id === parseInt(id))
-  },
-  Mutation: {
-    addUser: async (root, args) => {
-      const user = new User({ ...args })
-      await user.save()
-      return user
-    },
-    addLesson: async(root, args) => {
-      const lesson = new Lesson({ ...args})
-      await lesson.save()
-      return lesson
-    }
-  }
-}
-
-module.exports = resolvers
-*/

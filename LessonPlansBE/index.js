@@ -9,6 +9,8 @@ const loadInitialData = require('./loadInitialData')
 const morgan = require('morgan')
 const cors = require('cors')
 const http = require('http')
+const jwt = require('jsonwebtoken')
+const User = require('./models/user')
 
 dotenv.config()
 
@@ -36,7 +38,20 @@ const start = async () => {
   const app = express()
   const httpServer = http.createServer(app)
 
-  const server = new ApolloServer({ typeDefs, resolvers })
+  const server = new ApolloServer({ 
+    typeDefs, 
+    resolvers,
+    context: async ({ req, res }) => {
+      const auth = req ? req.headers.authorization : null
+      if (auth && auth.startsWith('Bearer ')) {
+        const decodedToken = jwt.verify(
+          auth.substring(7), process.env.JWT_SECRET
+        )
+        const currentUser = await User.findById(decodedToken.id)
+        return { currentUser }
+      }
+    }
+  })
 
   await server.start()
 

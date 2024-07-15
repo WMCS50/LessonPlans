@@ -4,6 +4,7 @@ const { initializeDatabase } = require('./test_helper')
 const mongoose = require('mongoose')
 const start = require('../index')
 const assert = require('assert')
+const User = require('../models/user')
 
 let app
 let api
@@ -36,6 +37,32 @@ test('users are returned as json and has correct array length', async () => {
   assert(Array.isArray(response.body.data.users))
   assert.strictEqual(response.body.data.users.length, 3)
 })
+
+test('create new user', async () => {
+  const response = await api
+    .post('/graphql')
+    .send({
+      query: `
+      mutation {
+        addUser(username: "newUser", password: "admin123", role: "admin") {
+          id
+          username
+          role
+        }
+      }`
+    })
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  const newUser = response.body.data.addUser
+  assert(newUser.username === 'newUser')
+  assert(newUser.role === 'admin')
+
+  // tests that the new user passwordHash is stored and not the password itself
+  const userInDb = await User.findOne({ username: 'newUser' })
+  assert(userInDb.passwordHash)
+  assert(!userInDb.password)
+}) 
 
 test('lessons are stored in an array and each lesson has a title', async () => {
   const response = await api 

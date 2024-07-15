@@ -5,6 +5,10 @@ const typeDefs = `
     role: String!
   }
 
+  type Token {
+    value: String!
+  }
+
   type Lesson {
     id: ID!
     title: String!
@@ -33,9 +37,10 @@ const typeDefs = `
   }
 
   type Query {
-  users: [User]
-  lessons: [Lesson]
-  lesson(id: ID!): Lesson
+    users: [User]
+    lessons: [Lesson]
+    lesson(id: ID!): Lesson
+    me: User
   }
 
   type Mutation {
@@ -44,6 +49,10 @@ const typeDefs = `
       password: String!,
       role: String!
     ): User
+    login(
+      username: String!,
+      password: String!
+    ): Token 
     addLesson(
       title: String!,
       sections: [SectionInput],
