@@ -15,13 +15,12 @@ const resourceSchema = new mongoose.Schema({
   content: { type: String }
 })
 
-
 const lessonSchema = new mongoose.Schema({
   title: { type: String, required: true},
   sections: [sectionSchema],
   resources: [resourceSchema],
   createdBy: { type: String, required: true},
-  dateModified: { type: Date, required: true},
+  dateModified: { type: Date, required: true, default: Date.now },
   courseAssociations: { type: [String], required: true}  
 })
 

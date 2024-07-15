@@ -75,13 +75,6 @@
         },
         {
           "type": "text",
-          "title": "ssdfsf",
-          "link": "",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "text",
           "title": "dfgfdg",
           "link": "",
           "startTime": "",
@@ -91,105 +84,6 @@
       ],
       "createdBy": "admin",
       "dateModified": "2024-07-10T02:13:42.295Z",
-      "courseAssociations": "physics, math, science"
-    },
-    {
-      "title": "d4",
-      "resources": [
-        {
-          "type": "text",
-          "title": "part2",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>Now here's this is a story all about how...</p>\n<p style=\"text-align: left;\">I made an app that you can insert video into.</p>"
-        },
-        {
-          "type": "video",
-          "title": "sfdsf",
-          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "startTime": "100",
-          "endTime": "110"
-        },
-        {
-          "type": "text",
-          "title": "sdfsf",
-          "link": "",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "website",
-          "title": "zillow",
-          "link": "https://zillow.com",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "text",
-          "title": "Title for Text",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>does this one have a title?</p>"
-        },
-        {
-          "type": "text",
-          "title": "sdfsf",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>Yes! We can start typing instructions here!</p>"
-        },
-        {
-          "type": "text",
-          "title": "sdf",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>sdfdsf</p>"
-        },
-        {
-          "type": "text",
-          "title": "sdf",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>So this is the default styles, i don't mind</p>"
-        },
-        {
-          "type": "text",
-          "title": "intro",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p style=\"text-align: left;\">Let's just start typing here, shall we. The instructions will be clear when you see it.Just read the pdf below and then the video.</p>"
-        },
-        {
-          "type": "document",
-          "title": "sdfdsf",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "text",
-          "title": "ssdfsf",
-          "link": "",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "text",
-          "title": "dfgfdg",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>This one's the newest text. Most def left.</p>"
-        }
-      ],
-      "createdBy": "admin",
-      "dateModified": "2024-07-09T03:44:34.734Z",
       "courseAssociations": "physics, math, science"
     },
     {
@@ -398,88 +292,6 @@
       "createdBy": "admin",
       "dateModified": "2024-07-09T16:03:08.047Z",
       "courseAssociations": "physics, math, science"
-    },
-    {
-      "title": "4",
-      "sections": [
-        {
-          "title": "Part 1",
-          "resources": []
-        },
-        {
-          "title": "Part 2"
-        }
-      ],
-      "resources": [
-        {
-          "type": "text",
-          "title": "part2",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>Now here's this is a story all about how...</p>\n<p style=\"text-align: left;\">I made an app that you can insert video into.</p>"
-        },
-        {
-          "type": "video",
-          "title": "sfdsf",
-          "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "startTime": "100",
-          "endTime": "110"
-        },
-        {
-          "type": "text",
-          "title": "sdfsf",
-          "link": "",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "website",
-          "title": "zillow",
-          "link": "https://zillow.com",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "text",
-          "title": "intro",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p style=\"text-align: left;\">Let's just start typing here, shall we. The instructions will be clear when you see it.Just read the pdf below and then the video.</p>"
-        },
-        {
-          "type": "document",
-          "title": "sdfdsf",
-          "link": "https://pdfobject.com/pdf/sample.pdf",
-          "startTime": "",
-          "endTime": ""
-        },
-        {
-          "type": "text",
-          "title": "dfgfdg",
-          "link": "",
-          "startTime": "",
-          "endTime": "",
-          "content": "<p>This one's the newest text. Most def left.</p>"
-        }
-      ],
-      "createdBy": "admin",
-      "dateModified": "2024-07-10T03:08:01.297Z",
-      "courseAssociations": "physics, math, science"
-    },
-    {
-      "title": "5",
-      "courseAssociations": "nothing",
-      "sections": [
-        {
-          "title": "nothing to see here",
-          "resources": []
-        }
-      ],
-      "resources": [],
-      "createdBy": "admin",
-      "dateModified": "2024-07-10T03:44:58.224Z"
     }
   ]
 }

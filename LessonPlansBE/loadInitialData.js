@@ -13,7 +13,7 @@ const loadInitialData = async () => {
     // Insert initial users
     await User.insertMany(initialData.users)
 
-    // Convert Id strings to ObjectIds and insert initial lessons
+    // Insert initial lessons
     await Lesson.insertMany(initialData.lessons)
 
     console.log('Initial data loaded.')
