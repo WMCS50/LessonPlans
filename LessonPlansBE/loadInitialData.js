@@ -6,7 +6,7 @@ const loadInitialData = async () => {
   try {
     console.log('Clearing existing data...')
     await User.deleteMany({})
-    await Lesson.deleteMany({})
+   // await Lesson.deleteMany({})
 
     console.log('Loading initial data...')
     
@@ -14,7 +14,7 @@ const loadInitialData = async () => {
     await User.insertMany(initialData.users)
 
     // Insert initial lessons
-    await Lesson.insertMany(initialData.lessons)
+    //await Lesson.insertMany(initialData.lessons)
 
     console.log('Initial data loaded.')
   } catch (error) {

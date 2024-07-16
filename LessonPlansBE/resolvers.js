@@ -1,5 +1,7 @@
 const User = require('./models/user')
 const Lesson = require('./models/lesson')
+const Section = require('./models/section')
+const Resource = require('./models/resource')
 const { GraphQLError } = require('graphql')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -59,7 +61,6 @@ const resolvers = {
       }
     },
     me: (root, args, context) => {
-      console.log('****context****', context)
       return context.currentUser
     }
   },
@@ -98,18 +99,54 @@ const resolvers = {
 
       return { value: jwt.sign(userForToken, process.env.JWT_SECRET)}
     },
+    addSection: async(_, { title }) => {
+      try {
+        const section = new Section({ title })
+        await section.save()
+        return section
+      } catch (error) {
+        throw new GraphQLError('Section not added')
+      }
+    },
+    addResource: async(_, { type, title, link, startTime, endTime, content, sectionId }) => {
+      try {
+        const resource = new Resource({ type, title, link, startTime, endTime, content, sectionId })
+        await resource.save()
+        return resource
+      } catch (error) {
+        throw new GraphQLError('Resource not added')
+      }
+    },
     addLesson: async(root, args, context) => {
       if (!context.currentUser) {
-        throw new GraphQLError('User not authenticated', {
-          extensions: {
-            code: 'BAD_USER_INPUT'
-          }
-        })
+        throw new GraphQLError('User not authenticated')
       }
+      //validate and convert section and resource IDs to Mongoose ObjectIDs
+      const sections = await Promise.all(args.sections.map(async sectionId => {
+        const section = await Section.findById(sectionId)
+        if (!section) {
+          throw new GraphQLError(`Section with id ${sectionId} not found`)
+        }
+        return section._id
+      }))
+      const resources = await Promise.all(args.resources.map(async resourceId => {
+        const resource = await Resource.findById(resourceId)
+        if (!resource) {
+          throw new GraphQLError(`Resource with id ${resourceId} not found`)
+        }
+        return resource._id
+      }))
       try {
-        const lesson = new Lesson({ ...args, createdBy: context.currentUser.username })
+        const lesson = new Lesson({ 
+          title: args.title, 
+          sections,
+          resources,
+          createdBy: context.currentUser.username,
+          dateModified: new Date(),
+          courseAssociations: args.courseAssociations 
+        })
         await lesson.save()
-        return lesson
+        return (await lesson.populate('sections')).populate('resources')
       } catch (error) {
         throw new Error('Error adding lesson')
       }

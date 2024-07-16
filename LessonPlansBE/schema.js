@@ -12,10 +12,10 @@ const typeDefs = `
   type Lesson {
     id: ID!
     title: String!
-    sections: [Section]
+    sections: [Section]!
     resources: [Resource]
     createdBy: String!
-    dateModified: String
+    dateModified: String!
     courseAssociations: String
   }
 
@@ -52,32 +52,29 @@ const typeDefs = `
     login(
       username: String!,
       password: String!
-    ): Token 
+    ): Token
+    addSection(
+      title: String!
+    ): Section
+    addResource(
+      type: String!,
+      title: String!,
+      link: String,
+      startTime: String,
+      endTime: String,
+      content: String,
+      sectionId: ID!
+    ): Resource
     addLesson(
       title: String!,
-      sections: [SectionInput],
-      resources: [ResourceInput],
+      sections: [ID!],
+      resources: [ID],
       createdBy: String!,
-      dateModified: String,
+      dateModified: String!,
       courseAssociations: [String]
     ): Lesson
   }
   
-  input SectionInput {
-    title: String
-    resources: [ResourceInput]
-  }
-
-  input ResourceInput {
-    type: String
-    title: String
-    link: String
-    startTime: String
-    endTime: String
-    sectionId: ID!
-    content: String
-  }
-
   `
 
   module.exports = typeDefs

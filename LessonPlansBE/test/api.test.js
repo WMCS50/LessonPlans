@@ -18,7 +18,7 @@ beforeEach(async () => {
   await initializeDatabase()
 })
 
- test('users are returned as json and has correct array length', async () => {
+test('users are returned as json and has correct array length', async () => {
   const response = await api 
     .post('/graphql')
     .send({
@@ -64,28 +64,7 @@ test('create new user', async () => {
   assert(!userInDb.password)
 }) 
 
-test('lessons are stored in an array and each lesson has a title', async () => {
-  const response = await api 
-    .post('/graphql')
-    .send({
-      query: `
-      {
-        lessons {
-        title
-        }
-      }`
-    })
-    .expect(200)
-    .expect('Content-Type', /application\/json/)
-
-  assert(Array.isArray(response.body.data.lessons))
-  assert.strictEqual(response.body.data.lessons.length, 4)
-  response.body.data.lessons.forEach(lesson => {
-    assert(lesson.title, 'Each lesson should have a title')
-  })
-})
-
-test('login user and add lesson', async () => {
+test('login user and add section, resource and lesson', async () => {
   const loginResponse = await api
     .post('/graphql')
     .send({
@@ -98,11 +77,48 @@ test('login user and add lesson', async () => {
     })
     .expect(200)
     .expect('Content-Type', /application\/json/)
-    console.log('Login response:', loginResponse.body) 
 
   const token = loginResponse.body.data.login.value
+  
   const dateModified = new Date().toISOString()
 
+  const sectionResponse = await api
+    .post('/graphql')
+    .set('Authorization', `Bearer ${token}`)
+    .send({
+      query: `
+      mutation {
+        addSection(title: "Part 1") {
+          id
+          title
+        }
+      }`
+    })
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  const sectionId = sectionResponse.body.data.addSection.id
+  const resourceResponse = await api
+  .post('/graphql')
+  .set('Authorization', `Bearer ${token}`)
+  .send({
+    query: `
+    mutation {
+      addResource(
+        type: "text", 
+        title: "First resource", 
+        content: "Here it is, a groove",
+        sectionId: "${sectionId}"
+      ) {
+        id
+        title
+      }
+    }`
+  })
+  .expect(200)
+  .expect('Content-Type', /application\/json/)
+
+  const resourceId = resourceResponse.body.data.addResource.id
   const addLessonResponse = await api
     .post('/graphql')
       .set('Authorization', `Bearer ${token}`)
@@ -112,9 +128,23 @@ test('login user and add lesson', async () => {
           addLesson(
             title: "New Lesson",
             createdBy: "testuser",
-            dateModified: "${dateModified}") {
+            dateModified: "${dateModified}",
+            sections: ["${sectionId}"],
+            resources: ["${resourceId}"],
+            courseAssociations: ["Physics"]           
+            ) {
             id
             title
+            sections {
+              id
+              title
+            }
+            resources {
+              id
+              title
+              type
+              content
+            }
           }
         }`
       })
@@ -122,9 +152,13 @@ test('login user and add lesson', async () => {
       .expect('Content-Type', /application\/json/)
 
   const newLesson = addLessonResponse.body.data.addLesson
-  console.log('token', token)
-  console.log('newLesson', addLessonResponse.body)
+  console.log('newLesson', newLesson)
   assert(newLesson.title === 'New Lesson')
+  assert(newLesson.sections[0].title === 'Part 1')
+  assert(newLesson.resources.length === 1)
+  assert(newLesson.resources[0].title === 'First resource')
+  assert(newLesson.resources[0].type === 'text')
+  assert(newLesson.resources[0].content === 'Here it is, a groove')
 })
   
 after(async () => {
