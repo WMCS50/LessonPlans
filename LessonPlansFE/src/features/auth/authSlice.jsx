@@ -1,19 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-
-export const signIn = createAsyncThunk('auth/signIn',
-  async ({ username, password }, { rejectWithValue }) => {
-    try {
-      const response = await axios
-        .post('http://localhost:3001/auth/login', { username, password })
-        console.log('sign in data', response.data)
-        return response.data
-    } catch (error) {
-      console.log('error data', error.response.data)
-      return rejectWithValue(error.response.data)
-    }
-  }
-)
+import { createSlice } from '@reduxjs/toolkit'
+import { client } from '../../main'
 
 const authSlice = createSlice({
   name: 'auth',
@@ -27,34 +13,27 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null
       state.token = null
-      localStorage.removeItem('user')
+      localStorage.clear()
+      client.resetStore()
     },
     loadUserFromStorage: (state) => {
       const storedUser = localStorage.getItem('user')
-      if (storedUser) {
+      const storedToken = localStorage.getItem('token')
+      if (storedUser && storedToken) {
         state.user = JSON.parse(storedUser)
+        state.token = storedToken
         state.status = 'succeeded'
       }
+    },
+    setUser: (state, action) => {
+      state.user = action.payload
+      state.token = action.payload.token
+      localStorage.setItem('user', JSON.stringify(action.payload))
+      localStorage.setItem('token', action.payload.token)
     }
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(signIn.pending, (state) => {
-        state.status = 'loading'
-      })
-      .addCase(signIn.fulfilled, (state, action) => {
-        state.user = action.payload
-        state.status = 'succeeded'
-        localStorage.setItem('user', JSON.stringify(action.payload))
-      })
-      .addCase(signIn.rejected, (state, action) => {
-        state.error = action.payload
-        state.status = 'failed'
-      })
-  }
 })
 
-export const { logout, loadUserFromStorage } = authSlice.actions
+export const { logout, loadUserFromStorage, setUser } = authSlice.actions
 
 export default authSlice.reducer
-

@@ -1,0 +1,25 @@
+# Add User Mutation
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation($username: String!, $password: String!, $role: String!) { addUser(username: $username, password: $password, role: $role) { id username role } }",
+  "variables": {
+    "username": "testdude2",
+    "password": "admin123",
+    "role": "teacher"
+  }
+}
+
+###
+# Login Mutation
+POST http://localhost:4000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation Login($username: String!, $password: String!) { login(username: $username, password: $password) { value } }",
+  "variables": {
+    "username": "testdude2",
+    "password": "admin123"
+  }
+}

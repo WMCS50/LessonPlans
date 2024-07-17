@@ -20,6 +20,20 @@ const LessonList = ({ onSelect }) => {
   const [selectedLesson, setSelectedLesson] = useState('null')
   const [contextPosition, setContextPosition] = useState(null)
 
+//debug
+useEffect(() => {
+  if (lessonsStatus === 'idle') {
+    console.log('Dispatching fetchLessons');
+    dispatch(fetchLessons());
+  }
+}, [lessonsStatus, dispatch]);
+
+useEffect(() => {
+  console.log('lessonsStatus:', lessonsStatus);
+  console.log('lessons:', lessons);
+}, [lessonsStatus, lessons]);
+
+
   const fileMenuItems = ['Create New', 'Open']
   const requestSort = (key) => {
     let direction = 'ascending'

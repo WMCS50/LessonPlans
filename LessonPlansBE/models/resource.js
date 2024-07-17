@@ -10,6 +10,14 @@ const resourceSchema = new mongoose.Schema({
   content: { type: String }
 })
 
+resourceSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+
 const Resource = mongoose.model('Resource', resourceSchema)
 
 module.exports = Resource

@@ -1,27 +1,28 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { client } from '../../main'
+import { GET_LESSONS, ADD_LESSON, UPDATE_LESSON, DELETE_LESSON } from '../../queries'
 
 // Fetch lessons
 export const fetchLessons = createAsyncThunk('lessons/fetchLessons',
   async () => {
-    const response = await axios.get('http://localhost:3001/lessons')
-    return response.data
+    const response = await client.query({ query: GET_LESSONS })
+    return response.data.lessons
   }
 )
 
 // Add lesson
 export const addLesson = createAsyncThunk('lessons/addLesson',
   async (lesson) => {
-    const response = await axios.post('http://localhost:3001/lessons', lesson)
-    return response.data
+    const response = await client.mutate({ mutation: ADD_LESSON, variables: { ...lesson } })
+    return response.data.addLesson
   }
 )
 
 // Update lesson
 export const updateLesson = createAsyncThunk('lessons/updateLesson',
   async ({ id, lesson }) => {
-    const response = await axios.put(`http://localhost:3001/lessons/${id}`, lesson)
-    return response.data
+    const response = await client.mutate({ mutation: UPDATE_LESSON, variables: {id, ...lesson} })
+    return response.data.updateLesson
   }
 )
 
@@ -29,7 +30,7 @@ export const updateLesson = createAsyncThunk('lessons/updateLesson',
 export const deleteLesson = createAsyncThunk('lessons/deleteLesson',
   async (lessonId, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:3001/lessons/${lessonId}`)
+      await client.mutate({ mutation: DELETE_LESSON, variables: { id: lessonId } })
       return lessonId
     } catch (error) {
       return rejectWithValue(error.response.data)
@@ -41,7 +42,7 @@ export const deleteLesson = createAsyncThunk('lessons/deleteLesson',
 export const shareLesson = createAsyncThunk('lessons/shareLesson',
   async({ lessonId, users }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`http://localhost:3001/lessons/${lessonId}/share`, { users })
+      const response = await api.post(`/lessons/${lessonId}/share`, { users })
       return response.data
     } catch (error) {
       return rejectWithValue(error.response.data)
@@ -53,7 +54,7 @@ export const shareLesson = createAsyncThunk('lessons/shareLesson',
 export const fetchSharedLessons = createAsyncThunk('lessons/fetchSharedLessons',
   async (userId, { rejectWithValue}) => {
     try {
-      const response = await axios.get(`http:\\localhost:3001/users/${userId}/shared-lessons`)
+      const response = await api.get(`/users/${userId}/shared-lessons`)
       return response.data
     } catch (error) {
       return rejectWithValue(error.response.data)

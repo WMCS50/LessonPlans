@@ -9,7 +9,7 @@ const items = ['Profile', 'Dashboard', 'Logout'];
 
 const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const username = useSelector((state) => state.auth.user?.user.username || 'b')
+  const username = useSelector((state) => state.auth.user?.username || 'blank')
   const navigate = useNavigate()
   const dispatch = useDispatch()
 

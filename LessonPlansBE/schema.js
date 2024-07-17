@@ -16,7 +16,7 @@ const typeDefs = `
     resources: [Resource]
     createdBy: String!
     dateModified: String!
-    courseAssociations: String
+    courseAssociations: [String]
   }
 
   type Section {
@@ -73,6 +73,26 @@ const typeDefs = `
       dateModified: String!,
       courseAssociations: [String]
     ): Lesson
+    updateSection(
+        id: ID!,
+        title: String
+    ): Section
+    updateResource(
+        id: ID!,
+        title: String,
+        link: String,
+        startTime: String,
+        endTime: String,
+        content: String
+    ): Resource
+    reorderSections(
+        lessonId: ID!,
+        sectionIds: [ID!]!
+    ): Lesson
+    reorderResources(
+        sectionId: ID!,
+        resourceIds: [ID!]!
+    ): Section
   }
   
   `

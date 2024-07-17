@@ -1,19 +1,36 @@
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { signIn } from '../features/auth/authSlice'
+import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../features/auth/authSlice'
+import SignUpDialog from './SignUpDialog'
+import { useMutation } from '@apollo/client'
+import { LOGIN } from '../queries'
 
 const SignInPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [signUpOpen, setSignUpOpen] = useState(false)
   const dispatch = useDispatch()
+  const [login, result] = useMutation(LOGIN, {
+    onError: (error) => {
+      alert(error.graphQLErrors[0].message)
+    }
+  })
 
-  const status = useSelector(state => state.auth.status)
-  console.log('current auth status', status)
+  useEffect(() => {
+    if (result.data) {
+      const token = result.data.login.value
+      localStorage.setItem('token', token)
+      dispatch(setUser({ username, token }))
+    }
+  }, [result.data, dispatch, username])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    dispatch(signIn({ username, password }))
+    login({ variables: { username, password } })
   }
+
+  const handleSignUpOpen = () => setSignUpOpen(true)
+  const handleSignUpClose = () => setSignUpOpen(false)
 
   return (
     <div className='signin-container'>
@@ -36,6 +53,8 @@ const SignInPage = () => {
         />
         <button type='submit'>Sign In</button>
       </form>
+      <button onClick={handleSignUpOpen}>Sign Up</button>
+      <SignUpDialog open={signUpOpen} onClose={handleSignUpClose} />
     </div>
   )
 }

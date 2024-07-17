@@ -1,7 +1,6 @@
 const User = require('../models/user')
 const Lesson = require('../models/lesson')
 const initialData = require('../db.json')
-const bcrypt = require('bcrypt')
 
 const initializeDatabase = async () => {
   await User.deleteMany({})

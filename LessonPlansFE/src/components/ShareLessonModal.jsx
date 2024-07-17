@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { shareLesson } from '../features/lessons/lessonsSlice'
 import { Modal, Button, List, ListItem, Checkbox, Box } from '@mui/material';
 import './ShareLessonModal.css'
+import api from '../../api'
 
 const ShareLessonModal = ({ lessonId, open, onClose }) => {
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const ShareLessonModal = ({ lessonId, open, onClose }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/users');
+        const response = await api.get('/users');
         setUsers(response.data);
       } catch (error) {
         console.error('Failed to fetch users', error);
