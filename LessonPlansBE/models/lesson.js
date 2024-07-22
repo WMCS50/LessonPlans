@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+const Section = require('./section')
 
 const lessonSchema = new mongoose.Schema({
   title: { type: String, required: true},
-  sections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Section' }],
+  sections: [Section.schema],
   resources: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource'}],
   createdBy: { type: String, required: true},
   dateModified: { type: Date, required: true, default: Date.now },

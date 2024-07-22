@@ -56,7 +56,7 @@ const LessonCreateView = () => {
   }, [sections, dispatch])
 
 //Fetches existing lesson data if navigated to from read view.
-const { data } = useQuery(GET_LESSON, {
+const { data, refetch } = useQuery(GET_LESSON, {
   variables: { id },
   skip: !id
 })  
@@ -98,7 +98,8 @@ useEffect(() => {
           setCurrentLesson={setCurrentLesson} 
           resources={resources}
           sections={sections}
-          fileMenuItems={fileMenuItems} 
+          fileMenuItems={fileMenuItems}
+          refetchLesson={refetch}
         />
         <input 
           className='lesson-title-input'

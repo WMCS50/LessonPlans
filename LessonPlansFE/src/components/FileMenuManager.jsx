@@ -10,10 +10,13 @@ import FileMenuDialog from './FileMenuDialog'
 import LessonListDialog from './LessonListDialog'
 import ShareLessonModal from './ShareLessonModal'
 
-const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections, fileMenuItems, skipDialogs }) => {
+const FileMenuManager = ({ 
+    currentLesson, setCurrentLesson, resources, sections, 
+    fileMenuItems, skipDialogs, refetchLesson 
+  }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { handleSaveLesson } = useSaveLesson()
+  const { handleSaveLesson } = useSaveLesson(refetchLesson, setCurrentLesson)
   const [fileMenuDialogOpen, setFileMenuDialogOpen] = useState(false)
   const [fileMenuDialogType, setFileMenuDialogType] = useState('')
   const [fileMenuDialogInputValue, setFileMenuDialogInputValue ] = useState('')
@@ -25,9 +28,9 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections,
     const lesson = { ...currentLesson, resources, sections }
     console.log('Saving lesson:', lesson) // Debugging line
 
-    const result = await handleSaveLesson(lesson)
+    const result = await handleSaveLesson(lesson, setCurrentLesson)
     if (result && !currentLesson.id) {
-      setCurrentLesson({ ...lesson, id: result.id })
+      setCurrentLesson({ ...lesson, id: result.data.addLesson.id })
     }
   }
 
@@ -64,9 +67,9 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections,
       const newLesson = { ...currentLesson, title: inputValue, id: null, resources, sections }
       console.log('Save as new lesson:', newLesson); // Debugging line
 
-      const result = await handleSaveLesson(newLesson)
-      if (result && result.id) {
-        navigate(`/create/${result.id}`)
+      const result = await handleSaveLesson(newLesson, setCurrentLesson)
+      if (result && result.data.addLesson.id) {
+        navigate(`/create/${result.data.addLesson.id}`)
       }
     } else if (fileMenuDialogType === 'createNew') {
       if (shouldSave) {

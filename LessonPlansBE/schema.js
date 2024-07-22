@@ -1,4 +1,18 @@
 const typeDefs = `
+  input SectionInput {
+    title: String!
+    resources: [ResourceInput]
+  }
+
+  input ResourceInput {
+    type: String
+    title: String
+    link: String
+    startTime: String
+    endTime: String
+    content: String
+  }
+
   type User {
     id: ID!
     username: String!
@@ -50,14 +64,17 @@ const typeDefs = `
       password: String!,
       role: String!
     ): User
+
     login(
       username: String!,
       password: String!
     ): Token
+
     addSection(
       title: String!,
       lessonId: ID!
     ): Section
+
     addResource(
       type: String!,
       title: String!,
@@ -67,25 +84,29 @@ const typeDefs = `
       content: String,
       sectionId: ID!
     ): Resource
+
     addLesson(
       title: String!,
-      sections: [ID],
+      sections: [SectionInput],
       resources: [ID],
       dateModified: String!,
       courseAssociations: [String]
     ): Lesson
+
     updateLesson(
       id: ID!
       title: String!
-      sections: [ID]
+      sections: [SectionInput]
       resources: [ID]
       dateModified: String!
       courseAssociations: [String]
     ): Lesson
+
     updateSection(
         id: ID!,
         title: String
     ): Section
+
     updateResource(
         id: ID!,
         title: String,
@@ -94,10 +115,12 @@ const typeDefs = `
         endTime: String,
         content: String
     ): Resource
+
     updateSections(
         lessonId: ID!,
         sectionIds: [ID!]!
     ): Lesson
+
     reorderResources(
         sectionId: ID!,
         resourceIds: [ID!]!

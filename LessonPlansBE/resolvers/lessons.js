@@ -60,13 +60,13 @@ const lessonResolvers = {
         })
         await lesson.save()
         console.log('Lesson saved successfully:', lesson)
-
-        const populatedLesson = await Lesson.findById(lesson._id)
+        return lesson
+/*         const populatedLesson = await Lesson.findById(lesson._id)
           .populate('sections')
           .populate('resources')
           console.log('Populated Lesson', populatedLesson)
 
-        return populatedLesson
+        return populatedLesson */
       
       } catch (error) {
         console.error('Error adding lesson:', error)
@@ -102,11 +102,7 @@ const lessonResolvers = {
           { new: true }
         )
         console.log('Lesson updated successfully', updatedLesson)
-        const populatedLesson = await Lesson.findById(args.id)
-          .populate('sections')
-          .populate('resources')
-        console.log('Populated lesson:', JSON.stringify(populatedLesson, null, 2))
-        return populatedLesson
+        return updatedLesson
       } catch (error) {
         console.error('Error updating lesson', error)
         throw new Error('Error updating lesson')

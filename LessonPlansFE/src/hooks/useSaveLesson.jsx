@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux'
-//import { addLesson, updateLesson } from '../features/lessons/lessonsSlice'
 import { useMutation } from '@apollo/client'
 import { ADD_LESSON, UPDATE_LESSON } from '../queries'
+import { useState } from 'react'
 
-export const useSaveLesson = () => {
-  //const dispatch = useDispatch()
+export const useSaveLesson = (refetchLesson, setCurrentLesson) => {
   const currentUser = useSelector((state) => state.auth.user)
   const [addLessonMutation] = useMutation(ADD_LESSON)
   const [updateLessonMutation] = useMutation(UPDATE_LESSON)
+  const [isSaving, setIsSaving] = useState(false)
   
   const handleSaveLesson = async (lesson) => {
     if (!currentUser) {
@@ -20,14 +20,22 @@ export const useSaveLesson = () => {
       return
     }
 
+    //had to add this to prevent an update after a save
+    if (isSaving) {
+      console.log('Save/Update already in progress', isSaving)
+      return
+    }
+
+    setIsSaving(true)
+
     try {
       let result
       const dateModified = new Date().toISOString()
-
-      const sections = lesson.sections.map(section => section.id)
+      const sections = lesson.sections.map(({ title, resources }) => ({ title, resources }))
       const resources = lesson.resources.map(resource => resource.id)
 
       if (lesson.id) {
+        console.log('was updating attempted?')
         result = await updateLessonMutation({ 
           variables: {
             id: lesson.id,
@@ -41,6 +49,7 @@ export const useSaveLesson = () => {
         console.log('lesson updated', result)
         alert('Lesson updated')
       } else {
+        console.log('was saving attempted?')
         result = await addLessonMutation({           
           variables: {
             title: lesson.title,
@@ -52,12 +61,21 @@ export const useSaveLesson = () => {
         })
         console.log('lesson saved', result)
         alert('Lesson saved')
+        const newLessonId = result.data.addLesson.id
+        setCurrentLesson({ ...lesson, id: newLessonId })
+        lesson.id = newLessonId
+      }
+      //Refetch the lesson after save or update
+      if (refetchLesson && lesson.id) {
+        await refetchLesson({ id: lesson.id })
       }
       return result
     } catch (error) {
       console.log('Error in saving lesson', error)
       alert('Lesson did not save')
-    }
+    } finally {
+      setIsSaving(false)
+    } 
   } 
   return { handleSaveLesson }
 }

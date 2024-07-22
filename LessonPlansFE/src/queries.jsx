@@ -96,7 +96,7 @@ export const DELETE_LESSON = gql`
 `
 
 export const ADD_LESSON = gql`
-  mutation AddLesson($title: String!, $sections: [ID], $resources: [ID], $dateModified: String!, $courseAssociations: [String]) {
+  mutation AddLesson($title: String!, $sections: [SectionInput], $resources: [ID], $dateModified: String!, $courseAssociations: [String]) {
     addLesson(title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations) {
       id
       title
@@ -117,7 +117,7 @@ export const ADD_LESSON = gql`
 `
 
 export const UPDATE_LESSON = gql`
-  mutation UpdateLesson($id: ID!, $title: String!, $sections: [ID], $resources: [ID], $dateModified: String!, $courseAssociations: [String]) {
+  mutation UpdateLesson($id: ID!, $title: String!, $sections: [SectionInput], $resources: [ID], $dateModified: String!, $courseAssociations: [String]) {
     updateLesson(id: $id, title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations) {
       id
       title
