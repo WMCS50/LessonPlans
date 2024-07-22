@@ -45,7 +45,8 @@ const LessonCreateView = () => {
         sections: [],
         resources: [],
       })
-      dispatch(addSection({ section: { title: '', resources: [] } }))
+      //dispatch(addSection({ section: { title: '', resources: [] } }))
+      dispatch(addSection({ section: { title: '' } }))
     }
   }, [dispatch, id])
 

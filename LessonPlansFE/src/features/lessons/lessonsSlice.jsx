@@ -29,8 +29,14 @@ export const updateLesson = createAsyncThunk('lessons/updateLesson',
 // Delete lesson
 export const deleteLesson = createAsyncThunk('lessons/deleteLesson',
   async (lessonId, { rejectWithValue }) => {
+    console.log('lessonId')
     try {
-      await client.mutate({ mutation: DELETE_LESSON, variables: { id: lessonId } })
+      await client.mutate({ 
+        mutation: DELETE_LESSON, 
+        variables: { 
+          id: lessonId 
+        } 
+      })
       return lessonId
     } catch (error) {
       return rejectWithValue(error.response.data)

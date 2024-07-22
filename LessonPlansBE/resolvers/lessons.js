@@ -1,24 +1,5 @@
-/* 
-  reorderSections: async(_, { lessonId, sectionIds }) => {
-    try {
-      const lesson = await Lesson.findById(lessonId)
-      if (!lesson) {
-        throw new GraphQLError('Lesson not found')
-      }
-      lesson.sections = sectionIds.map((id) => mongooseTypes.ObjectId(id))
-      await lesson.save()
-      return (await lesson.populate('sections')).populate('resources')
-    } catch (error) {
-      throw new GraphQLError('Error reordering sections')
-    }
-  }
-*/
-
 const { GraphQLError } = require('graphql')
 const Lesson = require('../models/lesson')
-const Section = require('../models/section')
-const Resource = require('../models/resource')
-const { convertIdsToObjectIds } = require('./resolversHelper')
 
 const lessonResolvers = {
   Query: {
@@ -49,11 +30,26 @@ const lessonResolvers = {
         throw new GraphQLError('User not authenticated')
       }
 
-      try {
+      //ensure sectionIDs and resourceIDs in FE are maintained in BE
+      const sections = args.sections.map(section => {
+        if (section.id) {
+          return { ...section, _id: section.id };
+        }
+        return section
+      })
+  
+      const resources = args.resources.map(resource => {
+        if (resource.id) {
+          return { ...resource, _id: resource.id };
+        }
+        return resource
+      })
+
+      try {   
         const lesson = new Lesson({ 
           title: args.title, 
-          sections: args.sections,
-          resources: args.resources,
+          sections,
+          resources,
           createdBy: context.currentUser.username,
           dateModified: new Date(),
           courseAssociations: args.courseAssociations 
@@ -61,13 +57,6 @@ const lessonResolvers = {
         await lesson.save()
         console.log('Lesson saved successfully:', lesson)
         return lesson
-/*         const populatedLesson = await Lesson.findById(lesson._id)
-          .populate('sections')
-          .populate('resources')
-          console.log('Populated Lesson', populatedLesson)
-
-        return populatedLesson */
-      
       } catch (error) {
         console.error('Error adding lesson:', error)
         throw new Error('Error adding lesson')
@@ -79,7 +68,20 @@ const lessonResolvers = {
         throw new GraphQLError('User not authenticated')
       }
       console.log('Starting updateLesson resolver')
-            
+      const sections = args.sections.map(section => {
+        if (section.id) {
+          return { ...section, _id: section.id };
+        }
+        return section
+      })
+  
+      const resources = args.resources.map(resource => {
+        if (resource.id) {
+          return { ...resource, _id: resource.id };
+        }
+        return resource
+      })
+
       try {
         const lesson = await Lesson.findByIdAndUpdate(args.id)
         if (!lesson) {
@@ -93,8 +95,8 @@ const lessonResolvers = {
           args.id,
           {
             title: args.title,
-            sections: args.sections,
-            resources: args.resources,
+            sections,
+            resources,
             createdBy: context.currentUser.username,
             dateModified: new Date(),
             courseAssociations: args.courseAssociations
@@ -108,7 +110,31 @@ const lessonResolvers = {
         throw new Error('Error updating lesson')
       }
     },
+    
+    deleteLesson: async (root, args, context) => {
+      if (!context.currentUser) {
+        throw new GraphQLError('User not authenticated')
+      }
+  
+      try {
+        const lesson = await Lesson.findById(args.id)
+        
+        if (!lesson) {
+          throw new GraphQLError(`Lesson with id ${args.id} not found`)
+        }
+        if (lesson.createdBy !== context.currentUser.username) {
+          throw new GraphQLError('User not authorized to delete this lesson')
+        }
+  
+        await Lesson.findByIdAndDelete(args.id)
+        return { id: args.id }
+      } catch (error) {
+        console.error('Error deleteing lesson', error)
+        throw new GraphQLError('Error deleting lesson')
+      }
+    }
   },
+
 }
 
 module.exports = lessonResolvers

@@ -1,11 +1,11 @@
 const typeDefs = `
   input SectionInput {
-  id: ID  
-  title: String!
+    title: String!
+    resources: [ResourceInput],
+    id: ID!
   }
 
   input ResourceInput {
-    id: ID  
     type: String
     title: String
     link: String
@@ -38,7 +38,7 @@ const typeDefs = `
   type Section {
     id: ID!
     title: String
-    resources: [ID]
+    resources: [Resource]
   }
   
   type Resource {
@@ -102,10 +102,6 @@ const typeDefs = `
       resources: [ResourceInput]
       dateModified: String!
       courseAssociations: [String]
-    ): Lesson
-
-    deleteLesson(
-      id: ID!
     ): Lesson
 
     updateSection(

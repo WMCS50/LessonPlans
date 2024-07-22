@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
+const Section = require('./section')
+
 
 const resourceSchema = new mongoose.Schema({
   type: { type: String, required: true },
-  title: { type: String, required: true},
+  title: { type: String},
   link: { type: String},
   startTime: { type: String },
   endTime: { type: String },

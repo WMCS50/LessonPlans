@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchLessons } from '../features/lessons/lessonsSlice'
 import { useMutation } from '@apollo/client'
 import { ADD_LESSON, UPDATE_LESSON } from '../queries'
 import { useState } from 'react'
@@ -8,6 +9,8 @@ export const useSaveLesson = (refetchLesson, setCurrentLesson) => {
   const [addLessonMutation] = useMutation(ADD_LESSON)
   const [updateLessonMutation] = useMutation(UPDATE_LESSON)
   const [isSaving, setIsSaving] = useState(false)
+  
+  const dispatch = useDispatch()
   
   const handleSaveLesson = async (lesson) => {
     if (!currentUser) {
@@ -31,9 +34,11 @@ export const useSaveLesson = (refetchLesson, setCurrentLesson) => {
     try {
       let result
       const dateModified = new Date().toISOString()
-      const sections = lesson.sections.map(({ title, resources }) => ({ title, resources }))
-      const resources = lesson.resources.map(resource => resource.id)
-
+      const sections = lesson.sections.map(({ __typename, ...section }) => section)
+      const resources = lesson.resources.map(({ __typename, ...resource }) => resource)
+      console.log('sections', sections)
+      console.log('resources', resources)
+      
       if (lesson.id) {
         console.log('was updating attempted?')
         result = await updateLessonMutation({ 
@@ -69,6 +74,8 @@ export const useSaveLesson = (refetchLesson, setCurrentLesson) => {
       if (refetchLesson && lesson.id) {
         await refetchLesson({ id: lesson.id })
       }
+      // Fetch all lessons to update the LessonList
+      dispatch(fetchLessons())
       return result
     } catch (error) {
       console.log('Error in saving lesson', error)

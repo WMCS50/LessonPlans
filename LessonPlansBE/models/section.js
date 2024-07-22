@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+const Resource = require('./resource')
 
 const sectionSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  resources: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource' }]
+  resources: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource' }],
 })
 
 sectionSchema.set('toJSON', {
