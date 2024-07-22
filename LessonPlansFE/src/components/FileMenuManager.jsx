@@ -23,7 +23,7 @@ const FileMenuManager = ({ currentLesson, setCurrentLesson, resources, sections,
   //constructs a lesson object then calls handleSaveLesson
   const handleSave = async () => {
     const lesson = { ...currentLesson, resources, sections }
-    console.log('Saving lesson:', lesson); // Debugging line
+    console.log('Saving lesson:', lesson) // Debugging line
 
     const result = await handleSaveLesson(lesson)
     if (result && !currentLesson.id) {

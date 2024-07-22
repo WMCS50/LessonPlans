@@ -12,7 +12,7 @@ const typeDefs = `
   type Lesson {
     id: ID!
     title: String!
-    sections: [Section]!
+    sections: [Section]
     resources: [Resource]
     createdBy: String!
     dateModified: String!
@@ -41,6 +41,7 @@ const typeDefs = `
     lessons: [Lesson]
     lesson(id: ID!): Lesson
     me: User
+    sections(lessonId: ID!): [Section!]!
   }
 
   type Mutation {
@@ -54,7 +55,8 @@ const typeDefs = `
       password: String!
     ): Token
     addSection(
-      title: String!
+      title: String!,
+      lessonId: ID!
     ): Section
     addResource(
       type: String!,
@@ -67,10 +69,17 @@ const typeDefs = `
     ): Resource
     addLesson(
       title: String!,
-      sections: [ID!],
+      sections: [ID],
       resources: [ID],
-      createdBy: String!,
       dateModified: String!,
+      courseAssociations: [String]
+    ): Lesson
+    updateLesson(
+      id: ID!
+      title: String!
+      sections: [ID]
+      resources: [ID]
+      dateModified: String!
       courseAssociations: [String]
     ): Lesson
     updateSection(
@@ -85,7 +94,7 @@ const typeDefs = `
         endTime: String,
         content: String
     ): Resource
-    reorderSections(
+    updateSections(
         lessonId: ID!,
         sectionIds: [ID!]!
     ): Lesson
@@ -96,5 +105,6 @@ const typeDefs = `
   }
   
   `
+  
 
   module.exports = typeDefs

@@ -23,3 +23,13 @@ Content-Type: application/json
     "password": "admin123"
   }
 }
+
+###
+# Authenticated Query
+POST http://localhost:4000/graphql
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RkdWRlMiIsImlkIjoiNjY5NzRmZDdlMzZiOTQxMmVlY2I4OTE1IiwiaWF0IjoxNzIxMTk2MTE1fQ.l6g5Efg7XxHyLR4D5WBty5HvSlDtg7KSgfKOMnZCpr8
+
+{
+  "query": "query Me { me { id username role } }"
+}

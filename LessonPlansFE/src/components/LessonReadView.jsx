@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { loadUserFromStorage } from '../features/auth/authSlice'
+import { useQuery } from '@apollo/client'
+import { GET_LESSON } from '../queries'
 import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
@@ -9,7 +11,6 @@ import VideoDisplay from './VideoDisplay'
 import UserMenu from './UserMenu'
 import FileMenuManager from './FileMenuManager'
 import './LessonList.css'
-import api from '../../api'
 
 const LessonReadView = () => {
   const dispatch = useDispatch()
@@ -17,8 +18,6 @@ const LessonReadView = () => {
   const { id } = useParams()
   const isInPreview = window.location.pathname === '/preview'
   const [lesson, setLesson] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
   const user = useSelector(state => state.auth.user)
   const [username, setUsername] = useState('null')
   
@@ -31,9 +30,20 @@ const LessonReadView = () => {
   // Set username when user data is available
   useEffect(() => {
     if (user) {
-    setUsername(user.user.username)  
+    setUsername(user.username)  
     }
   }, [user])
+
+  const { data, error } = useQuery(GET_LESSON, {
+    variables: { id },
+    skip: isInPreview || !user,
+  })
+
+  useEffect(() => {
+    if (data) {
+      setLesson(data.lesson)
+    }
+  }, [data])
 
   //fetch saved lesson or preview if user data is available
   useEffect(() => {
@@ -42,33 +52,19 @@ const LessonReadView = () => {
       if (lessonPreviewData) {
         setLesson(JSON.parse(lessonPreviewData))
       } else {
-        setError('No preview data available')
+        setLesson(null)
       }
-    } else if (username && id) {
-      const fetchLesson = async () => {
-        setIsLoading(true)
-        try {
-          const response = await api.get(`/${id}`)
-          const lessonData = response.data
-          console.log('fetchLesson', lessonData)
-          setLesson(lessonData )
-          setIsLoading(false)
-        } catch (error) {
-          setError(error.message)
-          setIsLoading(false)
-        }
-      }
-      fetchLesson()
-    }
-  }, [id, isInPreview, username])
+    } 
+  }, [isInPreview])
     
-  if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error} </div>
   if (!lesson) return <div>No lesson found</div>
 
   const editLesson = () => {
     navigate(`/create/${id}`)
   }
+  console.log('data.lesson', data.lesson)
+  console.log('lesson.resources', lesson.resources)
 
   const resources = lesson.resources
   

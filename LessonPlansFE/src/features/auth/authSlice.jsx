@@ -17,12 +17,15 @@ const authSlice = createSlice({
       client.resetStore()
     },
     loadUserFromStorage: (state) => {
+      state.status = 'loading'
       const storedUser = localStorage.getItem('user')
       const storedToken = localStorage.getItem('token')
       if (storedUser && storedToken) {
         state.user = JSON.parse(storedUser)
         state.token = storedToken
         state.status = 'succeeded'
+      } else {
+        state.status = 'idle'
       }
     },
     setUser: (state, action) => {

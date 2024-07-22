@@ -1,7 +1,24 @@
+/* 
+  reorderSections: async(_, { lessonId, sectionIds }) => {
+    try {
+      const lesson = await Lesson.findById(lessonId)
+      if (!lesson) {
+        throw new GraphQLError('Lesson not found')
+      }
+      lesson.sections = sectionIds.map((id) => mongooseTypes.ObjectId(id))
+      await lesson.save()
+      return (await lesson.populate('sections')).populate('resources')
+    } catch (error) {
+      throw new GraphQLError('Error reordering sections')
+    }
+  }
+*/
+
+const { GraphQLError } = require('graphql')
 const Lesson = require('../models/lesson')
 const Section = require('../models/section')
 const Resource = require('../models/resource')
-const { GraphQLError } = require('graphql')
+const { convertIdsToObjectIds } = require('./resolversHelper')
 
 const lessonResolvers = {
   Query: {
@@ -25,55 +42,79 @@ const lessonResolvers = {
       }
     },
   },
+  
   Mutation: {
-    addLesson: async(root, args, context) => {
+    addLesson: async (root, args, context) => {
       if (!context.currentUser) {
         throw new GraphQLError('User not authenticated')
       }
-      //validate and convert section and resource IDs to Mongoose ObjectIDs
-      const sections = await Promise.all(args.sections.map(async sectionId => {
-        const section = await Section.findById(sectionId)
-        if (!section) {
-          throw new GraphQLError(`Section with id ${sectionId} not found`)
-        }
-        return section._id
-      }))
-      const resources = await Promise.all(args.resources.map(async resourceId => {
-        const resource = await Resource.findById(resourceId)
-        if (!resource) {
-          throw new GraphQLError(`Resource with id ${resourceId} not found`)
-        }
-        return resource._id
-      }))
+
       try {
         const lesson = new Lesson({ 
           title: args.title, 
-          sections,
-          resources,
+          sections: args.sections,
+          resources: args.resources,
           createdBy: context.currentUser.username,
           dateModified: new Date(),
           courseAssociations: args.courseAssociations 
         })
         await lesson.save()
-        return (await lesson.populate('sections')).populate('resources')
+        console.log('Lesson saved successfully:', lesson)
+
+        const populatedLesson = await Lesson.findById(lesson._id)
+          .populate('sections')
+          .populate('resources')
+          console.log('Populated Lesson', populatedLesson)
+
+        return populatedLesson
+      
       } catch (error) {
+        console.error('Error adding lesson:', error)
         throw new Error('Error adding lesson')
       }
     },
-    reorderSections: async(_, { lessonId, sectionIds }) => {
-      try {
-        const lesson = await Lesson.findById(lessonId)
-        if (!lesson) {
-          throw new GraphQLError('Lesson not found')
-        }
-        lesson.sections = sectionIds.map((id) => mongooseTypes.ObjectId(id))
-        await lesson.save()
-        return (await lesson.populate('sections')).populate('resources')
-      } catch (error) {
-        throw new GraphQLError('Error reordering sections')
+
+    updateLesson: async (root, args, context) => {
+      if (!context.currentUser) {
+        throw new GraphQLError('User not authenticated')
       }
-    }
-  }
+      console.log('Starting updateLesson resolver')
+            
+      try {
+        const lesson = await Lesson.findByIdAndUpdate(args.id)
+        if (!lesson) {
+          throw new GraphQLError(`Lesson with id ${args.id} not found`)
+        }
+        if (lesson.createdBy !==context.currentUser.username) {
+          throw new GraphQLError('User not authorized to update this lesson')
+        }
+         
+        const updatedLesson = await Lesson.findByIdAndUpdate(
+          args.id,
+          {
+            title: args.title,
+            sections: args.sections,
+            resources: args.resources,
+            createdBy: context.currentUser.username,
+            dateModified: new Date(),
+            courseAssociations: args.courseAssociations
+          },
+          { new: true }
+        )
+        console.log('Lesson updated successfully', updatedLesson)
+        const populatedLesson = await Lesson.findById(args.id)
+          .populate('sections')
+          .populate('resources')
+        console.log('Populated lesson:', JSON.stringify(populatedLesson, null, 2))
+        return populatedLesson
+      } catch (error) {
+        console.error('Error updating lesson', error)
+        throw new Error('Error updating lesson')
+      }
+    },
+  },
 }
 
 module.exports = lessonResolvers
+
+

@@ -8,8 +8,6 @@ import { store } from './store/store'
 import App from './App.jsx'
 import './App.css'
 
-localStorage.clear()
-
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token')
   return {

@@ -4,10 +4,10 @@ const initialData = require('../db.json')
 
 const initializeDatabase = async () => {
   await User.deleteMany({})
-  //await Lesson.deleteMany({})
+  await Lesson.deleteMany({})
 
   await User.insertMany(initialData.users)
-  //await Lesson.insertMany(initialData.lessons)
+  await Lesson.insertMany(initialData.lessons)
 }
 
 module.exports = { initializeDatabase }

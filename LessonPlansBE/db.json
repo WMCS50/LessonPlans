@@ -1,19 +1,9 @@
 {
   "users": [
     {
-      "username": "testuser",
-      "passwordHash": "$2b$10$ykRKokDZ08ztm8U6xQqi2elsr1x0WgxqAgAU09GiLG7aaihNL4Cp.",
-      "role": "teacher"
-    },
-    {
       "username": "substitute",
       "passwordHash": "$2b$10$anotherhashedpassword",
       "role": "substitute"
-    },
-    {
-      "username": "admin",
-      "passwordHash": "$2b$10$yetanotherhashedpassword",
-      "role": "admin"
     }
   ]
 }

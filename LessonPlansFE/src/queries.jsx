@@ -69,16 +69,16 @@ export const GET_LESSON = gql`
       sections {
         id
         title
-        resources {
-          id
-          title
-          type
-        }
       }
       resources {
         id
         title
         type
+        link
+        startTime
+        endTime
+        sectionId
+        content
       }
       createdBy
       dateModified
@@ -96,8 +96,8 @@ export const DELETE_LESSON = gql`
 `
 
 export const ADD_LESSON = gql`
-  mutation AddLesson($title: String!, $sections: [ID!], $resources: [ID], $createdBy: String!, $dateModified: String!, $courseAssociations: [String]) {
-    addLesson(title: $title, sections: $sections, resources: $resources, createdBy: $createdBy, dateModified: $dateModified, courseAssociations: $courseAssociations) {
+  mutation AddLesson($title: String!, $sections: [ID], $resources: [ID], $dateModified: String!, $courseAssociations: [String]) {
+    addLesson(title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations) {
       id
       title
       sections {
@@ -117,20 +117,47 @@ export const ADD_LESSON = gql`
 `
 
 export const UPDATE_LESSON = gql`
-  mutation UpdateLesson($id: ID!, $title: String!, $sections: [ID!], $resources: [ID], $createdBy: String!, $dateModified: String!, $courseAssociations: [String]) {
-    updateLesson(id: $id, title: $title, sections: $sections, resources: $resources, createdBy: $createdBy, dateModified: $dateModified, courseAssociations: $courseAssociations) {
+  mutation UpdateLesson($id: ID!, $title: String!, $sections: [ID], $resources: [ID], $dateModified: String!, $courseAssociations: [String]) {
+    updateLesson(id: $id, title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations) {
       id
       title
-      courseAssociations
-      createdBy
+      sections {
+        id
+        title
+      }
+      resources {
+        id
+        title
+        type
+      }
       dateModified
+      courseAssociations
     }
   }
 `
 
-export const REORDER_SECTIONS = gql`
-  mutation ReorderSections($lessonId: ID!, $sectionIds: [ID!]!) {
-    reorderSections(lessonId: $lessonId, sectionIds: $sectionIds) {
+export const GET_SECTIONS = gql`
+  query GetSections($lessonId: ID!) {
+    sections(lessonId: $lessonId) {
+      id
+      title
+      resources {
+        id
+        title
+        type
+        link
+        startTime
+        endTime
+        content
+      }
+    }
+  }
+`
+
+
+export const UPDATE_SECTIONS = gql`
+  mutation UpdateSections($lessonId: ID!, $sectionIds: [ID!]!) {
+    updateSections(lessonId: $lessonId, sectionIds: $sectionIds) {
       id
       sections {
         id
@@ -142,10 +169,11 @@ export const REORDER_SECTIONS = gql`
 
 // Section Queries and Mutations
 export const ADD_SECTION = gql`
-  mutation AddSection($title: String!) {
-    addSection(title: $title) {
+  mutation AddSection($title: String!, $lessonId: ID!) {
+    addSection(title: $title, lessonId: $lessonId) {
       id
       title
+      lessonId
     }
   }
 `
@@ -178,6 +206,11 @@ export const ADD_RESOURCE = gql`
       id
       title
       type
+      link
+      startTime
+      endTime
+      content
+      sectionId
     }
   }
 `

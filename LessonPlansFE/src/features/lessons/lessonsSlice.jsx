@@ -96,7 +96,7 @@ const lessonsSlice = createSlice({
         state.status = 'succeeded'
       })
       .addCase(addLesson.rejected, (state, action) => {
-        state.error(action.payload)
+        state.error = action.payload
         state.status = 'failed'
       })
       .addCase(deleteLesson.fulfilled, (state, action) => {
@@ -104,7 +104,7 @@ const lessonsSlice = createSlice({
         state.status = 'succeeded'
       })
       .addCase(deleteLesson.rejected, (state, action) => {
-        state.error(action.payload)
+        state.error = action.payload
         state.status = 'failed'
       })
       .addCase(updateLesson.fulfilled, (state, action) => {
@@ -113,7 +113,7 @@ const lessonsSlice = createSlice({
         state.status = 'succeeded'
       })
       .addCase(updateLesson.rejected, (state, action) => {
-        state.error(action.payload)
+        state.error = action.payload
         state.status = 'failed'
       })
       .addCase(shareLesson.fulfilled, (state, action) => {
@@ -136,7 +136,6 @@ const lessonsSlice = createSlice({
         state.error = action.payload
         state.status = 'failed'
       })
-
   }
 })
 

@@ -16,6 +16,10 @@ const App = () => {
     dispatch(loadUserFromStorage())
   }, [dispatch])
 
+  //prevents alert showing multiple times
+
+  console.log('app status', status)
+  
   if (status === 'loading') {
     return <div>Loading...</div>
   }
@@ -24,7 +28,7 @@ const App = () => {
     <div>
       <Routes>
           <Route path='/' element={!user ? <SignInPage /> : <Navigate replace to='lessons'/>} />
-          <Route path='/lessons' element={<LessonList />} />
+          <Route path='/lessons' element={user ? <LessonList /> : <Navigate replace to='/'/> } />
           <Route path='/lessons/:id' element={<LessonReadView />} />
           <Route path='/create' element={<LessonCreateView />} />
           <Route path='/create/:id' element={<LessonCreateView />} />

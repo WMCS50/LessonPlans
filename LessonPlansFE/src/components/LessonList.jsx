@@ -23,15 +23,15 @@ const LessonList = ({ onSelect }) => {
 //debug
 useEffect(() => {
   if (lessonsStatus === 'idle') {
-    console.log('Dispatching fetchLessons');
-    dispatch(fetchLessons());
+    console.log('Dispatching fetchLessons')
+    dispatch(fetchLessons())
   }
-}, [lessonsStatus, dispatch]);
+}, [lessonsStatus, dispatch])
 
 useEffect(() => {
-  console.log('lessonsStatus:', lessonsStatus);
-  console.log('lessons:', lessons);
-}, [lessonsStatus, lessons]);
+  console.log('lessonsStatus:', lessonsStatus)
+  console.log('lessons:', lessons)
+}, [lessonsStatus, lessons])
 
 
   const fileMenuItems = ['Create New', 'Open']
@@ -43,8 +43,17 @@ useEffect(() => {
     setSortConfig({ key, direction })
   }
 
-  let sortedLessons = [...lessons]
-  if (sortConfig !== null) {
+  useEffect(() => {
+    if (lessonsStatus === 'idle' ) {
+      dispatch(fetchLessons())
+    }
+  }, [lessonsStatus, dispatch])
+
+  //let sortedLessons = [...lessons]
+  
+  const sortedLessons = lessons ? [...lessons] : []
+
+  if (sortConfig !== null && sortedLessons.length > 0) {
     sortedLessons.sort((a, b) => {
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === 'ascending' ? -1 : 1
@@ -55,12 +64,6 @@ useEffect(() => {
       return 0
     })
   }
-
-  useEffect(() => {
-    if (lessonsStatus === 'idle' ) {
-      dispatch(fetchLessons())
-    }
-  }, [lessonsStatus, dispatch])
 
   //filters lesson based on searchQuery
   const filteredLessons = sortedLessons.filter((lesson) =>
@@ -82,6 +85,7 @@ useEffect(() => {
     <div>
       {lessonsStatus === 'loading' && <p>Loading...</p>}
       {lessonsStatus === 'failed' && <p>Error: {error}</p>}
+      
       <header className='lesson-list-header'>
         <FileMenuManager fileMenuItems={fileMenuItems} skipDialogs={true} />
         <input 
@@ -108,23 +112,30 @@ useEffect(() => {
           </tr>
         </thead>
         <tbody>
-          {filteredLessons.map((lesson) => (
-            <tr 
-              style={{cursor: 'pointer'}}  
-              key={lesson.id} 
-              onClick={() => handleLessonClick(lesson)} 
-            >
-              <td>{lesson.title}</td> 
-              <td>{lesson.courseAssociations}</td>
-              <td>{lesson.createdBy}</td>
-              <td>{new Date(lesson.dateModified).toLocaleDateString()}</td>
-              <td>
-                <MoreVertIcon 
-                  className='more-vert-icon'
-                  onClick={(event) => handleVertIconClick(event, lesson)} />
-              </td>
+        {filteredLessons.length === 0 ? (
+            <tr>
+              <td colSpan="5">No lessons available</td>
             </tr>
-          ))}
+          ) : (
+            filteredLessons.map((lesson) => (
+              <tr 
+                style={{cursor: 'pointer'}}  
+                key={lesson.id} 
+                onClick={() => handleLessonClick(lesson)} 
+              >
+                <td>{lesson.title}</td> 
+                <td>{lesson.courseAssociations.join(', ')}</td>
+                <td>{lesson.createdBy}</td>
+                <td>{new Date(lesson.dateModified).toLocaleDateString() === 'Invalid Date' ? 'No Date Available' 
+                  : new Date(lesson.dateModified).toLocaleDateString()}</td>
+                <td>
+                  <MoreVertIcon 
+                    className='more-vert-icon'
+                    onClick={(event) => handleVertIconClick(event, lesson)} />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
         {contextPosition && (
