@@ -9,14 +9,14 @@ import './SortableSection.css'
 
 const SortableSection = ({ section, isActive, onClick }) => {
   const { id: sectionId, title } = section
-  
+
   const {
     attributes,
     listeners,
     setNodeRef,
     transform,
     transition,
-  } = useSortable({ sectionId })
+  } = useSortable({ id: sectionId })
 
   const dispatch = useDispatch()
   const { handleDeleteSection } = useDeleteSection()

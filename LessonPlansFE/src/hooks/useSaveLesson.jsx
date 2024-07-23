@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchLessons } from '../features/lessons/lessonsSlice'
+import { useSelector } from 'react-redux'
 import { useMutation } from '@apollo/client'
 import { ADD_LESSON, UPDATE_LESSON, GET_LESSONS, GET_LESSON } from '../queries'
 import { useState } from 'react'
@@ -14,7 +13,6 @@ export const useSaveLesson = (setCurrentLesson) => {
   const [updateLessonMutation] = useMutation(UPDATE_LESSON, {
     refetchQueries: [ { query: GET_LESSON }, { query: GET_LESSONS } ]
   })
-  const dispatch = useDispatch()
 
   const handleSaveLesson = async (lesson) => {
     if (!currentUser) {
@@ -44,7 +42,6 @@ export const useSaveLesson = (setCurrentLesson) => {
       console.log('resources', resources)
       
       if (lesson.id) {
-        console.log('was updating attempted?')
         result = await updateLessonMutation({ 
           variables: {
             id: lesson.id,
@@ -69,7 +66,6 @@ export const useSaveLesson = (setCurrentLesson) => {
           }
         })
         console.log('lesson saved', result)
-//        dispatch(fetchLessons())
         alert('Lesson saved')
         const newLessonId = result.data.addLesson.id
         setCurrentLesson({ ...lesson, id: newLessonId })
