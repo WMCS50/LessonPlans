@@ -12,11 +12,13 @@ const DragAndDropHandler = ({ sectionResources, sectionId, children }) => {
       distance: 5
     }
   })
-  
+  //console.log('PointerSensor activated:', pointerSensor);
   const sensors = useSensors(pointerSensor)
 
   const handleDragEnd = (event) => {
     const { active, over } = event
+    console.log('active', active)
+    console.log('over', over)
     if (active.id !== over.id) {
       dispatch(reorderResources({ activeId: active.id, overId: over.id, sectionId }))
     }

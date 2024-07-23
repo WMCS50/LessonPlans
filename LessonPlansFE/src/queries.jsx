@@ -168,59 +168,11 @@ export const UPDATE_SECTIONS = gql`
 `
 
 // Section Queries and Mutations
-export const ADD_SECTION = gql`
-  mutation AddSection($title: String!, $lessonId: ID!) {
-    addSection(title: $title, lessonId: $lessonId) {
-      id
-      title
-      lessonId
-    }
-  }
-`
-
 export const UPDATE_SECTION = gql`
   mutation UpdateSection($id: ID!, $title: String) {
     updateSection(id: $id, title: $title) {
       id
       title
-    }
-  }
-`
-
-export const REORDER_RESOURCES = gql`
-  mutation ReorderResources($sectionId: ID!, $resourceIds: [ID!]!) {
-    reorderResources(sectionId: $sectionId, resourceIds: $resourceIds) {
-      id
-      resources {
-        id
-        title
-      }
-    }
-  }
-`
-
-// Resource Queries and Mutations
-export const ADD_RESOURCE = gql`
-  mutation AddResource($type: String!, $title: String!, $link: String, $startTime: String, $endTime: String, $content: String, $sectionId: ID!) {
-    addResource(type: $type, title: $title, link: $link, startTime: $startTime, endTime: $endTime, content: $content, sectionId: $sectionId) {
-      id
-      title
-      type
-      link
-      startTime
-      endTime
-      content
-      sectionId
-    }
-  }
-`
-
-export const UPDATE_RESOURCE = gql`
-  mutation UpdateResource($id: ID!, $title: String, $link: String, $startTime: String, $endTime: String, $content: String) {
-    updateResource(id: $id, title: $title, link: $link, startTime: $startTime, endTime: $endTime, content: $content) {
-      id
-      title
-      type
     }
   }
 `

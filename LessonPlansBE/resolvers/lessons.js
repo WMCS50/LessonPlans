@@ -55,14 +55,19 @@ const lessonResolvers = {
           courseAssociations: args.courseAssociations 
         })
         await lesson.save()
-        console.log('Lesson saved successfully:', lesson)
-        return lesson
+
+        const populatedLesson = await Lesson.findById(lesson._id)
+        .populate('sections')
+        .populate('resources')
+
+        console.log('Lesson saved successfully:', populatedLesson)
+        return populatedLesson
       } catch (error) {
         console.error('Error adding lesson:', error)
         throw new Error('Error adding lesson')
       }
     },
-
+   
     updateLesson: async (root, args, context) => {
       if (!context.currentUser) {
         throw new GraphQLError('User not authenticated')
@@ -103,8 +108,11 @@ const lessonResolvers = {
           },
           { new: true }
         )
+          .populate('sections')
+          .populate('resources')
         console.log('Lesson updated successfully', updatedLesson)
         return updatedLesson
+ 
       } catch (error) {
         console.error('Error updating lesson', error)
         throw new Error('Error updating lesson')

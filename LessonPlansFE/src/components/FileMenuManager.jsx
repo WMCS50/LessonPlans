@@ -5,18 +5,20 @@ import { useNavigate } from 'react-router-dom'
 import { useSaveLesson } from '../hooks/useSaveLesson'
 import { resetResources } from '../features/lessons/resourcesSlice'
 import { resetSections } from '../features/lessons/sectionsSlice'
+import { fetchLessons } from '../features/lessons/lessonsSlice'
+
 import FileMenu from './FileMenu'
 import FileMenuDialog from './FileMenuDialog'
 import LessonListDialog from './LessonListDialog'
 import ShareLessonModal from './ShareLessonModal'
 
 const FileMenuManager = ({ 
-    currentLesson, setCurrentLesson, resources, sections, 
-    fileMenuItems, skipDialogs, refetchLesson 
+    currentLesson, setCurrentLesson, resources, 
+    sections, fileMenuItems, skipDialogs
   }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { handleSaveLesson } = useSaveLesson(refetchLesson, setCurrentLesson)
+  const { handleSaveLesson } = useSaveLesson(setCurrentLesson)
   const [fileMenuDialogOpen, setFileMenuDialogOpen] = useState(false)
   const [fileMenuDialogType, setFileMenuDialogType] = useState('')
   const [fileMenuDialogInputValue, setFileMenuDialogInputValue ] = useState('')
@@ -32,6 +34,7 @@ const FileMenuManager = ({
     if (result && !currentLesson.id) {
       setCurrentLesson({ ...lesson, id: result.data.addLesson.id })
     }
+    dispatch(fetchLessons())
   }
 
   const handleFileMenuClick = async (item) => {

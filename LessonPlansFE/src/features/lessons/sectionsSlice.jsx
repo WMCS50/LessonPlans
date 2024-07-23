@@ -1,6 +1,4 @@
-//prior to objectIDs
 import { createSlice } from '@reduxjs/toolkit'
-//import { v4 as uuidv4 } from 'uuid'
 import mongoose from 'mongoose'
 
 const initialState = []
@@ -12,7 +10,6 @@ export const sectionsSlice = createSlice({
   reducers: {
     addSection: (state, action) => {
       const { section } = action.payload
-      //const sectionWithId = { ...section, id: uuidv4() }
       const sectionWithId = { ...section, id: new ObjectId().toString()}
       return state.concat(sectionWithId)
     },
@@ -22,13 +19,6 @@ export const sectionsSlice = createSlice({
     updateSections: (state, action) => {
       return action.payload
     },
-/*     updateSection: (state, action) => {
-      const { sectionId, title } = action.payload
-      const index = state.findIndex((section) => section.id === sectionId)
-      if (index !== -1) {
-        state[index].title = title
-      }
-    }, */
     updateSection: (state, action) => {
       const { sectionId, title } = action.payload
       return state.map(section =>
