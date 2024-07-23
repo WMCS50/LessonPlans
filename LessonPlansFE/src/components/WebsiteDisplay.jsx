@@ -10,7 +10,7 @@ const WebsiteDisplay = ({ title, link }) => {
   useEffect(() => {
     const fetchMetaData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.REACT_APP_METADATA_SERVER_URL}/og-metadata?url=${encodeURIComponent(link)}`)
+        const response = await axios.get(`${import.meta.env.VITE_METADATA_SERVER_URL}/og-metadata?url=${encodeURIComponent(link)}`)
         console.log('response data', response.data)
         setMetadata(response.data)
         setIsValidUrl(true)
