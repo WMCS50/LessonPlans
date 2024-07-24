@@ -30,6 +30,16 @@ const lessonResolvers = {
         throw new GraphQLError('User not authenticated')
       }
 
+      //ensure unique lesson names
+      const existingLesson = await Lesson.findOne({
+        title: args.title,
+        createdBy: context.currentUser.username
+      })
+
+      if (existingLesson) {
+        throw new GraphQLError('Lesson titles must be unique for each user')
+      }
+
       //ensure sectionIDs and resourceIDs in FE are maintained in BE
       const sections = args.sections.map(section => {
         if (section.id) {
@@ -72,7 +82,16 @@ const lessonResolvers = {
       if (!context.currentUser) {
         throw new GraphQLError('User not authenticated')
       }
-      console.log('Starting updateLesson resolver')
+      
+      const existingLesson = await Lesson.findOne({
+        title: args.title,
+        createdBy: context.currentUser.username
+      })
+
+      if (existingLesson) {
+        throw new GraphQLError('Lesson titles must be unique for each user')
+      }
+
       const sections = args.sections.map(section => {
         if (section.id) {
           return { ...section, _id: section.id };

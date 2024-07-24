@@ -2,32 +2,30 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { shareLesson } from '../features/lessons/lessonsSlice'
+import { useQuery } from '@apollo/client'
 import { Modal, Button, List, ListItem, Checkbox, Box } from '@mui/material';
 import './ShareLessonModal.css'
-import api from '../../api'
+import { GET_USERS } from '../queries'
 
 const ShareLessonModal = ({ lessonId, open, onClose }) => {
   const dispatch = useDispatch()
   const [users, setUsers] = useState([])
   const [selectedUsers, setSelectedUsers] = useState([])
 
-  // will change with backend
+  const { data } = useQuery(GET_USERS)
+  console.log('get_users data', data)
+  
   useEffect(() => {
-    const fetchUsers = async () => {
+    if (data) {
+      const usersData = data.users
       try {
-        const response = await api.get('/users');
-        setUsers(response.data);
+        console.log('users', usersData)
+        setUsers(usersData)
       } catch (error) {
-        console.error('Failed to fetch users', error);
+        console.error('Error fetching users:', error)
       }
-    };
-    fetchUsers();
-  }, []);
-
-  //confirms fetch users worked
-  useEffect(() => {
-    console.log('show users', users)
-  }, [users])
+    }
+  }, [data])
 
   const handleUserToggle = (userId) => {
     setSelectedUsers((prevSelectedUsers) =>
@@ -62,7 +60,7 @@ const ShareLessonModal = ({ lessonId, open, onClose }) => {
         <Button onClick={onClose}>Cancel</Button>
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
 export default ShareLessonModal

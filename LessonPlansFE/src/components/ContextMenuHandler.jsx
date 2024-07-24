@@ -27,7 +27,6 @@ const ContextMenuHandler = ({ contextPosition, setContextPosition, currentLesson
   // based on the vertical position of a right-click event
   const getResourceIndexAtPosition = (yPosition) => {
     const resourceElements = document.querySelectorAll('.resource-item')
-    console.log('resourceElement', resourceElements)
     for (let i = 0; i < resourceElements.length; i++) {
       const rect = resourceElements[i].getBoundingClientRect()
       if (yPosition < rect.top + rect.height / 2) {
@@ -45,7 +44,6 @@ const ContextMenuHandler = ({ contextPosition, setContextPosition, currentLesson
       dispatch(setActiveForm({ type: 'Add Section', position: 'below', section: activeSectionId }))
     } else {
       const resourceIndex = contextPosition ? getResourceIndexAtPosition(contextPosition.y) : currentLesson.resources.length
-      console.log('contextPosition', contextPosition)
       dispatch(setActiveForm({ type: option.label, index: resourceIndex }))
     }
     setContextPosition(null)

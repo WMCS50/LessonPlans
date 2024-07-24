@@ -55,7 +55,6 @@ export const useSaveLesson = (setCurrentLesson) => {
         console.log('lesson updated', result)
         alert('Lesson updated')
       } else {
-        console.log('was saving attempted?')
         result = await addLessonMutation({           
           variables: {
             title: lesson.title,
@@ -73,8 +72,8 @@ export const useSaveLesson = (setCurrentLesson) => {
       }
       return result
     } catch (error) {
-      console.log('Error in saving lesson', error)
-      alert('Lesson did not save')
+      const errorMessage = error.graphQLErrors?.[0]?.message || 'Error in saving lesson.'
+      alert(errorMessage)
     } finally {
       setIsSaving(false)
     } 

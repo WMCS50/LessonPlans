@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Resource = require('./resource')
 
 const sectionSchema = new mongoose.Schema({
-  title: { type: String, required: true },
+  title: { type: String },
   resources: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource' }],
 })
 

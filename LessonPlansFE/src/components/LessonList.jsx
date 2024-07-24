@@ -60,6 +60,11 @@ const lessons = data ? data.lessons : []
     setSelectedLesson(lesson)
   } 
 
+  const formatDate = (timestamp) => {
+    const date = new Date(parseInt(timestamp))
+    return date.toLocaleDateString() === 'Invalid Date' ? 'No Date Available' : date.toLocaleDateString()
+  }
+
   return (
     <div>
       {loading && <p>Loading...</p>}
@@ -104,8 +109,7 @@ const lessons = data ? data.lessons : []
                 <td>{lesson.title}</td> 
                 <td>{lesson.courseAssociations.join(', ')}</td>
                 <td>{lesson.createdBy}</td>
-                <td>{new Date(lesson.dateModified).toLocaleDateString() === 'Invalid Date' ? 'No Date Available' 
-                  : new Date(lesson.dateModified).toLocaleDateString()}</td>
+                <td>{formatDate(lesson.dateModified)}</td>
                 <td>
                   <MoreVertIcon 
                     className='more-vert-icon'
