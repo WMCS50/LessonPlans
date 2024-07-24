@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { loadUserFromStorage } from '../features/auth/authSlice'
 import { useQuery } from '@apollo/client'
 import { GET_LESSON } from '../queries'
+import PictureDisplay from './PictureDisplay'
 import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
@@ -63,9 +64,7 @@ const LessonReadView = () => {
   const editLesson = () => {
     navigate(`/create/${id}`)
   }
-  console.log('data.lesson', data.lesson)
-  console.log('lesson.resources', lesson.resources)
-
+  
   const resources = lesson.resources
   
   const groupedResources = lesson.sections.map(section => {
@@ -91,7 +90,7 @@ const LessonReadView = () => {
   }
 
   const fileMenuItems = username === lesson.createdBy ? ['Save As New', 'Edit', 'Share'] : ['Save As New']
-
+  
   return (
     <div className='lesson-read-container'>
       <header className='lesson-read-header'>
@@ -119,6 +118,8 @@ const LessonReadView = () => {
             <h4 className='section-title'>{section.title}</h4>
             {section.resources.map(resource => {
               switch (resource.type) {
+                case 'picture':  
+                  return <PictureDisplay key={resource.id} title={resource.title} link={resource.link} content={resource.content} />
                 case 'text':  
                   return <TextDisplay key={resource.id} resource={resource} readOnly={true} />
                 case 'document':

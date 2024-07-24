@@ -2,7 +2,7 @@
 
 import { Box, Toolbar, Button } from '@mui/material'
 
-const pages = ['Add Text', 'Add Document', 'Add Website', 'Add Video', 'Add Section'];
+const pages = ['Add Picture', 'Add Text', 'Add Document', 'Add Website', 'Add Video', 'Add Section']
 
 const ResponsiveAppBar = ({ setActiveForm, resourcesLength }) => {
 

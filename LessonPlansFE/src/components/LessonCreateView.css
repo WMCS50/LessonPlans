@@ -3,11 +3,27 @@
   flex-direction: column;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
 .above-app-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5px;
+  width: 100%;
+}
+
+.app-bar-container {
+  width: 100%;
 }
 
 .app-bar {
@@ -15,9 +31,7 @@
 }
 
 .lesson-title-input, .lesson-course-associations-input {
-  /* flex-grow: 1; */
-  min-width: calc(200px + 5vw);
- /*  margin-right: 1rem; */
+  min-width: calc(300px + 5vw);
   padding: 0.5rem;
 }
 

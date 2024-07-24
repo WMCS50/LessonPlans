@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useSortable} from '@dnd-kit/sortable'
 import {CSS} from '@dnd-kit/utilities'
+import PictureDisplay from './PictureDisplay'
 import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
 import WebsiteDisplay from './WebsiteDisplay'
@@ -36,6 +37,8 @@ const SortableResource = ({ id, resource, sectionId }) => {
 
   const renderDisplay = () => {
     switch (resource.type) {
+      case 'picture':
+        return <PictureDisplay title={resource.title} link={resource.link} content={resource.content}/>
       case 'text':  
         return <TextDisplay resource={resource} />
       case 'document': 

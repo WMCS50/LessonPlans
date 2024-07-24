@@ -35,7 +35,8 @@ export const deleteLesson = createAsyncThunk('lessons/deleteLesson',
         mutation: DELETE_LESSON, 
         variables: { 
           id: lessonId 
-        } 
+        },
+        refetchQueries: [{ query: GET_LESSONS }]
       })
       return lessonId
     } catch (error) {

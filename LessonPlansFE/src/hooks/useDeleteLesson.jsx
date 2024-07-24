@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { deleteLesson } from '../features/lessons/lessonsSlice'
+import { deleteLesson, fetchLessons } from '../features/lessons/lessonsSlice'
 
 export const useDeleteLesson = () => {
   const dispatch = useDispatch()
@@ -13,6 +13,7 @@ export const useDeleteLesson = () => {
     try {
       await dispatch(deleteLesson(lessonId)).unwrap()
       alert('Lesson deleted successfully')
+      dispatch(fetchLessons())
     } catch (error) {
       console.error('Error in deleting lesson', error)
       alert('Lesson could not be deleted')

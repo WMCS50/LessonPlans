@@ -1,6 +1,4 @@
-//prior to graphql
 import { createSlice } from '@reduxjs/toolkit'
-//import { v4 as uuidv4 } from 'uuid'
 import mongoose from 'mongoose'
 
 const initialState = []
@@ -12,7 +10,6 @@ export const resourcesSlice = createSlice({
   reducers: {
     addResource: (state, action) => {
       const { resource, sectionId, index } = action.payload
-      //const resourceWithId = { ...resource, id: uuidv4(), sectionId }
       const resourceWithId = { ...resource, id: new ObjectId().toString(), sectionId }
       state.splice(index, 0, resourceWithId)
     },

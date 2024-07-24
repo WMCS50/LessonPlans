@@ -53,6 +53,7 @@ export const GET_LESSONS = gql`
         id
         title
         type
+        content
       }
       createdBy
       dateModified
@@ -108,6 +109,7 @@ export const ADD_LESSON = gql`
         id
         title
         type
+        content
       }
       createdBy
       dateModified
@@ -129,6 +131,7 @@ export const UPDATE_LESSON = gql`
         id
         title
         type
+        content
       }
       dateModified
       courseAssociations

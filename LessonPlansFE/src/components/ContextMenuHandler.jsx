@@ -5,7 +5,7 @@ import CustomContextMenu from './CustomContextMenu'
 import useClickOutside from '../hooks/useClickOutside'
 import {
   TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon, Web as WebIcon,
-  OndemandVideo as OndemandVideoIcon,
+  OndemandVideo as OndemandVideoIcon, AddAPhoto as AddAPhotoIcon, 
   ArrowUpward as ArrowUpwardIcon, ArrowDownward as ArrowDownwardIcon
 } from '@mui/icons-material'
 
@@ -14,6 +14,7 @@ const ContextMenuHandler = ({ contextPosition, setContextPosition, currentLesson
   const dispatch = useDispatch()
 
   const contextMenuOptions = [
+    { label: 'Add Picture', icon: <AddAPhotoIcon /> },
     { label: 'Add Text', icon: <TextFieldsIcon /> },
     { label: 'Add Document', icon: <NoteAddIcon /> },
     { label: 'Add Website', icon: <WebIcon /> },

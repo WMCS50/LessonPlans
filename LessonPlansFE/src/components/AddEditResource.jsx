@@ -11,6 +11,7 @@ const AddEditResource = ({ open, onClose }) => {
   const [link, setLink] = useState('')
   const [startTime, setStartTime] = useState('')
   const [endTime, setEndTime] = useState('')
+  const [content, setContent] = useState('')
   const activeForm = useSelector((state) => state.activeForm)
   const activeSectionId = useSelector((state) => state.activeSection)
   const { resource, type: formType, index } = activeForm || {}
@@ -24,6 +25,7 @@ const AddEditResource = ({ open, onClose }) => {
       setLink(resource.link || '')
       setStartTime(resource.startTime || '')
       setEndTime(resource.endTime || '')
+      setContent(resource.content || '')
     }
   }, [resource])
 
@@ -35,7 +37,8 @@ const AddEditResource = ({ open, onClose }) => {
       link,
       startTime,
       endTime,
-      sectionId
+      sectionId,
+      content
     }
   
     if (resource) {
@@ -47,6 +50,7 @@ const AddEditResource = ({ open, onClose }) => {
     setLink('')
     setStartTime('')
     setEndTime('')
+    setContent('')
     dispatch(resetActiveForm())
     onClose()
   }
@@ -80,6 +84,19 @@ const AddEditResource = ({ open, onClose }) => {
             onChange={(e) => setLink(e.target.value)}
           />
         }
+        {type === 'picture' && (
+          <>
+            <TextField
+              autoFocus
+              margin='dense'
+              label="Caption"
+              type='text'
+              fullwidth='true'
+              value={content}
+              onChange={e => setContent(e.target.value)}
+            />
+          </>
+        )}
         {type === 'video' && (
           <>
             <TextField
