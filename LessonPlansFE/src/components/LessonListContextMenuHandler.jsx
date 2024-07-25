@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useSelector } from 'react-redux'
 import CustomContextMenu from './CustomContextMenu'
 import { useDeleteLesson } from '../hooks/useDeleteLesson'
 import { useNavigate } from 'react-router-dom'
@@ -7,6 +8,7 @@ import ShareLessonModal from './ShareLessonModal'
 import { Edit as EditIcon, Delete as DeleteIcon, OpenInNew as OpenInNewIcon, Share as ShareIcon } from '@mui/icons-material'
 
 const LessonListContextMenuHandler = ({ selectedLesson, contextPosition, setContextPosition }) => {
+  const currentUser = useSelector((state) => state.auth.user)
   const { handleDeleteLesson } = useDeleteLesson()
   const [showShareModal, setShowShareModal] = useState(false)
   const navigate = useNavigate()
@@ -15,8 +17,11 @@ const LessonListContextMenuHandler = ({ selectedLesson, contextPosition, setCont
     { label: 'Open in new window', value: 'open', icon: <OpenInNewIcon /> },
     { label: 'Edit lesson', value: 'edit', icon: <EditIcon /> },
     { label: 'Delete lesson', value: 'delete', icon: <DeleteIcon /> },
-    { label: 'Share lesson', value: 'share', icon: <ShareIcon /> }
   ]
+
+  if (selectedLesson.createdBy === currentUser.username) {
+    contextMenuOptions.push({ label: 'Share lesson', value: 'share', icon: <ShareIcon /> })
+  }
 
   const handleOptionSelect = (option, event) => {
     event.stopPropagation()

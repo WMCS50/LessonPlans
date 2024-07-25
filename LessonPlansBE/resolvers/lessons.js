@@ -1,7 +1,9 @@
 const { GraphQLError } = require('graphql')
 const Lesson = require('../models/lesson')
+const User = require('../models/user')
 
 const lessonResolvers = {
+/* prior to shared lessons   
   Query: {
     lessons: async () => {
       try {
@@ -23,7 +25,52 @@ const lessonResolvers = {
       }
     },
   },
-  
+   */
+  Query: {
+    lessons: async (root, args, context) => {
+      if (!context.currentUser) {
+        throw new GraphQLError('User not authenticated')
+      }
+      try {
+        const lessons = await Lesson.find({
+          $or: [
+            { createdBy: context.currentUser.username },
+            { sharedWith: context.currentUser._id }
+          ]
+        })
+        .populate('sections')
+        .populate('resources')
+        .populate('sharedWith')
+ 
+        lessons.forEach(lesson => console.log('Raw sharedWith:', lesson.sharedWith));
+       
+        console.log('lessons', lessons)
+        
+        return lessons.map(lesson => lesson.toJSON())
+      } catch (error) {
+        throw new GraphQLError('Error fetching lessons')
+      }
+    },
+    lesson: async (_, { id }) => {
+      try {
+        const lesson = await Lesson.findById(id)
+          .populate('sections')
+          .populate('resources')
+          .populate('sharedWith')
+
+        if (!lesson) {
+          throw new Error('No lesson found')
+        }
+        console.log('Raw sharedWith:', lesson.sharedWith)
+       
+        console.log('lesson', lesson)
+        return lesson.toJSON()
+      } catch (error) {
+        throw new GraphQLError('Error fetching lesson')
+      }
+    },
+  },
+
   Mutation: {
     addLesson: async (root, args, context) => {
       if (!context.currentUser) {
@@ -69,6 +116,7 @@ const lessonResolvers = {
         const populatedLesson = await Lesson.findById(lesson._id)
         .populate('sections')
         .populate('resources')
+        .populate('sharedWith')
 
         console.log('Lesson saved successfully:', populatedLesson)
         return populatedLesson
@@ -83,15 +131,6 @@ const lessonResolvers = {
         throw new GraphQLError('User not authenticated')
       }
       
-      const existingLesson = await Lesson.findOne({
-        title: args.title,
-        createdBy: context.currentUser.username
-      })
-
-      if (existingLesson) {
-        throw new GraphQLError('Lesson titles must be unique for each user')
-      }
-
       const sections = args.sections.map(section => {
         if (section.id) {
           return { ...section, _id: section.id };
@@ -129,6 +168,8 @@ const lessonResolvers = {
         )
           .populate('sections')
           .populate('resources')
+          .populate('sharedWith')
+
         console.log('Lesson updated successfully', updatedLesson)
         return updatedLesson
  
@@ -159,9 +200,33 @@ const lessonResolvers = {
         console.error('Error deleteing lesson', error)
         throw new GraphQLError('Error deleting lesson')
       }
+    },
+
+    shareLesson: async (root, args, context) => {
+      if (!context.currentUser) {
+        throw new GraphQLError('User not authenticated')
+      }
+      
+      try {
+        const sharedLesson = await Lesson.findByIdAndUpdate(args.id,
+          {
+            $addToSet: { sharedWith: { $each: args.users} },
+          },
+          { new: true } 
+        )
+        .populate('sections')
+        .populate('resources')
+        .populate('sharedWith')
+
+      console.log('Lesson shared successfully:', sharedLesson)
+      console.log('sharedLesson')
+      return sharedLesson
+      } catch (error) {
+        console.error('Error sharing lesson', error)
+        throw new Error('Error sharing lesson')
+      }
     }
   },
-
 }
 
 module.exports = lessonResolvers

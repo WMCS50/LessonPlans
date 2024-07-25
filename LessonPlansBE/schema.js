@@ -33,6 +33,7 @@ const typeDefs = `
     createdBy: String!
     dateModified: String!
     courseAssociations: [String]
+    sharedWith: [User]
   }
 
   type Section {
@@ -106,6 +107,11 @@ const typeDefs = `
 
     deleteLesson(
       id: ID!
+    ): Lesson
+
+    shareLesson(
+      id: ID!
+      users: [ID]!
     ): Lesson
 
     updateSection(

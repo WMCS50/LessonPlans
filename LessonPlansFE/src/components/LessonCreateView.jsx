@@ -18,7 +18,6 @@ import './LessonCreateView.css'
 const LessonCreateView = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const fileMenuItems = ['Save', 'Save As New','Create New', 'Open', 'Share']
   const resources = useSelector((state) => state.resources)
   const sections = useSelector((state) => state.sections)
   const activeSectionId = useSelector((state) => state.activeSection)
@@ -30,6 +29,10 @@ const LessonCreateView = () => {
       resources: []
     })
   const [contextPosition, setContextPosition] = useState(null)
+  const fileMenuItems = ['Save', 'Save As New','Create New', 'Open']
+  if (currentLesson.id) {
+    fileMenuItems.push('Share')
+  }
     
 //Resets title and sections for new lesson, then creates and sets active the first section
   useEffect(() => {

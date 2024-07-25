@@ -1,31 +1,25 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { shareLesson } from '../features/lessons/lessonsSlice'
-import { useQuery } from '@apollo/client'
+import { useSelector } from 'react-redux'
+import { useQuery, useMutation } from '@apollo/client'
 import { Modal, Button, List, ListItem, Checkbox, Box } from '@mui/material';
 import './ShareLessonModal.css'
-import { GET_USERS } from '../queries'
+import { GET_USERS, GET_LESSON, SHARE_LESSON } from '../queries'
 
 const ShareLessonModal = ({ lessonId, open, onClose }) => {
-  const dispatch = useDispatch()
-  const [users, setUsers] = useState([])
   const [selectedUsers, setSelectedUsers] = useState([])
+  const currentUser = useSelector((state) => state.auth.user)
+  const [shareLesson] = useMutation(SHARE_LESSON, {
+    refetchQueries: [{ query: GET_LESSON, variables: { id: lessonId } }]
+  })
+  const { data: usersData } = useQuery(GET_USERS)
+  const { data: lessonData } = useQuery(GET_LESSON, { variables: { id: lessonId } })
 
-  const { data } = useQuery(GET_USERS)
-  console.log('get_users data', data)
-  
   useEffect(() => {
-    if (data) {
-      const usersData = data.users
-      try {
-        console.log('users', usersData)
-        setUsers(usersData)
-      } catch (error) {
-        console.error('Error fetching users:', error)
-      }
+    if (lessonData && lessonData.lesson.sharedWith) {
+      setSelectedUsers(lessonData.lesson.sharedWith.map(user => user.id))
     }
-  }, [data])
+  }, [lessonData])
 
   const handleUserToggle = (userId) => {
     setSelectedUsers((prevSelectedUsers) =>
@@ -35,9 +29,20 @@ const ShareLessonModal = ({ lessonId, open, onClose }) => {
     )
   }
 
-  const handleShare = () => {
-    dispatch(shareLesson({ lessonId, users: selectedUsers }))
-    onClose()
+  const handleShare = async () => {
+    try {
+      await shareLesson({ 
+        variables: {
+          id: lessonId,
+          users: selectedUsers
+        }
+      })
+      alert('Lesson shared successfully')
+      onClose()
+    } catch (error) {
+      console.error('Error sharing lesson', error)
+      alert('Error sharing lesson')
+    }
   }
 
   return (
@@ -46,7 +51,9 @@ const ShareLessonModal = ({ lessonId, open, onClose }) => {
         <h2>Share Lesson</h2>
         <p>Select from the following users</p>
         <List>
-          {users.map((user) => (
+          {usersData && usersData.users
+            .filter(user => user.username !== currentUser.username)
+            .map((user) => (
             <ListItem key={user.id}>
               <Checkbox
                 checked={selectedUsers.includes(user.id)}

@@ -9,7 +9,7 @@ const lessonSchema = new mongoose.Schema({
   createdBy: { type: String, required: true},
   dateModified: { type: Date, required: true, default: Date.now },
   courseAssociations: { type: [String] },
-  sharedWith: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]   
+  sharedWith: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 })
 
 lessonSchema.set('toJSON', {

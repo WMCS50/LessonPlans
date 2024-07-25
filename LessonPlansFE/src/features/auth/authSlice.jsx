@@ -15,6 +15,7 @@ const authSlice = createSlice({
       state.token = null
       localStorage.clear()
       client.resetStore()
+      client.stop()
     },
     loadUserFromStorage: (state) => {
       state.status = 'loading'

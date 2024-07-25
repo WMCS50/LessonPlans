@@ -58,6 +58,11 @@ export const GET_LESSONS = gql`
       createdBy
       dateModified
       courseAssociations
+      sharedWith {
+        id
+        username
+        role
+      }
     }
   }
 `
@@ -84,6 +89,11 @@ export const GET_LESSON = gql`
       createdBy
       dateModified
       courseAssociations
+      sharedWith {
+        id
+        username
+        role
+      }
     }
   }
 `
@@ -115,6 +125,11 @@ export const ADD_LESSON = gql`
       dateModified
       courseAssociations
     }
+      sharedWith {
+        id
+        username
+        role
+      }
   }
 `
 
@@ -135,9 +150,30 @@ export const UPDATE_LESSON = gql`
       }
       dateModified
       courseAssociations
+      sharedWith {
+        id
+        username
+        role
+      }
     }
   }
 `
+
+export const SHARE_LESSON = gql`
+  mutation ShareLesson($id: ID!, $users: [ID]!) {
+    shareLesson(id: $id, users: $users) {
+      id
+      title
+      sharedWith {
+        id
+        username
+        role
+      }
+    }
+  }  
+`
+
+
 
 export const GET_SECTIONS = gql`
   query GetSections($lessonId: ID!) {
@@ -170,7 +206,6 @@ export const UPDATE_SECTIONS = gql`
   }
 `
 
-// Section Queries and Mutations
 export const UPDATE_SECTION = gql`
   mutation UpdateSection($id: ID!, $title: String) {
     updateSection(id: $id, title: $title) {
