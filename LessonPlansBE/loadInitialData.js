@@ -6,10 +6,6 @@ const Resource = require('./models/resource')
 const initialData = require('./db.json')
 
 const loadInitialData = async () => {
-  //await User.deleteMany({})
-/*    await Lesson.deleteMany({})
-  await Section.deleteMany({})
-  await Resource.deleteMany({})  */
   try {
     console.log('Checking for existing data...')
 
@@ -22,9 +18,9 @@ const loadInitialData = async () => {
     if (collectionSum === 0)  {
       console.log('No existing data. Loading initial data')
       await User.insertMany(initialData.users)
-/*       await Lesson.insertMany(initialData.lessons)
+      await Lesson.insertMany(initialData.lessons)
       await Section.insertMany(initialData.sections)
-      await Resource.insertMany(initialData.resources) */
+      await Resource.insertMany(initialData.resources)
       console.log('Initial data loaded.')
     } else {
       console.log('Database not empty. Skipping initial data load.')

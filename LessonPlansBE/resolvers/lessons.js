@@ -1,31 +1,7 @@
 const { GraphQLError } = require('graphql')
 const Lesson = require('../models/lesson')
-const User = require('../models/user')
 
 const lessonResolvers = {
-/* prior to shared lessons   
-  Query: {
-    lessons: async () => {
-      try {
-        const lessons = await Lesson.find({}).populate('sections').populate('resources')
-        return lessons.map(lesson => lesson.toJSON())
-      } catch (error) {
-        throw new GraphQLError('Error fetching lessons')
-      }
-    },
-    lesson: async (_, { id }) => {
-      try {
-        const lesson = await Lesson.findById(id).populate('sections').populate('resources')
-        if (!lesson) {
-          throw new Error('No lesson found')
-        }
-        return lesson.toJSON()
-      } catch (error) {
-        throw new GraphQLError('Error fetching lesson')
-      }
-    },
-  },
-   */
   Query: {
     lessons: async (root, args, context) => {
       if (!context.currentUser) {
@@ -109,7 +85,8 @@ const lessonResolvers = {
           resources,
           createdBy: context.currentUser.username,
           dateModified: new Date(),
-          courseAssociations: args.courseAssociations 
+          courseAssociations: args.courseAssociations,
+          sharedWith: args.sharedWith
         })
         await lesson.save()
 
@@ -162,7 +139,8 @@ const lessonResolvers = {
             resources,
             createdBy: context.currentUser.username,
             dateModified: new Date(),
-            courseAssociations: args.courseAssociations
+            courseAssociations: args.courseAssociations,
+            sharedWith: args.sharedWith
           },
           { new: true }
         )

@@ -29,16 +29,6 @@ export const GET_USERS = gql`
   }
 `
 
-export const ME = gql`
-  query Me {
-    me {
-      id
-      username
-      role
-    }
-  }
-`
-
 // Lesson Queries and Mutations
 export const GET_LESSONS = gql`
   query GetLessons {
@@ -107,8 +97,8 @@ export const DELETE_LESSON = gql`
 `
 
 export const ADD_LESSON = gql`
-  mutation AddLesson($title: String!, $sections: [SectionInput], $resources: [ResourceInput], $dateModified: String!, $courseAssociations: [String]) {
-    addLesson(title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations) {
+  mutation AddLesson($title: String!, $sections: [SectionInput], $resources: [ResourceInput], $dateModified: String!, $courseAssociations: [String], $sharedWith: [ID]) {
+    addLesson(title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations, sharedWith: $sharedWith) {
       id
       title
       sections {
@@ -119,23 +109,27 @@ export const ADD_LESSON = gql`
         id
         title
         type
+        link
+        startTime
+        endTime
+        sectionId
         content
       }
       createdBy
       dateModified
       courseAssociations
-    }
       sharedWith {
         id
         username
         role
       }
+    }
   }
 `
 
 export const UPDATE_LESSON = gql`
-  mutation UpdateLesson($id: ID!, $title: String!, $sections: [SectionInput], $resources: [ResourceInput], $dateModified: String!, $courseAssociations: [String]) {
-    updateLesson(id: $id, title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations) {
+  mutation UpdateLesson($id: ID!, $title: String!, $sections: [SectionInput], $resources: [ResourceInput], $dateModified: String!, $courseAssociations: [String],  $sharedWith: [ID]) {
+    updateLesson(id: $id, title: $title, sections: $sections, resources: $resources, dateModified: $dateModified, courseAssociations: $courseAssociations, sharedWith: $sharedWith) {
       id
       title
       sections {
@@ -146,6 +140,10 @@ export const UPDATE_LESSON = gql`
         id
         title
         type
+        link
+        startTime
+        endTime
+        sectionId
         content
       }
       dateModified
@@ -171,46 +169,4 @@ export const SHARE_LESSON = gql`
       }
     }
   }  
-`
-
-
-
-export const GET_SECTIONS = gql`
-  query GetSections($lessonId: ID!) {
-    sections(lessonId: $lessonId) {
-      id
-      title
-      resources {
-        id
-        title
-        type
-        link
-        startTime
-        endTime
-        content
-      }
-    }
-  }
-`
-
-
-export const UPDATE_SECTIONS = gql`
-  mutation UpdateSections($lessonId: ID!, $sectionIds: [ID!]!) {
-    updateSections(lessonId: $lessonId, sectionIds: $sectionIds) {
-      id
-      sections {
-        id
-        title
-      }
-    }
-  }
-`
-
-export const UPDATE_SECTION = gql`
-  mutation UpdateSection($id: ID!, $title: String) {
-    updateSection(id: $id, title: $title) {
-      id
-      title
-    }
-  }
 `

@@ -25,6 +25,7 @@ const ResourceContextMenuHandler = ({ selectedResource, sectionId, contextPositi
     } else if (option.value === 'open') {
       window.open(selectedResource.link, '_blank', 'noopener,noreferrer')
     } else if (option.value === 'edit') {
+      console.log('dispatch to setActiveForm', selectedResource.type, selectedResource, sectionId)
       dispatch(setActiveForm({ type: selectedResource.type, resource: selectedResource, sectionId }))
     }
     setContextPosition(null)

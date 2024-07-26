@@ -90,6 +90,7 @@ const lessons = data ? data.lessons : []
             <th onClick={() => requestSort('title')}>Title</th>
             <th onClick={() => requestSort('courseAssociations')}>Course Associations</th>
             <th onClick={() => requestSort('createdBy')}>Created By</th>
+            <th onClick={() => requestSort('sharedWith')}>Shared With</th>
             <th onClick={() => requestSort('dateModified')}>Date Modified</th>
             <th> <FolderOpenIcon /> </th>
           </tr>
@@ -109,6 +110,7 @@ const lessons = data ? data.lessons : []
                 <td>{lesson.title}</td> 
                 <td>{lesson.courseAssociations.join(', ')}</td>
                 <td>{lesson.createdBy}</td>
+                <td>{lesson.sharedWith.map(user => user.username).join(', ')}</td>
                 <td>{formatDate(lesson.dateModified)}</td>
                 <td>
                   <MoreVertIcon 

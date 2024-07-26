@@ -38,9 +38,6 @@ const userResolvers = {
       } catch (error) {
         throw new Error('Error fetching users')
       }
-    },
-    me: (root, args, context) => {
-      return context.currentUser
     }
   },
   Mutation: {

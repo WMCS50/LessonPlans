@@ -10,7 +10,7 @@ const DocumentDisplay = ({ title, link }) => {
       <iframe
         src={link}
         width='100%'
-        height='200px'
+        height='350px'
         title="Document Preview"
         loading='lazy'
       ></iframe>

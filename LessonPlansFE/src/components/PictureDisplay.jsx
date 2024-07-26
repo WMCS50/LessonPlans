@@ -2,8 +2,7 @@
 import { useState } from "react"
 
 const PictureDisplay = ({ title, link, content }) => {
-  const [imgError, setImgError] = useState(false);
-  console.log('PictureDisplay props:', { title, link, content }); // Log props to debug
+  const [imgError, setImgError] = useState(false)
   
   return (
     <div className='picture-display'>

@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material'
 import { resetActiveForm } from '../features/lessons/activeFormSlice'
 import { updateResource, addResource } from '../features/lessons/resourcesSlice'
+import { fetchLesson } from '../features/lessons/lessonsSlice'
 
-const AddEditResource = ({ open, onClose }) => {
+const AddEditResource = ({ open, onClose, lessonId }) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
@@ -15,21 +16,25 @@ const AddEditResource = ({ open, onClose }) => {
   const activeForm = useSelector((state) => state.activeForm)
   const activeSectionId = useSelector((state) => state.activeSection)
   const { resource, type: formType, index } = activeForm || {}
-
   const type = formType ? formType.replace('Add ', '').toLowerCase() : ''
   const sectionId = activeSectionId
-  
+
+
+  console.log('sectionId from Add/Edit', sectionId)
+  console.log('lessonId from Add/Edit', lessonId)
+
+
   useEffect(() => {
     if (resource) {
-      setTitle(resource.title)
+      setTitle(resource.title || '')
       setLink(resource.link || '')
       setStartTime(resource.startTime || '')
       setEndTime(resource.endTime || '')
       setContent(resource.content || '')
-    }
+    } 
   }, [resource])
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const newResource = {
       ...resource,
       type,
@@ -46,6 +51,7 @@ const AddEditResource = ({ open, onClose }) => {
     } else {
       dispatch(addResource({ resource: newResource, sectionId, index }))
     }
+    await dispatch(fetchLesson(lessonId))
     setTitle('')
     setLink('')
     setStartTime('')

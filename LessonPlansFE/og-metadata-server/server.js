@@ -1,9 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import ogs from 'open-graph-scraper'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const app = express()
-const port = 3002
 
 app.use(cors())
 
@@ -22,7 +23,7 @@ app.get('/og-metadata', async(req, res) => {
   }
 })
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`)
+const PORT = process.env.VITE_METADATA_SERVER_URL || 3002
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
-

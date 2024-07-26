@@ -1,7 +1,7 @@
 const typeDefs = `
   input SectionInput {
   id: ID  
-  title: String!
+  title: String
   }
 
   input ResourceInput {
@@ -57,7 +57,6 @@ const typeDefs = `
     users: [User]
     lessons: [Lesson]
     lesson(id: ID!): Lesson
-    me: User
     sections(lessonId: ID!): [Section!]!
   }
 
@@ -93,16 +92,18 @@ const typeDefs = `
       sections: [SectionInput],
       resources: [ResourceInput],
       dateModified: String!,
-      courseAssociations: [String]
+      courseAssociations: [String],
+      sharedWith: [ID]
     ): Lesson
 
     updateLesson(
-      id: ID!
-      title: String!
-      sections: [SectionInput]
-      resources: [ResourceInput]
-      dateModified: String!
-      courseAssociations: [String]
+      id: ID!,
+      title: String!,
+      sections: [SectionInput],
+      resources: [ResourceInput],
+      dateModified: String!,
+      courseAssociations: [String],
+      sharedWith: [ID]
     ): Lesson
 
     deleteLesson(
@@ -113,33 +114,8 @@ const typeDefs = `
       id: ID!
       users: [ID]!
     ): Lesson
-
-    updateSection(
-        id: ID!,
-        title: String
-    ): Section
-
-    updateResource(
-        id: ID!,
-        title: String,
-        link: String,
-        startTime: String,
-        endTime: String,
-        content: String
-    ): Resource
-
-    updateSections(
-        lessonId: ID!,
-        sectionIds: [ID!]!
-    ): Lesson
-
-    reorderResources(
-        sectionId: ID!,
-        resourceIds: [ID!]!
-    ): Section
+    
   }
+`
   
-  `
-  
-
-  module.exports = typeDefs
+module.exports = typeDefs

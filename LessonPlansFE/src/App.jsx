@@ -17,7 +17,6 @@ const App = () => {
   }, [dispatch])
 
   //prevents alert showing multiple times
-
   console.log('app status', status)
   
   if (status === 'loading') {

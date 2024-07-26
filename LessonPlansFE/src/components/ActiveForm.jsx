@@ -5,7 +5,7 @@ import AddEditResource from './AddEditResource'
 import { resetActiveForm } from '../features/lessons/activeFormSlice'
 import SectionManager from './SectionManager'
 
-const ActiveForm = () => {
+const ActiveForm = (lessonId) => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const activeForm = useSelector((state) => state.activeForm)
@@ -34,6 +34,7 @@ const ActiveForm = () => {
         <AddEditResource 
           open={open}
           onClose={handleClose}
+          lessonId={lessonId}
         />
       )}
     </>

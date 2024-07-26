@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { logout } from '../features/auth/authSlice'
 import { Box, IconButton, Avatar, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 
-const items = ['Profile', 'Dashboard', 'Logout'];
+const items = ['Dashboard', 'Logout'];
 
 const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);

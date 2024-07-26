@@ -47,6 +47,7 @@ const WebsiteDisplay = ({ title, link }) => {
           <img 
             src={getImageUrl(metadata.ogImage)} 
             alt={metadata.ogTitle}
+            style={{ width: '300px', height: 'auto' }} 
           />
           {metadata.ogDescription && <p>{metadata.ogDescription}</p>}
         </div>
