@@ -49,7 +49,6 @@ useEffect(() => {
       dispatch(updateSections(lessonData.sections));
       dispatch(updateResources(lessonData.resources));
     })
-    
     .catch((error) => {
       console.error('Failed to fetch lesson:', error);
     });

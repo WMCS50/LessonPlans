@@ -62,7 +62,8 @@ const lessons = data ? data.lessons : []
 
   const formatDate = (timestamp) => {
     const date = new Date(parseInt(timestamp))
-    return date.toLocaleDateString() === 'Invalid Date' ? 'No Date Available' : date.toLocaleDateString()
+    return date.toLocaleDateString() === 'Invalid Date' ? 'No Date Available' : 
+      date.toLocaleDateString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
   }
 
   return (
