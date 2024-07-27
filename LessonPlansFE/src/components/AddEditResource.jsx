@@ -19,11 +19,6 @@ const AddEditResource = ({ open, onClose, lessonId }) => {
   const type = formType ? formType.replace('Add ', '').toLowerCase() : ''
   const sectionId = activeSectionId
 
-
-  console.log('sectionId from Add/Edit', sectionId)
-  console.log('lessonId from Add/Edit', lessonId)
-
-
   useEffect(() => {
     if (resource) {
       setTitle(resource.title || '')
@@ -35,6 +30,11 @@ const AddEditResource = ({ open, onClose, lessonId }) => {
   }, [resource])
 
   const handleSave = async () => {
+    if (!sectionId) {
+      alert('Please select a section before adding a resource.')
+      return
+    }
+    
     const newResource = {
       ...resource,
       type,

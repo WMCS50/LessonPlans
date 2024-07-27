@@ -9,9 +9,8 @@ const loadInitialData = require('./loadInitialData')
 const morgan = require('morgan')
 const cors = require('cors')
 const http = require('http')
-const jwt = require('jsonwebtoken')
-const User = require('./models/user')
 const context = require('./context')
+const path = require('path')
 
 dotenv.config()
 
@@ -43,6 +42,12 @@ const start = async () => {
 
   await server.start()
   
+  app.use(express.static('dist'))
+  app.use(cors())
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
+  })
+
   app.use(
     '/graphql',
     morgan(':method :url :status :res[content-length] - :response-time ms'),

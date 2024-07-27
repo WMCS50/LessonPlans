@@ -10,13 +10,19 @@ const ActiveForm = (lessonId) => {
   const dispatch = useDispatch()
   const activeForm = useSelector((state) => state.activeForm)
   const sections = useSelector((state) => state.sections)
+  const activeSectionId = useSelector((state) => state.activeSection)
 
   //hook to handle opening form dialogs or adding a section
   useEffect(() => {
     if (activeForm && activeForm.type !== 'Add Section') {
+      console.log('active form set')
+      if (!activeSectionId) {
+        alert('Please select a section before adding a resource.')
+        return
+      }
       setOpen(true)
     } 
-  }, [activeForm])
+  }, [activeForm, activeSectionId])
 
   const handleClose = () => {
     setOpen(false)

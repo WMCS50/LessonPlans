@@ -52,7 +52,7 @@ const WebsiteDisplay = ({ title, link }) => {
           {metadata.ogDescription && <p>{metadata.ogDescription}</p>}
         </div>
       ) : (
-        <p>Website preview is not available. Click on link to open.</p>
+        <p>Website preview is not available. Click on title link to open.</p>
       )}
     </div>
   )
