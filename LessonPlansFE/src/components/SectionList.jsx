@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from 'react-redux'
 import { reorderSections } from '../features/lessons/sectionsSlice'
 import { setActiveSection } from '../features/lessons/activeSectionSlice'
@@ -21,9 +20,9 @@ const SectionList = () => {
       >
         <div>
           {sections.map((section) => (
-            <SortableSection 
-              key={section.id} 
-              section={section} 
+            <SortableSection
+              key={section.id}
+              section={section}
               isActive={activeSectionId === section.id}
               onClick={() => handleSectionClick(section.id)}
             />

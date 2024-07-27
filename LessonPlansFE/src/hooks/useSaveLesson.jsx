@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useSelector } from 'react-redux'
 import { useMutation } from '@apollo/client'
 import { ADD_LESSON, UPDATE_LESSON, GET_LESSONS, GET_LESSON } from '../queries'
@@ -40,9 +39,9 @@ export const useSaveLesson = (setCurrentLesson) => {
       const resources = lesson.resources.map(({ __typename, ...resource }) => resource)
       console.log('sections', sections)
       console.log('resources', resources)
-      
+
       if (lesson.id) {
-        result = await updateLessonMutation({ 
+        result = await updateLessonMutation({
           variables: {
             id: lesson.id,
             title: lesson.title,
@@ -55,7 +54,7 @@ export const useSaveLesson = (setCurrentLesson) => {
         console.log('lesson updated', result)
         alert('Lesson updated')
       } else {
-        result = await addLessonMutation({           
+        result = await addLessonMutation({
           variables: {
             title: lesson.title,
             sections,
@@ -76,7 +75,7 @@ export const useSaveLesson = (setCurrentLesson) => {
       alert(errorMessage)
     } finally {
       setIsSaving(false)
-    } 
-  } 
+    }
+  }
   return { handleSaveLesson }
 }

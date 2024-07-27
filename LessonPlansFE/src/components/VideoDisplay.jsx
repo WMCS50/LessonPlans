@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import './ResourceType.css'
 
@@ -7,13 +6,13 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
   const [isValidUrl, setIsValidUrl] = useState(true)
   const [videoStart, setVideoStart] = useState(null)
   const [videoEnd, setVideoEnd] = useState(null)
- 
+
   useEffect(() => {
     //function to extract video id and create an embedded video url if necessary
     const createEmbedLink = (link) => {
       startTime && setVideoStart(startTime)
       endTime && setVideoEnd(endTime)
-     
+
       try {
         const url = new URL(link)
         const href = url.href
@@ -29,7 +28,7 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
           return url.toString()
         } else {
           throw new Error('Invalid Youtube URL')
-        }  
+        }
       } catch (error) {
         console.error('Invalid URL', error)
         setIsValidUrl(false)
@@ -38,14 +37,14 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
     }
 
     const embedLinkExTimes = createEmbedLink(link)
- 
+
     if (embedLinkExTimes) {
       setEmbedLink(`${embedLinkExTimes}?start=${videoStart}&end=${videoEnd}`)
-      console.log('video times', {videoStart, videoEnd})
+      console.log('video times', { videoStart, videoEnd })
       console.log('embedLinkFinal', embedLink)
       setIsValidUrl(true)
     }
-    
+
   }, [link, startTime, endTime, videoStart, videoEnd, embedLink])
 
   return (
@@ -54,21 +53,20 @@ const VideoDisplay = ({ title, link, startTime, endTime }) => {
         <h3>{title}</h3>
         <p>(Time Interval: {startTime} - {endTime})</p>
       </div>
-            
       {isValidUrl ? (
         <div className='video-wrapper'>
           <iframe
             src={embedLink}
             title='Video Preview'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' 
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
             referrerPolicy='strict-origin-when-cross-origin'
             allowFullScreen
             loading='lazy'
           ></iframe>
         </div>
-        ) : (
-          <p>Please enter a valid Youtube URL</p>
-        )}
+      ) : (
+        <p>Please enter a valid Youtube URL</p>
+      )}
     </div>
   )
 }

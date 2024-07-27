@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material'
@@ -26,7 +25,7 @@ const AddEditResource = ({ open, onClose, lessonId }) => {
       setStartTime(resource.startTime || '')
       setEndTime(resource.endTime || '')
       setContent(resource.content || '')
-    } 
+    }
   }, [resource])
 
   const handleSave = async () => {
@@ -34,7 +33,7 @@ const AddEditResource = ({ open, onClose, lessonId }) => {
       alert('Please select a section before adding a resource.')
       return
     }
-    
+
     const newResource = {
       ...resource,
       type,
@@ -45,9 +44,9 @@ const AddEditResource = ({ open, onClose, lessonId }) => {
       sectionId,
       content
     }
-  
+
     if (resource) {
-      dispatch(updateResource({ resourceId: resource.id, ...newResource}))
+      dispatch(updateResource({ resourceId: resource.id, ...newResource }))
     } else {
       dispatch(addResource({ resource: newResource, sectionId, index }))
     }
@@ -79,7 +78,7 @@ const AddEditResource = ({ open, onClose, lessonId }) => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        {type !== 'text' && 
+        {type !== 'text' &&
           <TextField
             autoFocus
             margin='dense'

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -12,10 +11,10 @@ import FileMenuDialog from './FileMenuDialog'
 import LessonListDialog from './LessonListDialog'
 import ShareLessonModal from './ShareLessonModal'
 
-const FileMenuManager = ({ 
-    currentLesson, setCurrentLesson, resources, 
-    sections, fileMenuItems, skipDialogs
-  }) => {
+const FileMenuManager = ({
+  currentLesson, setCurrentLesson, resources,
+  sections, fileMenuItems, skipDialogs
+}) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { handleSaveLesson } = useSaveLesson(setCurrentLesson)
@@ -46,10 +45,10 @@ const FileMenuManager = ({
     }
     if (item === 'Create New') {
       if (skipDialogs) {
-        navigate('/create');
+        navigate('/create')
       } else {
-        setFileMenuDialogType('createNew');
-        setFileMenuDialogOpen(true);
+        setFileMenuDialogType('createNew')
+        setFileMenuDialogOpen(true)
       }
     }
     if (item === 'Open') {
@@ -67,7 +66,6 @@ const FileMenuManager = ({
   const handleFileMenuDialogSave = async (inputValue, shouldSave) => {
     if (fileMenuDialogType === 'saveAsNew') {
       const newLesson = { ...currentLesson, title: inputValue, id: null, resources, sections }
-      console.log('Save as new lesson:', newLesson); // Debugging line
 
       const result = await handleSaveLesson(newLesson, setCurrentLesson)
       if (result && result.data.addLesson.id) {
@@ -102,12 +100,12 @@ const FileMenuManager = ({
       navigate(`/create/${lesson.id}`)
     }
   }
-  
+
   return (
     <div>
       <FileMenu className='file-menu' items={fileMenuItems} onItemClick={handleFileMenuClick} />
 
-      <FileMenuDialog 
+      <FileMenuDialog
         open={fileMenuDialogOpen}
         onClose={() => setFileMenuDialogOpen(false)}
         onSave={handleFileMenuDialogSave}
@@ -117,17 +115,17 @@ const FileMenuManager = ({
         inputValue={fileMenuDialogInputValue}
         setInputValue={setFileMenuDialogInputValue}
         showNoOption={fileMenuDialogType === 'createNew' || fileMenuDialogType === 'openLesson'}
-    />
+      />
       <LessonListDialog
         open={lessonListDialogOpen}
         onClose={() => setLessonListDialogOpen(false)}
         onSelect={handleLessonSelect}
       />
       {showShareModal && (
-        <ShareLessonModal 
+        <ShareLessonModal
           lessonId={currentLesson.id}
           open={showShareModal}
-          onClose={()=> setShowShareModal(false)} />
+          onClose={() => setShowShareModal(false)} />
       )}
     </div>
   )

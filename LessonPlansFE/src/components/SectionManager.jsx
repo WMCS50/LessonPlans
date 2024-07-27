@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { addSection, updateSections } from '../features/lessons/sectionsSlice'
@@ -35,10 +34,10 @@ const SectionManager = ({ activeForm, sections }) => {
       dispatch(addSection({ section: newSection }))
       dispatch(updateSections(newSections))
       dispatch(resetActiveForm())
-    } 
+    }
 
   }, [activeForm, dispatch, sections, ObjectId])
-  
+
   return null
 }
 

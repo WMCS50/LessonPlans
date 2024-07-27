@@ -19,7 +19,7 @@ app.get('/og-metadata', async(req, res) => {
     const { result } = await ogs({ url })
     res.json(result)
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch metadata'})
+    res.status(500).json({ error: 'Failed to fetch metadata' })
   }
 })
 

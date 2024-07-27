@@ -10,7 +10,7 @@ export const useDeleteSection = () => {
     if (!confirmed) {
       return
     }
-        
+
     try {
       await dispatch(deleteSection(sectionId))
       await dispatch(deleteSectionResources(sectionId))
@@ -19,6 +19,6 @@ export const useDeleteSection = () => {
       console.error('Error in deleting section', error)
       alert('Section could not be deleted')
     }
-  } 
+  }
   return { handleDeleteSection }
 }

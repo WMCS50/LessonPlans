@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react'
-import { useSortable} from '@dnd-kit/sortable'
-import {CSS} from '@dnd-kit/utilities'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import PictureDisplay from './PictureDisplay'
 import TextDisplay from './TextDisplay'
 import DocumentDisplay from './DocumentDisplay'
@@ -21,48 +20,48 @@ const SortableResource = ({ id, resource, sectionId }) => {
     setNodeRef,
     transform,
     transition,
-  } = useSortable({ id} )
+  } = useSortable({ id } )
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-  };
+  }
 
   const handleHorizIconClick = (event, resource) => {
     event.stopPropagation()
     event.preventDefault()
     setContextPosition({ x: event.clientX, y: event.clientY })
     setSelectedResource(resource)
-  } 
+  }
 
   const renderDisplay = () => {
     switch (resource.type) {
-      case 'picture':
-        return <PictureDisplay title={resource.title} link={resource.link} content={resource.content}/>
-      case 'text':  
-        return <TextDisplay resource={resource} />
-      case 'document': 
-        return <DocumentDisplay title={resource.title} link={resource.link} />
-      case 'website': 
-        return <WebsiteDisplay title={resource.title} link={resource.link} />
-      case 'video':
-        return <VideoDisplay 
-          title={resource.title} 
-          link={resource.link} 
-          startTime={resource.startTime} 
-          endTime={resource.endTime}
-        />
-      default:
-        return null
+    case 'picture':
+      return <PictureDisplay title={resource.title} link={resource.link} content={resource.content}/>
+    case 'text':
+      return <TextDisplay resource={resource} />
+    case 'document':
+      return <DocumentDisplay title={resource.title} link={resource.link} />
+    case 'website':
+      return <WebsiteDisplay title={resource.title} link={resource.link} />
+    case 'video':
+      return <VideoDisplay
+        title={resource.title}
+        link={resource.link}
+        startTime={resource.startTime}
+        endTime={resource.endTime}
+      />
+    default:
+      return null
     }
   }
-    
+
   return (
     <div>
       <div className='resource-item'
-        ref={setNodeRef} 
-        style={style} 
-        {...attributes} 
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
         {...listeners}
       >
         <div>
@@ -73,13 +72,13 @@ const SortableResource = ({ id, resource, sectionId }) => {
         </div>
       </div>
       {contextPosition && (
-          <ResourceContextMenuHandler
-            contextPosition={contextPosition}
-            setContextPosition={setContextPosition}
-            selectedResource={selectedResource}
-            sectionId={sectionId}
-          />
-        )}
+        <ResourceContextMenuHandler
+          contextPosition={contextPosition}
+          setContextPosition={setContextPosition}
+          selectedResource={selectedResource}
+          sectionId={sectionId}
+        />
+      )}
     </div>
   )
 }

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useSelector } from 'react-redux'
 import SortableResource from './SortableResource'
 import DragAndDropHandler from './DragAndDropHandler'
@@ -11,21 +10,21 @@ const ResourceList = ({ sectionId }) => {
 
   return (
     <div>
-      <DragAndDropHandler 
-        items={sectionResources.map(resource => resource.id)} 
+      <DragAndDropHandler
+        items={sectionResources.map(resource => resource.id)}
         onReorder={(payload) => reorderResources({ ...payload, sectionId } )}
       >
         <div className='resource-display'>
           {sectionResources.map((resource) => (
-            <SortableResource 
-              key={resource.id} 
-              id={resource.id} 
-              resource={resource} 
-              sectionId={sectionId} 
-            />  
+            <SortableResource
+              key={resource.id}
+              id={resource.id}
+              resource={resource}
+              sectionId={sectionId}
+            />
           ))}
         </div>
-        </DragAndDropHandler>
+      </DragAndDropHandler>
     </div>
   )
 }

@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useQuery, useMutation } from '@apollo/client'
-import { Modal, Button, List, ListItem, Checkbox, Box } from '@mui/material';
+import { Modal, Button, List, ListItem, Checkbox, Box } from '@mui/material'
 import './ShareLessonModal.css'
 import { GET_USERS, GET_LESSON, SHARE_LESSON } from '../queries'
 
@@ -31,7 +30,7 @@ const ShareLessonModal = ({ lessonId, open, onClose }) => {
 
   const handleShare = async () => {
     try {
-      await shareLesson({ 
+      await shareLesson({
         variables: {
           id: lessonId,
           users: selectedUsers
@@ -54,14 +53,14 @@ const ShareLessonModal = ({ lessonId, open, onClose }) => {
           {usersData && usersData.users
             .filter(user => user.username !== currentUser.username)
             .map((user) => (
-            <ListItem key={user.id}>
-              <Checkbox
-                checked={selectedUsers.includes(user.id)}
-                onChange={() => handleUserToggle(user.id)}
-              />
-              {user.username}
-            </ListItem>
-          ))}
+              <ListItem key={user.id}>
+                <Checkbox
+                  checked={selectedUsers.includes(user.id)}
+                  onChange={() => handleUserToggle(user.id)}
+                />
+                {user.username}
+              </ListItem>
+            ))}
         </List>
         <Button onClick={handleShare}>Share</Button>
         <Button onClick={onClose}>Cancel</Button>

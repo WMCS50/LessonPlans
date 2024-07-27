@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useSelector } from 'react-redux'
 import CustomContextMenu from './CustomContextMenu'
 import { useDeleteLesson } from '../hooks/useDeleteLesson'
@@ -52,13 +51,13 @@ const LessonListContextMenuHandler = ({ selectedLesson, contextPosition, setCont
         onOptionSelect={handleOptionSelect}
       />
       {showShareModal && (
-        <ShareLessonModal 
+        <ShareLessonModal
           lessonId={selectedLesson.id}
           open={showShareModal}
-          onClose={()=> setShowShareModal(false)} />
+          onClose={() => setShowShareModal(false)} />
       )}
     </>
-  )           
+  )
 }
 
 export default LessonListContextMenuHandler

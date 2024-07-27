@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import CustomContextMenu from './CustomContextMenu'
 import { useDispatch } from 'react-redux'
 import { useDeleteResource } from '../hooks/useDeleteResource'
@@ -17,11 +16,11 @@ const ResourceContextMenuHandler = ({ selectedResource, sectionId, contextPositi
   if (selectedResource.type === 'document') {
     contextMenuOptions = [{ label: 'Open in new window', value: 'open', icon: <OpenInNewIcon /> }, ...contextMenuOptions]
   }
-  
+
   const handleOptionSelect = (option, event) => {
     event.stopPropagation()
     if (option.value === 'delete') {
-      handleDeleteResource({resourceId: selectedResource.id, sectionId: sectionId})
+      handleDeleteResource({ resourceId: selectedResource.id, sectionId: sectionId })
     } else if (option.value === 'open') {
       window.open(selectedResource.link, '_blank', 'noopener,noreferrer')
     } else if (option.value === 'edit') {
@@ -37,7 +36,7 @@ const ResourceContextMenuHandler = ({ selectedResource, sectionId, contextPositi
       position={contextPosition}
       onOptionSelect={handleOptionSelect}
     />
-  )           
+  )
 }
 
 export default ResourceContextMenuHandler

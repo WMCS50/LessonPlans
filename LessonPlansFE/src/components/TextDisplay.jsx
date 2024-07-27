@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import DOMPurify from 'dompurify'
 import TextEditor from './TextEditor'
@@ -11,7 +10,7 @@ const TextDisplay = ({ resource, readOnly = false }) => {
 
   useEffect(() => {
     setTimeout(() => setInitialText(resource.content), 500)
-  // had to follow TinyMCE documentation here precisely 
+  // had to follow TinyMCE documentation here precisely
   // in setting initial value as it doesn't work otherwise
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -31,7 +30,7 @@ const TextDisplay = ({ resource, readOnly = false }) => {
     <TextEditor className='text-editor-container'
       initialValue={initialText}
       onEditorChange={handleUpdateTextContent}
-  />
+    />
   )
 }
 

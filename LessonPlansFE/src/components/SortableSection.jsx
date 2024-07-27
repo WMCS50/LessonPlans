@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
 import { useSortable } from '@dnd-kit/sortable'
 import { useDispatch } from 'react-redux'
 import ResourceList from './ResourceList'
-import { updateSection } from '../features/lessons/sectionsSlice';
+import { updateSection } from '../features/lessons/sectionsSlice'
 import { useDeleteSection } from '../hooks/useDeleteSection'
-import {CSS} from '@dnd-kit/utilities'
+import { CSS } from '@dnd-kit/utilities'
 import './SortableSection.css'
 
 const SortableSection = ({ section, isActive, onClick }) => {
@@ -25,17 +24,17 @@ const SortableSection = ({ section, isActive, onClick }) => {
     transform: CSS.Transform.toString(transform),
     transition,
   }
-  
+
   const handleUpdateSectionTitle = (e) => {
-    dispatch(updateSection({ sectionId, title: e.target.value }));
+    dispatch(updateSection({ sectionId, title: e.target.value }))
   }
 
   return (
-    <div 
-      ref={setNodeRef} 
-      style={style} 
-      className={`section-item ${isActive ? 'active-section' : ''}`} 
-      {...attributes} 
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`section-item ${isActive ? 'active-section' : ''}`}
+      {...attributes}
       {...listeners}
       onClick={onClick}
     >
@@ -46,7 +45,7 @@ const SortableSection = ({ section, isActive, onClick }) => {
         value={title || ''}
         onChange={handleUpdateSectionTitle}
       />
-      <button onClick={()=> handleDeleteSection(sectionId)}>Delete Section</button>
+      <button onClick={() => handleDeleteSection(sectionId)}>Delete Section</button>
       <ResourceList sectionId={sectionId} />
     </div>
   )

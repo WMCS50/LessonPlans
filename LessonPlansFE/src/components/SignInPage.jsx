@@ -34,25 +34,26 @@ const SignInPage = () => {
 
   return (
     <div className='signin-container'>
-      <h1>Sign In</h1>
+      <h1>Sign In to the Lesson Plan App</h1>
       <form onSubmit={handleSubmit}>
-        <input 
+        <input
           type='text'
           id='username'
           placeholder='Username'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required />
-        <input 
-        type='password' 
-        id='password'
-        placeholder='Password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
+        <input
+          type='password'
+          id='password'
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button type='submit'>Sign In</button>
       </form>
+      <h1>Sign Up</h1>
       <button onClick={handleSignUpOpen}>Sign Up</button>
       <SignUpDialog open={signUpOpen} onClose={handleSignUpClose} />
     </div>

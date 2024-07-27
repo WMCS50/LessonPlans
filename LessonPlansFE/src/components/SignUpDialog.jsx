@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField, MenuItem } from '@mui/material'
 import { useMutation } from '@apollo/client'
@@ -11,15 +10,13 @@ const SignUpDialog = ({ open, onClose }) => {
   const [password, setPassword] = useState('')
   const [role, setRole] = useState('')
   const [addUser] = useMutation(ADD_USER)
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('Attempting to add user:', { username, password, role });
-      const { data } = await addUser({ variables: { username, password, role } });
-      console.log('Add user response:', data);
-      
-      alert('Sign up successful')
+      const { data } = await addUser({ variables: { username, password, role } })
+      console.log('data', data)
+      alert(`Sign up of ${data.addUser.username} successful`)
       handleClose()
     } catch (error) {
       const errorMessage = error.graphQLErrors?.[0]?.message || 'Sign up error. Please try again.'

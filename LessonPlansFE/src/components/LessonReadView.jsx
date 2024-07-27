@@ -21,7 +21,7 @@ const LessonReadView = () => {
   const [lesson, setLesson] = useState(null)
   const user = useSelector(state => state.auth.user)
   const [username, setUsername] = useState('null')
-  
+
   useEffect(() => {
     if (!user) {
       dispatch(loadUserFromStorage())
@@ -31,7 +31,7 @@ const LessonReadView = () => {
   // Set username when user data is available
   useEffect(() => {
     if (user) {
-    setUsername(user.username)  
+      setUsername(user.username)
     }
   }, [user])
 
@@ -55,18 +55,18 @@ const LessonReadView = () => {
       } else {
         setLesson(null)
       }
-    } 
+    }
   }, [isInPreview])
-    
+
   if (error) return <div>Error: {error} </div>
   if (!lesson) return <div>No lesson found</div>
 
   const editLesson = () => {
     navigate(`/create/${id}`)
   }
-  
+
   const resources = lesson.resources
-  
+
   const groupedResources = lesson.sections.map(section => {
     return {
       ...section,
@@ -83,23 +83,23 @@ const LessonReadView = () => {
         return (
           <button onClick={editLesson} >
           Edit
-        </button>)
+          </button>)
       }
     }
     return null
   }
 
   const fileMenuItems = username === lesson.createdBy ? ['Save As New', 'Edit', 'Share'] : ['Save As New']
-  
+
   return (
     <div className='lesson-read-container'>
       <header className='lesson-read-header'>
         {!isInPreview && (
           <>
-            <FileMenuManager 
-              currentLesson={lesson} 
-              setCurrentLesson={setLesson} 
-              resources={resources} 
+            <FileMenuManager
+              currentLesson={lesson}
+              setCurrentLesson={setLesson}
+              resources={resources}
               sections={lesson.sections}
               fileMenuItems={fileMenuItems} />
           </>
@@ -110,7 +110,7 @@ const LessonReadView = () => {
           <>
             <UserMenu />
           </>
-        )}        
+        )}
       </header>
       <div className='lesson-read-content'>
         {groupedResources.map(section => (
@@ -118,20 +118,20 @@ const LessonReadView = () => {
             <h4 className='section-title'>{section.title}</h4>
             {section.resources.map(resource => {
               switch (resource.type) {
-                case 'picture':  
-                  return <PictureDisplay key={resource.id} title={resource.title} link={resource.link} content={resource.content} />
-                case 'text':  
-                  return <TextDisplay key={resource.id} resource={resource} readOnly={true} />
-                case 'document':
-                  return <DocumentDisplay key={resource.id} title={resource.title} link={resource.link} />
-                case 'website': 
-                  return <WebsiteDisplay key={resource.id} title={resource.title} link={resource.link} />
-                case 'video':
-                  return <VideoDisplay key={resource.id}
-                    title={resource.title} link={resource.link} 
-                    startTime={resource.startTime} endTime={resource.endTime}/>
-                default:
-                  return <p key={resource.id}>Unknown resource type</p>
+              case 'picture':
+                return <PictureDisplay key={resource.id} title={resource.title} link={resource.link} content={resource.content} />
+              case 'text':
+                return <TextDisplay key={resource.id} resource={resource} readOnly={true} />
+              case 'document':
+                return <DocumentDisplay key={resource.id} title={resource.title} link={resource.link} />
+              case 'website':
+                return <WebsiteDisplay key={resource.id} title={resource.title} link={resource.link} />
+              case 'video':
+                return <VideoDisplay key={resource.id}
+                  title={resource.title} link={resource.link}
+                  startTime={resource.startTime} endTime={resource.endTime}/>
+              default:
+                return <p key={resource.id}>Unknown resource type</p>
               }
             })}
           </div>

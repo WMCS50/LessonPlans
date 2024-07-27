@@ -1,13 +1,11 @@
-/* eslint-disable react/prop-types */
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material'
 
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material';
-
-const FileMenuDialog = ({ 
-  open, onClose, onSave, 
-  title, content, 
-  inputLabel, inputValue, setInputValue, 
+const FileMenuDialog = ({
+  open, onClose, onSave,
+  title, content,
+  inputLabel, inputValue, setInputValue,
   showNoOption }) => {
-  
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>

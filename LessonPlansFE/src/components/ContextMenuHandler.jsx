@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveForm } from '../features/lessons/activeFormSlice'
 import CustomContextMenu from './CustomContextMenu'
 import useClickOutside from '../hooks/useClickOutside'
 import {
   TextFields as TextFieldsIcon, NoteAdd as NoteAddIcon, Web as WebIcon,
-  OndemandVideo as OndemandVideoIcon, AddAPhoto as AddAPhotoIcon, 
+  OndemandVideo as OndemandVideoIcon, AddAPhoto as AddAPhotoIcon,
   ArrowUpward as ArrowUpwardIcon, ArrowDownward as ArrowDownwardIcon
 } from '@mui/icons-material'
 
@@ -40,7 +39,7 @@ const ContextMenuHandler = ({ contextPosition, setContextPosition, currentLesson
   const handleOptionSelect = (option) => {
     if (option.label === 'Add Section Above') {
       dispatch(setActiveForm({ type: 'Add Section', position: 'above', section: activeSectionId }))
-    } else if (option.label === 'Add Section Below') { 
+    } else if (option.label === 'Add Section Below') {
       dispatch(setActiveForm({ type: 'Add Section', position: 'below', section: activeSectionId }))
     } else {
       const resourceIndex = contextPosition ? getResourceIndexAtPosition(contextPosition.y) : currentLesson.resources.length

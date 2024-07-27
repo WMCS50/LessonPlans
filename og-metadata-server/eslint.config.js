@@ -1,19 +1,19 @@
-import globals from "globals"
+import globals from 'globals'
 import js from '@eslint/js'
 import stylisticJs from '@stylistic/eslint-plugin-js'
 
 export default [
   js.configs.recommended,
   {
-    files: ["**/*.js"],
+    files: ['**/*.js'],
     languageOptions: {
-      sourceType: "commonjs",
+      sourceType: 'module',
       globals: {
         ...globals.node,
       },
-      ecmaVersion: "latest",
+      ecmaVersion: 'latest',
     },
-    ignores: ["dist/**"],
+    ignores: ['dist/**'],
     plugins: {
       '@stylistic/js': stylisticJs
     },
@@ -42,6 +42,7 @@ export default [
       'arrow-spacing': [
         'error', { 'before': true, 'after': true },
       ],
+      'no-unused-vars': ['error', { 'caughtErrors': 'all', 'caughtErrorsIgnorePattern': '^error' }]
     },
   },
 ]

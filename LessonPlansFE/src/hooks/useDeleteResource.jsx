@@ -9,7 +9,7 @@ export const useDeleteResource = () => {
     if (!confirmed) {
       return
     }
-        
+
     try {
       await dispatch(deleteResource(resourceId, sectionId))
       alert('Resource deleted successfully')
@@ -17,6 +17,6 @@ export const useDeleteResource = () => {
       console.error('Error in deleting resource', error)
       alert('Resource could not be deleted')
     }
-  } 
+  }
   return { handleDeleteResource }
 }

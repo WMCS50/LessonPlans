@@ -29,7 +29,7 @@ export const addLesson = createAsyncThunk('lessons/addLesson',
 // Update lesson
 export const updateLesson = createAsyncThunk('lessons/updateLesson',
   async ({ id, lesson }) => {
-    const response = await client.mutate({ mutation: UPDATE_LESSON, variables: {id, ...lesson} })
+    const response = await client.mutate({ mutation: UPDATE_LESSON, variables: { id, ...lesson } })
     return response.data.updateLesson
   }
 )
@@ -39,10 +39,10 @@ export const deleteLesson = createAsyncThunk('lessons/deleteLesson',
   async (lessonId, { rejectWithValue }) => {
     console.log('lessonId')
     try {
-      await client.mutate({ 
-        mutation: DELETE_LESSON, 
-        variables: { 
-          id: lessonId 
+      await client.mutate({
+        mutation: DELETE_LESSON,
+        variables: {
+          id: lessonId
         },
         refetchQueries: [{ query: GET_LESSONS }]
       })
@@ -87,7 +87,7 @@ const lessonsSlice = createSlice({
         state.status = 'failed'
       })
       .addCase(addLesson.fulfilled, (state, action) => {
-        state.lessons.push(action.payload);
+        state.lessons.push(action.payload)
         state.status = 'succeeded'
       })
       .addCase(addLesson.rejected, (state, action) => {
@@ -95,7 +95,7 @@ const lessonsSlice = createSlice({
         state.status = 'failed'
       })
       .addCase(deleteLesson.fulfilled, (state, action) => {
-        state.lessons = state.lessons.filter(lesson => lesson.id !== action.payload);
+        state.lessons = state.lessons.filter(lesson => lesson.id !== action.payload)
         state.status = 'succeeded'
       })
       .addCase(deleteLesson.rejected, (state, action) => {

@@ -1,17 +1,16 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react"
+import { useState } from 'react'
 
 const PictureDisplay = ({ title, link, content }) => {
   const [imgError, setImgError] = useState(false)
-  
+
   return (
     <div className='picture-display'>
       {title && <p>{title}</p>}
       {!imgError ? (
-        <img 
-          src={link} 
-          alt={title} 
-          style={{ width: '300px', height: 'auto' }} 
+        <img
+          src={link}
+          alt={title}
+          style={{ width: '300px', height: 'auto' }}
           onError={() => setImgError(true)}
         />
       ) : (

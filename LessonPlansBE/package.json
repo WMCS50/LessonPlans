@@ -8,7 +8,8 @@
     "dev": "nodemon index.js",
     "build:ui": "@powershell Remove-Item -Recurse -Force dist && cd ../LessonPlansFE/ && npm run build && @powershell Copy-Item dist -Recurse ../LessonPlansBE",
     "deploy": "fly deploy",
-    "deploy:full": "npm run build:ui && npm run deploy"
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",

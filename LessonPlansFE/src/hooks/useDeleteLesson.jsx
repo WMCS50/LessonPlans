@@ -9,7 +9,7 @@ export const useDeleteLesson = () => {
     if (!confirmed) {
       return
     }
-        
+
     try {
       await dispatch(deleteLesson(lessonId)).unwrap()
       alert('Lesson deleted successfully')
@@ -18,6 +18,6 @@ export const useDeleteLesson = () => {
       console.error('Error in deleting lesson', error)
       alert('Lesson could not be deleted')
     }
-  } 
+  }
   return { handleDeleteLesson }
 }

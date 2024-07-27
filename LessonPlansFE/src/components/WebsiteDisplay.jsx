@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './ResourceType.css'
@@ -6,7 +5,7 @@ import './ResourceType.css'
 const WebsiteDisplay = ({ title, link }) => {
   const [metadata, setMetadata] = useState(null)
   const [isValidUrl, setIsValidUrl] = useState(true)
-  
+
   useEffect(() => {
     const fetchMetaData = async () => {
       try {
@@ -22,20 +21,20 @@ const WebsiteDisplay = ({ title, link }) => {
     fetchMetaData()
   }, [link])
 
-   const getImageUrl = (ogImage) => {
+  const getImageUrl = (ogImage) => {
     if (Array.isArray(ogImage)) {
       return ogImage[0]?.url
     } else if (ogImage && ogImage.url) {
       return ogImage.url
-    } else 
+    } else
       console.log('no pic')
-      return null
+    return null
   }
 
   return (
     <div className='website-display'>
       <h3>
-        <a className='website-display-link' 
+        <a className='website-display-link'
           href={link} target='blank' rel='noopener noreferrer'>
           {metadata?.ogTitle || title}
         </a>
@@ -44,10 +43,10 @@ const WebsiteDisplay = ({ title, link }) => {
       {isValidUrl && metadata ? (
         <div className='website-display-metadata'>
           <p>{metadata.ogUrl}</p>
-          <img 
-            src={getImageUrl(metadata.ogImage)} 
+          <img
+            src={getImageUrl(metadata.ogImage)}
             alt={metadata.ogTitle}
-            style={{ width: '300px', height: 'auto' }} 
+            style={{ width: '300px', height: 'auto' }}
           />
           {metadata.ogDescription && <p>{metadata.ogDescription}</p>}
         </div>

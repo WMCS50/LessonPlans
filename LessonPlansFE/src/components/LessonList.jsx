@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_LESSONS } from '../queries'
@@ -11,15 +10,15 @@ import { MoreVert as MoreVertIcon, FolderOpen as FolderOpenIcon } from '@mui/ico
 
 const LessonList = ({ onSelect }) => {
   const navigate = useNavigate()
-  const { data, loading, error} = useQuery(GET_LESSONS)
+  const { data, loading, error } = useQuery(GET_LESSONS)
 
   const [sortConfig, setSortConfig] = useState({ key: 'title', direction: 'ascending' })
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedLesson, setSelectedLesson] = useState('null')
   const [contextPosition, setContextPosition] = useState(null)
 
-//initial fetch
-const lessons = data ? data.lessons : []
+  //initial fetch
+  const lessons = data ? data.lessons : []
 
   const fileMenuItems = ['Create New', 'Open']
   const requestSort = (key) => {
@@ -47,7 +46,7 @@ const lessons = data ? data.lessons : []
   //filters lesson based on searchQuery
   const filteredLessons = sortedLessons.filter((lesson) =>
     lesson.title && lesson.title.toLowerCase().includes(searchQuery.toLowerCase())
-  ) 
+  )
 
   const handleLessonClick = (lesson) => {
     onSelect ? onSelect(lesson) : navigate(`/lessons/${lesson.id}`)
@@ -58,12 +57,12 @@ const lessons = data ? data.lessons : []
     event.preventDefault()
     setContextPosition({ x: event.clientX, y: event.clientY })
     setSelectedLesson(lesson)
-  } 
+  }
 
   const formatDate = (timestamp) => {
     const date = new Date(parseInt(timestamp))
-    return date.toLocaleDateString() === 'Invalid Date' ? 'No Date Available' : 
-      date.toLocaleDateString("en-US", { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+    return date.toLocaleDateString() === 'Invalid Date' ? 'No Date Available' :
+      date.toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
   }
 
   return (
@@ -72,9 +71,9 @@ const lessons = data ? data.lessons : []
       {error && <p>Error: {error.message}</p>}
       <header className='lesson-list-header'>
         <FileMenuManager fileMenuItems={fileMenuItems} skipDialogs={true} />
-        <input 
-          className='search-bar' 
-          type='text' 
+        <input
+          className='search-bar'
+          type='text'
           placeholder='Search Lesson Title'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -97,24 +96,24 @@ const lessons = data ? data.lessons : []
           </tr>
         </thead>
         <tbody>
-        {filteredLessons.length === 0 ? (
+          {filteredLessons.length === 0 ? (
             <tr>
               <td colSpan="5">No lessons available</td>
             </tr>
           ) : (
             filteredLessons.map((lesson) => (
-              <tr 
-                style={{cursor: 'pointer'}}  
-                key={lesson.id} 
-                onClick={() => handleLessonClick(lesson)} 
+              <tr
+                style={{ cursor: 'pointer' }}
+                key={lesson.id}
+                onClick={() => handleLessonClick(lesson)}
               >
-                <td>{lesson.title}</td> 
+                <td>{lesson.title}</td>
                 <td>{lesson.courseAssociations.join(', ')}</td>
                 <td>{lesson.createdBy}</td>
                 <td>{lesson.sharedWith.map(user => user.username).join(', ')}</td>
                 <td>{formatDate(lesson.dateModified)}</td>
                 <td>
-                  <MoreVertIcon 
+                  <MoreVertIcon
                     className='more-vert-icon'
                     onClick={(event) => handleVertIconClick(event, lesson)} />
                 </td>
@@ -123,13 +122,13 @@ const lessons = data ? data.lessons : []
           )}
         </tbody>
       </table>
-        {contextPosition && (
-          <LessonListContextMenuHandler
-            contextPosition={contextPosition}
-            setContextPosition={setContextPosition}
-            selectedLesson={selectedLesson}
-          />
-        )}
+      {contextPosition && (
+        <LessonListContextMenuHandler
+          contextPosition={contextPosition}
+          setContextPosition={setContextPosition}
+          selectedLesson={selectedLesson}
+        />
+      )}
     </div>
   )
 }

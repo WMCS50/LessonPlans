@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 import { useDispatch } from 'react-redux'
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
 const DragAndDropHandler = ({ items, onReorder, children }) => {
   const dispatch = useDispatch()
-  
+
   const pointerSensor = useSensor(PointerSensor, {
     activationConstraint: {
       distance: 5

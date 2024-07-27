@@ -15,7 +15,7 @@ const path = require('path')
 dotenv.config()
 
 //connect to mongoDB
-const MONGODB_URI = process.env.MONGODB_URI === 'test' 
+const MONGODB_URI = process.env.MONGODB_URI === 'test'
   ? process.env.TEST_MONGODB_URI
   : process.env.MONGODB_URI
 console.log('connecting to', MONGODB_URI)
@@ -37,15 +37,15 @@ mongoose.set('debug', true)
 const start = async () => {
   const app = express()
   const httpServer = http.createServer(app)
-  
+
   const server = new ApolloServer({ typeDefs, resolvers, context })
 
   await server.start()
-  
+
   app.use(express.static('dist'))
   app.use(cors())
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "dist", "index.html"))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'))
   })
 
   app.use(
@@ -58,7 +58,7 @@ const start = async () => {
   app.get('/favicon.ico', (req, res) => res.status(204))
 
   app.use('/graphql', expressMiddleware(server, { context }))
-  
+
   if (process.env.NODE_ENV !== 'test') {
     const PORT = process.env.PORT || 4000
     httpServer.listen(PORT, () => {

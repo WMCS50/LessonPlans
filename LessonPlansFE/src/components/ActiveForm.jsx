@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AddEditResource from './AddEditResource'
@@ -21,7 +20,7 @@ const ActiveForm = (lessonId) => {
         return
       }
       setOpen(true)
-    } 
+    }
   }, [activeForm, activeSectionId])
 
   const handleClose = () => {
@@ -37,7 +36,7 @@ const ActiveForm = (lessonId) => {
     <>
       <SectionManager activeForm={activeForm} sections={sections} />
       {activeForm.type !== 'Add Section' && (
-        <AddEditResource 
+        <AddEditResource
           open={open}
           onClose={handleClose}
           lessonId={lessonId}
